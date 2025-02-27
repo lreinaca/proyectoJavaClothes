@@ -29,3 +29,4 @@ bin/*
 target/*
 src/main/resources/*.properties
 *.swp
+/build/

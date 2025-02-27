@@ -1,5 +1,5 @@
 
-package controladores;
+package controlador;
 
 public class Main {
 
