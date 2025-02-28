@@ -39,11 +39,11 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPerfil = new javax.swing.JMenu();
-        loginMenuIt = new javax.swing.JMenuItem();
-        signUpMenuIt = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        perfilMenu = new javax.swing.JMenuItem();
+        FavoritosMenu = new javax.swing.JMenuItem();
+        CarritoMenu = new javax.swing.JMenuItem();
+        pedidosMenu = new javax.swing.JMenuItem();
+        cerrarSesionMenu = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -129,31 +129,36 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
             }
         });
 
-        loginMenuIt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        loginMenuIt.setText("Perfil");
-        loginMenuIt.addActionListener(new java.awt.event.ActionListener() {
+        perfilMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        perfilMenu.setText("Perfil");
+        perfilMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginMenuItActionPerformed(evt);
+                perfilMenuActionPerformed(evt);
             }
         });
-        menuPerfil.add(loginMenuIt);
+        menuPerfil.add(perfilMenu);
 
-        signUpMenuIt.setText("Mis favoritos");
-        signUpMenuIt.addActionListener(new java.awt.event.ActionListener() {
+        FavoritosMenu.setText("Mis favoritos");
+        FavoritosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpMenuItActionPerformed(evt);
+                FavoritosMenuActionPerformed(evt);
             }
         });
-        menuPerfil.add(signUpMenuIt);
+        menuPerfil.add(FavoritosMenu);
 
-        jMenuItem1.setText("Mi carrito");
-        menuPerfil.add(jMenuItem1);
+        CarritoMenu.setText("Mi carrito");
+        menuPerfil.add(CarritoMenu);
 
-        jMenuItem3.setText("Mis pedidos");
-        menuPerfil.add(jMenuItem3);
+        pedidosMenu.setText("Mis pedidos");
+        menuPerfil.add(pedidosMenu);
 
-        jMenuItem2.setText("Cerrar sesión");
-        menuPerfil.add(jMenuItem2);
+        cerrarSesionMenu.setText("Cerrar sesión");
+        cerrarSesionMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarSesionMenuActionPerformed(evt);
+            }
+        });
+        menuPerfil.add(cerrarSesionMenu);
 
         jMenuBar1.add(menuPerfil);
         jMenuBar1.add(jMenu3);
@@ -170,9 +175,19 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jMenu5.add(camisasFMenuIt);
 
         pantFMenuIt.setText("Pantalones");
+        pantFMenuIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pantFMenuItActionPerformed(evt);
+            }
+        });
         jMenu5.add(pantFMenuIt);
 
         calzaFMenuIt.setText("Calzado");
+        calzaFMenuIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calzaFMenuItActionPerformed(evt);
+            }
+        });
         jMenu5.add(calzaFMenuIt);
 
         jMenuBar1.add(jMenu5);
@@ -210,23 +225,17 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuPerfilActionPerformed
 
-    private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
-        //REGISTRO
-        VistaRegistro vista = new VistaRegistro();
-        vista.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_signUpMenuItActionPerformed
+    private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
+       
+    }//GEN-LAST:event_FavoritosMenuActionPerformed
 
-    private void loginMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItActionPerformed
-        //INICIO SESIÓN
-        VistaInicioSesion vista = new VistaInicioSesion();
-        vista.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_loginMenuItActionPerformed
+    private void perfilMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMenuActionPerformed
+        
+    }//GEN-LAST:event_perfilMenuActionPerformed
 
     private void camisasFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camisasFMenuItActionPerformed
         ExplorarCamisaFem vr = new ExplorarCamisaFem();
-        vr.setSize(900,500);
+        vr.setSize(950,550);
         vr.setLocation(0,0);
         
         contenido.removeAll();
@@ -234,6 +243,32 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_camisasFMenuItActionPerformed
+
+    private void pantFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantFMenuItActionPerformed
+        ExplorarPantFem vr = new ExplorarPantFem();
+        vr.setSize(950,550);
+        vr.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_pantFMenuItActionPerformed
+
+    private void calzaFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaFMenuItActionPerformed
+         ExplorarCalzaFem vr = new ExplorarCalzaFem();
+        vr.setSize(950,550);
+        vr.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_calzaFMenuItActionPerformed
+
+    private void cerrarSesionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cerrarSesionMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,10 +309,13 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CarritoMenu;
+    private javax.swing.JMenuItem FavoritosMenu;
     private javax.swing.JMenuItem calzaFMenuIt;
     private javax.swing.JMenuItem calzaMMenuIt;
     private javax.swing.JMenuItem camisasFMenuIt;
     private javax.swing.JMenuItem camisasMMenuIt;
+    private javax.swing.JMenuItem cerrarSesionMenu;
     private javax.swing.JPanel contenido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -288,14 +326,11 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JMenuItem loginMenuIt;
     private javax.swing.JMenu menuPerfil;
     private javax.swing.JMenuItem pantFMenuIt;
     private javax.swing.JMenuItem pantMMenult;
-    private javax.swing.JMenuItem signUpMenuIt;
+    private javax.swing.JMenuItem pedidosMenu;
+    private javax.swing.JMenuItem perfilMenu;
     // End of variables declaration//GEN-END:variables
 }

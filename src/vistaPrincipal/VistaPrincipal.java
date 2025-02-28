@@ -4,6 +4,11 @@
  */
 package vistaPrincipal;
 
+import java.awt.BorderLayout;
+import vistaCliente.ExplorarCalzaFem;
+import vistaCliente.ExplorarCamisaFem;
+import vistaCliente.ExplorarPantFem;
+
 /**
  *
  * @author ibarr
@@ -27,7 +32,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        contenido = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,7 +55,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(930, 521));
+        contenido.setPreferredSize(new java.awt.Dimension(930, 521));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,14 +105,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(182, 182, 182))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
+        contenido.setLayout(contenidoLayout);
+        contenidoLayout.setHorizontalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contenidoLayout.setVerticalGroup(
+            contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -149,12 +154,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu5.setText("Mujer");
 
         camisasFMenuIt.setText("Camisas");
+        camisasFMenuIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                camisasFMenuItActionPerformed(evt);
+            }
+        });
         jMenu5.add(camisasFMenuIt);
 
         pantFMenuIt.setText("Pantalones");
+        pantFMenuIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pantFMenuItActionPerformed(evt);
+            }
+        });
         jMenu5.add(pantFMenuIt);
 
         calzaFMenuIt.setText("Calzado");
+        calzaFMenuIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calzaFMenuItActionPerformed(evt);
+            }
+        });
         jMenu5.add(calzaFMenuIt);
 
         jMenuBar1.add(jMenu5);
@@ -178,11 +198,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+            .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -205,6 +225,39 @@ public class VistaPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_loginMenuItActionPerformed
+
+    private void camisasFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camisasFMenuItActionPerformed
+        ExplorarCamisaFem vr = new ExplorarCamisaFem();
+        vr.setSize(900,500);
+        vr.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_camisasFMenuItActionPerformed
+
+    private void pantFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantFMenuItActionPerformed
+        ExplorarPantFem vr = new ExplorarPantFem();
+        vr.setSize(900,500);
+        vr.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_pantFMenuItActionPerformed
+
+    private void calzaFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaFMenuItActionPerformed
+        ExplorarCalzaFem vr = new ExplorarCalzaFem();
+        vr.setSize(900,500);
+        vr.setLocation(0,0);
+        
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
+    }//GEN-LAST:event_calzaFMenuItActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +306,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem calzaMMenuIt;
     private javax.swing.JMenuItem camisasFMenuIt;
     private javax.swing.JMenuItem camisasMMenuIt;
+    private javax.swing.JPanel contenido;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -262,7 +316,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem loginMenuIt;
     private javax.swing.JMenu menuPerfil;
