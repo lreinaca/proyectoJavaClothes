@@ -29,5 +29,9 @@ target/*
 nbproject/private/
 src/main/resources/*.properties
 *.swp
+<<<<<<< HEAD
 *.tmp
 /build/
+=======
+/build/
+>>>>>>> 3cf5fd3e2704274b5ade4b7bf0c50489b9099ef1
