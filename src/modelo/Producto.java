@@ -1,31 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package modelo;
 
-/**
- *
- * @author juanv
- */
 public class Producto {
-    private String color;
-    private String talla;
-    private char genero;
-    private double precio;
-    private String material;
-    private String estilo;
-    private String descripcion;
+    
+    private int productoId;
+    private int stock; 
+    private double precio; 
     private String nombre;
+    private String color;
+    private String talla; 
+    private String material;
+    private String descripcion;
 
-    public Producto(String color, String talla, char genero, double precio, String material, String estilo, String descripcion, String nombre) {
+    public Producto(int stock, double precio, String nombre, String color, String talla, String material, String descripcion) {
+        this.productoId = 0000; 
+        this.stock = stock;
+        this.precio = precio;
+        this.nombre = nombre;
         this.color = color;
         this.talla = talla;
-        this.genero = genero;
-        this.precio = precio;
         this.material = material;
-        this.estilo = estilo;
         this.descripcion = descripcion;
+    }
+
+    public int getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(int productoId) {
+        this.productoId = productoId;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -45,36 +71,12 @@ public class Producto {
         this.talla = talla;
     }
 
-    public char getGenero() {
-        return genero;
-    }
-
-    public void setGenero(char genero) {
-        this.genero = genero;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
     public String getMaterial() {
         return material;
     }
 
     public void setMaterial(String material) {
         this.material = material;
-    }
-
-    public String getEstilo() {
-        return estilo;
-    }
-
-    public void setEstilo(String estilo) {
-        this.estilo = estilo;
     }
 
     public String getDescripcion() {
@@ -84,15 +86,11 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    
+    
+    
+    
+    
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    
-    
 }
