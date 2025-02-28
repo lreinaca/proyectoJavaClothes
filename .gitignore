@@ -40,3 +40,4 @@ src/main/resources/*.properties
 /build/
 >>>>>>> 3cf5fd3e2704274b5ade4b7bf0c50489b9099ef1
 >>>>>>> d69cf3a3bbc467e4699e3f3bd0d622265584ce6a
+/dist/
