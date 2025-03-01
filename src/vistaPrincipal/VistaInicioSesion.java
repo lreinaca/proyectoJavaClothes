@@ -4,6 +4,8 @@
  */
 package vistaPrincipal;
 
+import vistaCliente.VistaPrincipalCliente;
+
 /**
  *
  * @author ibarr
@@ -284,7 +286,9 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_JPContraseñaActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        // TODO add your handling code here:
+        VistaPrincipalCliente vista = new VistaPrincipalCliente();
+        vista.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnIrARegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrARegistroActionPerformed

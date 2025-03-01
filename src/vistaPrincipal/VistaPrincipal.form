@@ -59,6 +59,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mujer"/>
           </Properties>
           <SubComponents>
@@ -97,16 +100,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Camisas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="camisasMMenuItActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="pantMMenult">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pantalones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pantMMenultActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="calzaMMenuIt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Calzado"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="calzaMMenuItActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
