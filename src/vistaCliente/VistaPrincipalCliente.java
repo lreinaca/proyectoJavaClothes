@@ -147,6 +147,11 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jMenuNuevo.add(cerrarSesionMenu);
 
         FavoritosMenu.setText("Mis favoritos");
+        FavoritosMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FavoritosMenuActionPerformed(evt);
+            }
+        });
         jMenuNuevo.add(FavoritosMenu);
 
         jMenuBar1.add(jMenuNuevo);
@@ -327,6 +332,13 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_pantHActionPerformed1
+
+    private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
+        // TODO add your handling code here:
+       Favoritos vista = new Favoritos();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_FavoritosMenuActionPerformed
 
 
     /**
