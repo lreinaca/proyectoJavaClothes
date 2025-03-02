@@ -5,6 +5,9 @@
 package vistaCliente;
 
 import java.awt.BorderLayout;
+import vistaCompras.CarritoDeCompras;
+import vistaCompras.Favoritos;
+import vistaCompras.HistorialPedidosClientes;
 import vistaPrincipal.VistaInicioSesion;
 import vistaPrincipal.VistaRegistro;
 
@@ -147,9 +150,19 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         menuPerfil.add(signUpMenuIt);
 
         jMenuItem1.setText("Mi carrito");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menuPerfil.add(jMenuItem1);
 
         jMenuItem3.setText("Mis pedidos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menuPerfil.add(jMenuItem3);
 
         jMenuItem2.setText("Cerrar sesión");
@@ -212,7 +225,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
         //REGISTRO
-        VistaRegistro vista = new VistaRegistro();
+        Favoritos vista = new Favoritos();
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_signUpMenuItActionPerformed
@@ -234,6 +247,20 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_camisasFMenuItActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       CarritoDeCompras vista = new CarritoDeCompras();
+        vista.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        HistorialPedidosClientes vista = new HistorialPedidosClientes();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
