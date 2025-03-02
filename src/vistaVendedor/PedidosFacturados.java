@@ -35,7 +35,6 @@ public class PedidosFacturados extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(241, 234, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PEDIDOS FACTURADOS");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

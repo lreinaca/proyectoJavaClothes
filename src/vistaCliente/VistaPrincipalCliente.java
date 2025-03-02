@@ -2,6 +2,9 @@
 package vistaCliente;
 
 import java.awt.BorderLayout;
+import vistaCompras.CarritoDeCompras;
+import vistaCompras.Favoritos;
+import vistaCompras.HistorialPedidosClientes;
 import vistaPrincipal.VistaInicioSesion;
 import vistaPrincipal.VistaPrincipal;
 import vistaPrincipal.VistaRegistro;
@@ -139,11 +142,21 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         });
         menuPerfil.add(FavoritosMenu);
 
-        CarritoMenu.setText("Mi carrito");
-        menuPerfil.add(CarritoMenu);
+        jMenuItem1.setText("Mi carrito");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuPerfil.add(jMenuItem1);
 
-        pedidosMenu.setText("Mis pedidos");
-        menuPerfil.add(pedidosMenu);
+        jMenuItem3.setText("Mis pedidos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuPerfil.add(jMenuItem3);*
 
         cerrarSesionMenu.setText("Cerrar sesión");
         cerrarSesionMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -228,14 +241,13 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPerfilActionPerformed
-     
-    }//GEN-LAST:event_menuPerfilActionPerformed
-
-    private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
-       
-    }//GEN-LAST:event_FavoritosMenuActionPerformed
+  
+    private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
+        //REGISTRO
+        Favoritos vista = new Favoritos();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_signUpMenuItActionPerformed
 
     private void perfilMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMenuActionPerformed
         CuentaInfoCliente vr = new CuentaInfoCliente();
@@ -308,17 +320,21 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_calzaMMenuItActionPerformed
-
-    private void pantMMenultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantMMenultActionPerformed
-        ExplorarPantMasc vr = new ExplorarPantMasc();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
+  
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       CarritoDeCompras vista = new CarritoDeCompras();
+        vista.setVisible(true);
+        this.dispose();
         
-        contenido.removeAll();
-        contenido.add(vr, BorderLayout.CENTER);
-        contenido.revalidate();
-        contenido.repaint();
-    }//GEN-LAST:event_pantMMenultActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        HistorialPedidosClientes vista = new HistorialPedidosClientes();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -348,6 +364,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+      
         //</editor-fold>
 
         /* Create and display the form */
