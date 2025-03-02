@@ -4,6 +4,8 @@
  */
 package vistaPrincipal;
 
+import javax.swing.JOptionPane;
+
 import vistaCliente.VistaPrincipalCliente;
 
 /**
@@ -285,11 +287,19 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JPContraseñaActionPerformed
 
-    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        VistaPrincipalCliente vista = new VistaPrincipalCliente();
-        vista.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnAccederActionPerformed
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAccederActionPerformed
+        if (txtCedula.getText().isEmpty() || JPContraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
+
+        } else if (!txtCedula.getText().equals("123456")) {
+            JOptionPane.showMessageDialog(null, "¡DATOS INCORRECTOS! intente nuevamente.");
+        }
+        else{
+            VistaPrincipalCliente vista = new VistaPrincipalCliente();
+            vista.setVisible(true);
+            this.dispose();
+        }
+    }// GEN-LAST:event_btnAccederActionPerformed
 
     private void btnIrARegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrARegistroActionPerformed
         VistaRegistro vista = new VistaRegistro();
