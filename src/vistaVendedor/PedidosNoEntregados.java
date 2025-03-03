@@ -75,12 +75,12 @@ public class PedidosNoEntregados extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Tennis Nike", "Verde", "38", "1", "390000"},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"123", "Tennis Nike", "Verde", "38", "1", "390000"},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Producto", "Color", "Talla", "Cantidad", "Valor Unt."
+                "IdPedido", "Producto", "Color", "Talla", "Cantidad", "Valor Unt."
             }
         ));
         jScrollPane2.setViewportView(jTable1);
