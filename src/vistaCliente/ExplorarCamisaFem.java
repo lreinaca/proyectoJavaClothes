@@ -1,8 +1,6 @@
 
 package vistaCliente;
 
-import vistaPrincipal.VistaRegistro;
-
 public class ExplorarCamisaFem extends javax.swing.JPanel {
 
     public ExplorarCamisaFem() {
