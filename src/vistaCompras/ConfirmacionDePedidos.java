@@ -15,6 +15,7 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
      */
     public ConfirmacionDePedidos() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
    

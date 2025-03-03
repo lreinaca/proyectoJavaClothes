@@ -18,6 +18,7 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
      */
     public HistorialPedidosClientes() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
