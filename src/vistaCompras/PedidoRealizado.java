@@ -17,6 +17,7 @@ public class PedidoRealizado extends javax.swing.JFrame {
      */
     public PedidoRealizado() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

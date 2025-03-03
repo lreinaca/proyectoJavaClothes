@@ -17,6 +17,7 @@ public class CarritoDeCompras extends javax.swing.JFrame {
      */
     public CarritoDeCompras() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
