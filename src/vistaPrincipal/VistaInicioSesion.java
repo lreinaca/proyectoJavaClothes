@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistaPrincipal;
 
 import javax.swing.JOptionPane;
+import vistaAdministrador.VistaAdministracionProductos;
 
 import vistaCliente.VistaPrincipalCliente;
+import vistaVendedor.VistaGestionPedidos;
 
 /**
  *
@@ -37,7 +35,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnIrARegistro = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGoogle = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         tgVerContraseña = new javax.swing.JToggleButton();
         btnVolver = new javax.swing.JButton();
@@ -134,13 +132,13 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconGoogle.png"))); // NOI18N
-        jButton2.setText("Acceder con Google");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGoogle.setBackground(new java.awt.Color(153, 153, 153));
+        btnGoogle.setForeground(new java.awt.Color(51, 51, 51));
+        btnGoogle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconGoogle.png"))); // NOI18N
+        btnGoogle.setText("Acceder con Google");
+        btnGoogle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGoogleActionPerformed(evt);
             }
         });
 
@@ -176,7 +174,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(JPContraseña)
                             .addComponent(btnAcceder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(btnGoogle, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(tgVerContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -202,7 +200,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGoogle, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,22 +282,41 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JPContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPContraseñaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_JPContraseñaActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAccederActionPerformed
         if (txtCedula.getText().isEmpty() || JPContraseña.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
 
-        } else if (!txtCedula.getText().equals("123456")) {
-            JOptionPane.showMessageDialog(null, "¡DATOS INCORRECTOS! intente nuevamente.");
+        } else {
+            switch (txtCedula.getText()) {
+                case "123456": {
+                    VistaPrincipalCliente vista = new VistaPrincipalCliente();
+                    vista.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+                case "222222": {
+                    VistaAdministracionProductos vista = new VistaAdministracionProductos();
+                    vista.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+                case "333333": {
+                    VistaGestionPedidos vista = new VistaGestionPedidos();
+                    vista.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+                default:
+
+                    JOptionPane.showMessageDialog(null, "¡DATOS INCORRECTOS! intente nuevamente.");
+                    break;
+            }
         }
-        else{
-            VistaPrincipalCliente vista = new VistaPrincipalCliente();
-            vista.setVisible(true);
-            this.dispose();
-        }
-    }// GEN-LAST:event_btnAccederActionPerformed
+    }
+
 
     private void btnIrARegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrARegistroActionPerformed
         VistaRegistro vista = new VistaRegistro();
@@ -307,15 +324,15 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnIrARegistroActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
+        JOptionPane.showMessageDialog(null, "AQUI SE PUEDE INGRESAR CON TUS DATOS DE LA CUENTA DE GMAIL");
+    }//GEN-LAST:event_btnGoogleActionPerformed
 
     private void tgVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgVerContraseñaActionPerformed
-        if (tgVerContraseña.isSelected()){
+        if (tgVerContraseña.isSelected()) {
             //mostrar la contraseña
-            JPContraseña.setEchoChar((char)0);
-        }else{
+            JPContraseña.setEchoChar((char) 0);
+        } else {
             JPContraseña.setEchoChar('•'); //ocultar
         }
     }//GEN-LAST:event_tgVerContraseñaActionPerformed
@@ -326,50 +343,13 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(VistaInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(VistaInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(VistaInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(VistaInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new VistaInicioSesion().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JPContraseña;
     private javax.swing.JButton btnAcceder;
+    private javax.swing.JButton btnGoogle;
     private javax.swing.JButton btnIrARegistro;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
