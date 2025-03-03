@@ -1,7 +1,6 @@
 
 package vistaAdministrador;
 
-import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 public class Inventario extends javax.swing.JPanel {

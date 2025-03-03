@@ -33,8 +33,8 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         perfilMenu = new javax.swing.JMenuItem();
         CarritoMenu = new javax.swing.JMenuItem();
         pedidosMenu = new javax.swing.JMenuItem();
-        cerrarSesionMenu = new javax.swing.JMenuItem();
         FavoritosMenu = new javax.swing.JMenuItem();
+        cerrarSesionMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         camisasFMenuIt = new javax.swing.JMenuItem();
@@ -94,7 +94,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -138,14 +138,6 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         });
         jMenuNuevo.add(pedidosMenu);
 
-        cerrarSesionMenu.setText("Cerrar sesión");
-        cerrarSesionMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarSesionMenuActionPerformed(evt);
-            }
-        });
-        jMenuNuevo.add(cerrarSesionMenu);
-
         FavoritosMenu.setText("Mis favoritos");
         FavoritosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +145,14 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
             }
         });
         jMenuNuevo.add(FavoritosMenu);
+
+        cerrarSesionMenu.setText("Cerrar sesión");
+        cerrarSesionMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarSesionMenuActionPerformed(evt);
+            }
+        });
+        jMenuNuevo.add(cerrarSesionMenu);
 
         jMenuBar1.add(jMenuNuevo);
         jMenuBar1.add(jMenu4);
@@ -228,7 +228,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  
+
     private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
         //REGISTRO
         Favoritos vista = new Favoritos();
@@ -238,20 +238,20 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void perfilMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMenuActionPerformed
         CuentaInfoCliente vr = new CuentaInfoCliente();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
-        contenido.repaint();     
+        contenido.repaint();
     }//GEN-LAST:event_perfilMenuActionPerformed
 
     private void camisasFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camisasFMenuItActionPerformed
         ExplorarCamisaFem vr = new ExplorarCamisaFem();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
@@ -260,9 +260,9 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void pantFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantFMenuItActionPerformed
         ExplorarPantFem vr = new ExplorarPantFem();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
@@ -270,10 +270,10 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_pantFMenuItActionPerformed
 
     private void calzaFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaFMenuItActionPerformed
-         ExplorarCalzaFem vr = new ExplorarCalzaFem();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        ExplorarCalzaFem vr = new ExplorarCalzaFem();
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
@@ -288,9 +288,9 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void camisasMMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camisasMMenuItActionPerformed
         ExplorarCamisaMasc vr = new ExplorarCamisaMasc();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
@@ -299,22 +299,22 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void calzaMMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaMMenuItActionPerformed
         ExplorarCalzaMasc vr = new ExplorarCalzaMasc();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_calzaMMenuItActionPerformed
-  
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-       CarritoDeCompras vista = new CarritoDeCompras();
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+        CarritoDeCompras vista = new CarritoDeCompras();
         vista.setVisible(true);
         this.dispose();
-        
-    }                                          
+
+    }
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         HistorialPedidosClientes vista = new HistorialPedidosClientes();
@@ -324,9 +324,9 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void pantHActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantHActionPerformed1
         ExplorarPantMasc vr = new ExplorarPantMasc();
-        vr.setSize(950,550);
-        vr.setLocation(0,0);
-        
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
         contenido.removeAll();
         contenido.add(vr, BorderLayout.CENTER);
         contenido.revalidate();
@@ -334,12 +334,10 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_pantHActionPerformed1
 
     private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
-        // TODO add your handling code here:
-       Favoritos vista = new Favoritos();
+        Favoritos vista = new Favoritos();
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_FavoritosMenuActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -369,7 +367,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-      
+
         //</editor-fold>
 
         /* Create and display the form */
