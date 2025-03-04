@@ -192,7 +192,7 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
 
     private void jmenuStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuStockActionPerformed
         Inventario vr = new Inventario();
-        vr.setSize(1200,500);
+        vr.setSize(1200,600);
         vr.setLocation(0,0);
         
         contenido.removeAll();
@@ -203,7 +203,7 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
 
     private void jmenuPedidoParaEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuPedidoParaEntregarActionPerformed
         ReporteVentas vr = new ReporteVentas();
-        vr.setSize(1200,500);
+        vr.setSize(1200,600);
         vr.setLocation(0,0);
         
         contenido.removeAll();
@@ -214,7 +214,7 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
 
     private void jmenuNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNuevoProductoActionPerformed
         NuevoProducto vr = new NuevoProducto();
-        vr.setSize(1200,500);
+        vr.setSize(1200,600);
         vr.setLocation(0,0);
         
         contenido.removeAll();
