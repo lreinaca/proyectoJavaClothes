@@ -4,6 +4,7 @@
  */
 package vistaCompras;
 
+import javax.swing.JOptionPane;
 import vistaCliente.VistaPrincipalCliente;
 import vistaPrincipal.VistaPrincipal;
 
@@ -39,6 +40,7 @@ public class Favoritos extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +102,13 @@ public class Favoritos extends javax.swing.JFrame {
             }
         });
 
+        btnAgregar.setText("Agregar Producto al carrito");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCarritoLayout = new javax.swing.GroupLayout(panelCarrito);
         panelCarrito.setLayout(panelCarritoLayout);
         panelCarritoLayout.setHorizontalGroup(
@@ -114,6 +123,8 @@ public class Favoritos extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(btnMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar)
+                .addGap(152, 152, 152)
                 .addComponent(btnEliminar)
                 .addGap(72, 72, 72))
             .addGroup(panelCarritoLayout.createSequentialGroup()
@@ -141,7 +152,8 @@ public class Favoritos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
-                    .addComponent(btnMenu))
+                    .addComponent(btnMenu)
+                    .addComponent(btnAgregar))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -174,6 +186,10 @@ public class Favoritos extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+       JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE AGREGADO AL CARRITO");
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +227,7 @@ public class Favoritos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
