@@ -25,6 +25,7 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
         tbHistorialPedidos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnProductos = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnCarritoCompras = new javax.swing.JButton();
         btnMenuPrincipal = new javax.swing.JButton();
@@ -42,7 +43,7 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "idPedido", "Pedidos", "Productos", "Estado Pedido", "Fecha de pedido"
+                "IdPedido", "Pedidos", "Productos", "Estado Pedido", "Fecha de pedido"
             }
         ));
         jScrollPane1.setViewportView(tbHistorialPedidos);
@@ -68,21 +69,34 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
 
         jLabel2.setText("  Java Clothes");
 
+        btnProductos.setText("Productos del Pedido");
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(81, 81, 81))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnProductos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel2)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnProductos)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
@@ -165,7 +179,7 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
+            .addGap(0, 1022, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -196,6 +210,12 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        ProductosDelPedido vista = new ProductosDelPedido();
+        vista.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnProductosActionPerformed
 
  
     public static void main(String args[]) {
@@ -233,6 +253,7 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarritoCompras;
     private javax.swing.JButton btnMenuPrincipal;
+    private javax.swing.JButton btnProductos;
     private javax.swing.JPanel contenido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
