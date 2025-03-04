@@ -94,7 +94,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -109,9 +109,8 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(60, 63, 65));
-
-        jMenuNuevo.setText("Menu1");
+        jMenuNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconPerfil.png"))); // NOI18N
+        jMenuNuevo.setText("Menu");
 
         perfilMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         perfilMenu.setText("Mi info");

@@ -110,8 +110,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(60, 63, 65));
-
         menuPerfil.setBackground(new java.awt.Color(153, 153, 255));
         menuPerfil.setForeground(new java.awt.Color(60, 63, 65));
         menuPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconPerfil.png"))); // NOI18N

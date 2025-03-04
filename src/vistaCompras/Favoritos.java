@@ -172,7 +172,7 @@ public class Favoritos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE ELIMINADO DE TU CARRITO DE COMPRAS");
+        JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE ELIMINADO DE TUS FAVORITOS");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
