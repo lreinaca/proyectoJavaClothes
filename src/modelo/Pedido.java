@@ -1,24 +1,31 @@
 
 package modelo;
 
+import modelo.ENUMs.EstadosPedido;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Pedido {
     
     private int pedidoId;
-    private Cliente cliente;
+    private Factura factura; 
+    private Usuario cliente;
     private EstadosPedido estado;
-    private LocalDate fecha; 
-    private ArrayList<DetalleFactura> detallesVenta;
+    private LocalDate fecha;
+    private String codigoCompra;
+    private ArrayList<DetallePedido> detallesVenta;
 
-    public Pedido(Cliente cliente, EstadosPedido estado, LocalDate fecha, ArrayList<DetalleFactura> detallesVenta) {
-        this.pedidoId = 0000;
+    public Pedido(int pedidoId, Factura factura, Usuario cliente, EstadosPedido estado, LocalDate fecha, String codigoCompra, ArrayList<DetallePedido> detallesVenta) {
+        this.pedidoId = pedidoId;
+        this.factura = factura;
         this.cliente = cliente;
         this.estado = estado;
         this.fecha = fecha;
+        this.codigoCompra = codigoCompra;
         this.detallesVenta = detallesVenta;
     }
+
+    
 
     public int getPedidoId() {
         return pedidoId;
@@ -28,11 +35,11 @@ public class Pedido {
         this.pedidoId = pedidoId;
     }
 
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
 
@@ -52,12 +59,28 @@ public class Pedido {
         this.fecha = fecha;
     }
 
-    public ArrayList<DetalleFactura> getDetallesVenta() {
+    public ArrayList<DetallePedido> getDetallesVenta() {
         return detallesVenta;
     }
 
-    public void setDetallesVenta(ArrayList<DetalleFactura> detallesVenta) {
+    public void setDetallesVenta(ArrayList<DetallePedido> detallesVenta) {
         this.detallesVenta = detallesVenta;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+    public String getCodigoCompra() {
+        return codigoCompra;
+    }
+
+    public void setCodigoCompra(String codigoCompra) {
+        this.codigoCompra = codigoCompra;
     }
     
     

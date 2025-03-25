@@ -1,26 +1,39 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
+
+import modelo.ENUMs.RolUsuario;
 
 /**
  *
  * @author juanv
  */
 public class Usuario {
+    
+    private int idUsuario;
+    
     private String nombre;
-    private char[] clave;
-    private String numeroDeTelefono; //revisar
-    private int cedula;
     private String email;
+    private String numeroDeTelefono;
+    
+    private RolUsuario idRol;
+    private char[] clave;
 
-    public Usuario(String nombre, char[] clave, String numeroDeTelefono, int cedula, String email) {
+    public Usuario(int idUsuario, String nombre, String numeroDeTelefono, String email, RolUsuario idRol, char[] clave) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.clave = clave;
         this.numeroDeTelefono = numeroDeTelefono;
-        this.cedula = cedula;
         this.email = email;
+        this.idRol = idRol;
+        this.clave = clave;
+    }
+
+    
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -31,28 +44,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public char[] getClave() {
-        return clave;
-    }
-
-    public void setClave(char[] clave) {
-        this.clave = clave;
-    }
-
     public String getNumeroDeTelefono() {
         return numeroDeTelefono;
     }
 
     public void setNumeroDeTelefono(String numeroDeTelefono) {
         this.numeroDeTelefono = numeroDeTelefono;
-    }
-
-    public int getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
     }
 
     public String getEmail() {
@@ -62,7 +59,22 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
+    public RolUsuario getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(RolUsuario idRol) {
+        this.idRol = idRol;
+    }
+
+
+    public char[] getClave() {
+        return clave;
+    }
+
+    public void setClave(char[] clave) {
+        this.clave = clave;
+    }
     
 }
