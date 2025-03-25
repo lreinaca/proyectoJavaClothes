@@ -6,14 +6,17 @@ public class Producto {
     private int productoId;
     private int stock; 
     private double precio; 
+    
     private String nombre;
     private String color;
     private String talla; 
     private String material;
     private String descripcion;
+    private String categoria;
+    private String tipo;
 
-    public Producto(int stock, double precio, String nombre, String color, String talla, String material, String descripcion) {
-        this.productoId = 0000; 
+    public Producto(int productoId, int stock, double precio, String nombre, String color, String talla, String material, String descripcion, String categoria, String tipo) {
+        this.productoId = productoId;
         this.stock = stock;
         this.precio = precio;
         this.nombre = nombre;
@@ -21,7 +24,10 @@ public class Producto {
         this.talla = talla;
         this.material = material;
         this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.tipo = tipo;
     }
+
 
     public int getProductoId() {
         return productoId;
@@ -85,6 +91,22 @@ public class Producto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     
