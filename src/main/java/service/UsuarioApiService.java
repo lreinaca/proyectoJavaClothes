@@ -1,8 +1,8 @@
 
-package main.java.service;
+package service;
 
 import java.util.List;
-import main.java.modelo.Usuario;
+import modelo.Usuario;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
