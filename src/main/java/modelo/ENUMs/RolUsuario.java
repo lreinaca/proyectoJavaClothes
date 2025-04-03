@@ -1,4 +1,4 @@
-package main.java.modelo.ENUMs;
+package modelo.ENUMs;
 
 /**
  *

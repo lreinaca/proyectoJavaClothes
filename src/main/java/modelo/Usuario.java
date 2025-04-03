@@ -1,6 +1,6 @@
-package main.java.modelo;
+package modelo;
 
-import main.java.modelo.ENUMs.RolUsuario;
+import modelo.ENUMs.RolUsuario;
 
 /**
  *
@@ -8,16 +8,16 @@ import main.java.modelo.ENUMs.RolUsuario;
  */
 public class Usuario {
     
-    private int idUsuario;
+    private String idUsuario;
     
     private String nombre;
     private String email;
     private String numeroDeTelefono;
     
     private RolUsuario idRol;
-    private char[] clave;
+    private String clave;
 
-    public Usuario(int idUsuario, String nombre, String numeroDeTelefono, String email, RolUsuario idRol, char[] clave) {
+    public Usuario(String idUsuario, String nombre, String numeroDeTelefono, String email, RolUsuario idRol, String clave) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.numeroDeTelefono = numeroDeTelefono;
@@ -28,11 +28,11 @@ public class Usuario {
 
     
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -69,11 +69,11 @@ public class Usuario {
     }
 
 
-    public char[] getClave() {
+    public String getClave() {
         return clave;
     }
 
-    public void setClave(char[] clave) {
+    public void setClave(String clave) {
         this.clave = clave;
     }
 
