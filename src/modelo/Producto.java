@@ -6,7 +6,6 @@ public class Producto {
     private int productoId;
     private int stock; 
     private double precio; 
-    
     private String nombre;
     private String color;
     private String talla; 

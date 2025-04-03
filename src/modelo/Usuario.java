@@ -13,7 +13,6 @@ public class Usuario {
     private String nombre;
     private String email;
     private String numeroDeTelefono;
-    
     private RolUsuario idRol;
     private char[] clave;
 
