@@ -1,16 +1,28 @@
 package vistas.vistaPrincipal;
 
+import java.io.IOException;
+import modelo.ENUMs.RolUsuario;
+import modelo.Usuario;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import service.UsuarioApiService;
+
 /**
  *
  * @author ibarr
  */
 public class VistaRegistro extends javax.swing.JFrame {
+    private static final String BASE_URL = "http://localhost:8080";
+    private static UsuarioApiService apiService;
+
+    
 
     public VistaRegistro() {
         this.setTitle("Registro");
         initComponents();
         setLocationRelativeTo(this);
-     
+
     }
 
     @SuppressWarnings("unchecked")
@@ -33,10 +45,10 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        JPContraseña3 = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         txtTelefono = new javax.swing.JTextField();
-        txtTelefono1 = new javax.swing.JTextField();
-        txtTelefono2 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtIdUsuario = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -141,18 +153,18 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Contraseña");
 
-        JPContraseña3.setBackground(new java.awt.Color(255, 255, 255));
-        JPContraseña3.addActionListener(new java.awt.event.ActionListener() {
+        txtClave.setBackground(new java.awt.Color(255, 255, 255));
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JPContraseña3ActionPerformed(evt);
+                txtClaveActionPerformed(evt);
             }
         });
 
         txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtTelefono1.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtTelefono2.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdUsuario.setBackground(new java.awt.Color(255, 255, 255));
 
         btnVolver.setBackground(new java.awt.Color(222, 222, 222));
         btnVolver.setForeground(new java.awt.Color(222, 222, 222));
@@ -180,15 +192,15 @@ public class VistaRegistro extends javax.swing.JFrame {
                         .addComponent(tgVerContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6))
-                    .addComponent(txtTelefono1)
-                    .addComponent(txtTelefono2)
+                    .addComponent(txtEmail)
+                    .addComponent(txtIdUsuario)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(JPContraseña3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtClave, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,15 +240,15 @@ public class VistaRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addGap(3, 3, 3)
-                .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(3, 3, 3)
-                .addComponent(txtTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addGap(2, 2, 2)
-                .addComponent(JPContraseña3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tgVerContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,15 +313,43 @@ public class VistaRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tgVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgVerContraseñaActionPerformed
-        if (tgVerContraseña.isSelected()){
+        if (tgVerContraseña.isSelected()) {
             //mostrar la contraseña
-            JPContraseña3.setEchoChar((char)0);
-        }else{
-            JPContraseña3.setEchoChar('•'); //ocultar
+            txtClave.setEchoChar((char) 0);
+        } else {
+            txtClave.setEchoChar('•'); //ocultar
         }
     }//GEN-LAST:event_tgVerContraseñaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // construir el usuario 
+        String idUsuario = txtIdUsuario.getText();
+        String nombre = txtNombre.getText();
+        String email = txtEmail.getText();
+        String numeroDeTelefono = txtTelefono.getText();
+        String clave = String.valueOf(txtClave.getPassword());
+
+        Usuario usuario = new Usuario(idUsuario, nombre, email, numeroDeTelefono, RolUsuario.Cliente, clave);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(UsuarioApiService.class);
+
+        
+        try {
+            Response<Usuario> response = apiService.createUsuario(usuario).execute();
+            if (response.isSuccessful()) {
+                System.out.println("Usuario creado: " + response.body());
+            } else {
+                System.out.println("Error al crear usuario: " + response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -319,9 +359,9 @@ public class VistaRegistro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnIrALoginActionPerformed
 
-    private void JPContraseña3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPContraseña3ActionPerformed
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
 
-    }//GEN-LAST:event_JPContraseña3ActionPerformed
+    }//GEN-LAST:event_txtClaveActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -367,7 +407,6 @@ public class VistaRegistro extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField JPContraseña3;
     private javax.swing.JButton btnIrALogin;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnVolver;
@@ -386,9 +425,10 @@ public class VistaRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JToggleButton tgVerContraseña;
+    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTelefono1;
-    private javax.swing.JTextField txtTelefono2;
     // End of variables declaration//GEN-END:variables
 }

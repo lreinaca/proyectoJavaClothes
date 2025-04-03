@@ -1,5 +1,5 @@
 
-package main.java.modelo;
+package modelo;
 
 import main.java.modelo.ENUMs.EstadosPedido;
 import java.time.LocalDate;

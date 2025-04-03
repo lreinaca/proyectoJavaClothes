@@ -1,5 +1,5 @@
 
-package main.java.modelo;
+package modelo;
 
 /**
  *
