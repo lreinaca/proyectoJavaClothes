@@ -1,7 +1,7 @@
 
 package modelo;
 
-import main.java.modelo.ENUMs.EstadosPedido;
+import modelo.ENUMs.EstadosPedido;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

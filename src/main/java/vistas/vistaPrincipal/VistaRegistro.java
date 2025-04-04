@@ -1,21 +1,16 @@
 package vistas.vistaPrincipal;
 
-import java.io.IOException;
+import cliente.UsuarioCliente;
 import modelo.ENUMs.RolUsuario;
 import modelo.Usuario;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import service.UsuarioApiService;
 
 /**
  *
  * @author ibarr
  */
 public class VistaRegistro extends javax.swing.JFrame {
-    private static final String BASE_URL = "http://localhost:8080";
-    private static UsuarioApiService apiService;
-
+    private UsuarioCliente usuarioCliente;
+    
     
 
     public VistaRegistro() {
@@ -329,27 +324,10 @@ public class VistaRegistro extends javax.swing.JFrame {
         String numeroDeTelefono = txtTelefono.getText();
         String clave = String.valueOf(txtClave.getPassword());
 
-        Usuario usuario = new Usuario(idUsuario, nombre, email, numeroDeTelefono, RolUsuario.Cliente, clave);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(UsuarioApiService.class);
-
-        
-        try {
-            Response<Usuario> response = apiService.createUsuario(usuario).execute();
-            if (response.isSuccessful()) {
-                System.out.println("Usuario creado: " + response.body());
-            } else {
-                System.out.println("Error al crear usuario: " + response.code());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
+        UsuarioCliente usuarioCliente = new UsuarioCliente(usuario);
+                
+       
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

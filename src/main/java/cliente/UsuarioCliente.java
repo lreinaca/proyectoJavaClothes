@@ -1,0 +1,49 @@
+
+package cliente;
+
+import java.io.IOException;
+import modelo.Usuario;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import service.UsuarioApiService;
+
+/**
+ *
+ * 
+ */
+public class UsuarioCliente {
+    
+    private static final String BASE_URL = "http://localhost:8080";
+    private static UsuarioApiService apiService;
+
+    public UsuarioCliente(Usuario usuario) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        
+        apiService = retrofit.create(UsuarioApiService.class);
+        
+         try {
+            Response<Usuario> response = apiService.createUsuario(usuario).execute();
+            if (response.isSuccessful()) {
+                System.out.println("Usuario creado: " + response.body());
+            } else {
+                System.out.println("Error al crear usuario: " + response.code());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
+         
+    }
+    
+    
+    
+    
+
+            
+    
+
+}

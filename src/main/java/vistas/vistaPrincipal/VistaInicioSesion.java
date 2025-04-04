@@ -285,6 +285,9 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_JPContraseñaActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAccederActionPerformed
+        
+        String cedula = txtCedula.getText();
+        String clave = txtCedula.getText();
         if (txtCedula.getText().isEmpty() || JPContraseña.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
 
