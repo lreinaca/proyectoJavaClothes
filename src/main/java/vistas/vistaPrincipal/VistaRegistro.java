@@ -1,27 +1,23 @@
 package vistas.vistaPrincipal;
 
-import java.io.IOException;
+import clienteApi.UsuarioCliente;
+import javax.swing.JOptionPane;
 import modelo.ENUMs.RolUsuario;
 import modelo.Usuario;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import service.UsuarioApiService;
 
 /**
  *
  * @author ibarr
  */
 public class VistaRegistro extends javax.swing.JFrame {
-    private static final String BASE_URL = "http://localhost:8080";
-    private static UsuarioApiService apiService;
 
-    
+    private UsuarioCliente usuarioCliente;
 
     public VistaRegistro() {
         this.setTitle("Registro");
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioCliente = new UsuarioCliente();
 
     }
 
@@ -311,7 +307,14 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void emptyField(){
+        txtIdUsuario.setText("");
+        txtNombre.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtClave.setText("");
+    }
     private void tgVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgVerContraseñaActionPerformed
         if (tgVerContraseña.isSelected()) {
             //mostrar la contraseña
@@ -322,32 +325,20 @@ public class VistaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_tgVerContraseñaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // construir el usuario 
-        String idUsuario = txtIdUsuario.getText();
-        String nombre = txtNombre.getText();
-        String email = txtEmail.getText();
-        String numeroDeTelefono = txtTelefono.getText();
-        String clave = String.valueOf(txtClave.getPassword());
-
-        Usuario usuario = new Usuario(idUsuario, nombre, email, numeroDeTelefono, RolUsuario.Cliente, clave);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(UsuarioApiService.class);
-
-        
         try {
-            Response<Usuario> response = apiService.createUsuario(usuario).execute();
-            if (response.isSuccessful()) {
-                System.out.println("Usuario creado: " + response.body());
-            } else {
-                System.out.println("Error al crear usuario: " + response.code());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            String idUsuario = txtIdUsuario.getText();
+            String nombre = txtNombre.getText();
+            String email = txtEmail.getText();
+            String numeroDeTelefono = txtTelefono.getText();
+            String clave = String.valueOf(txtClave.getPassword());
+            // agregar el try catch para manejo de excepciones 
+            Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
+            usuarioCliente.createUser(usuario);
+            emptyField();
+
+        } catch (RuntimeException e){
+            JOptionPane.showMessageDialog(null,"No se puede crear");
+            
         }
 
 

@@ -2,6 +2,7 @@
 package vistas.vistaCompras;
 
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
 /**
@@ -10,9 +11,11 @@ import vistas.vistaCliente.VistaPrincipalCliente;
  */
 public class CarritoDeCompras extends javax.swing.JFrame {
 
-    public CarritoDeCompras() {
+    Usuario usuarioLogueado;
+    public CarritoDeCompras(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
     }
 
 
@@ -173,13 +176,13 @@ public class CarritoDeCompras extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        ConfirmacionDePedidos vista = new ConfirmacionDePedidos();
+        ConfirmacionDePedidos vista = new ConfirmacionDePedidos(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-            VistaPrincipalCliente vista = new VistaPrincipalCliente();
+            VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
