@@ -1,6 +1,7 @@
 package vistas.vistaPrincipal;
 
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 import vistas.vistaAdministrador.VistaAdministracionProductos;
 import vistas.vistaCliente.VistaPrincipalCliente;
 import vistas.vistaVendedor.VistaGestionPedidos;
@@ -10,6 +11,7 @@ import vistas.vistaVendedor.VistaGestionPedidos;
  * @author ibarr
  */
 public class VistaInicioSesion extends javax.swing.JFrame {
+    private Usuario usuario;
 
     public VistaInicioSesion() {
         this.setTitle("Inicio de sesión");
@@ -284,10 +286,16 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JPContraseñaActionPerformed
 
-    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAccederActionPerformed
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {
         
         String cedula = txtCedula.getText();
         String clave = txtCedula.getText();
+        
+        
+        
+        
+        
+        
         if (txtCedula.getText().isEmpty() || JPContraseña.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
 

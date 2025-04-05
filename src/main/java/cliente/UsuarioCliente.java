@@ -1,4 +1,3 @@
-
 package cliente;
 
 import java.io.IOException;
@@ -10,22 +9,25 @@ import service.UsuarioApiService;
 
 /**
  *
- * 
+ *
  */
 public class UsuarioCliente {
-    
+
     private static final String BASE_URL = "http://localhost:8080";
     private static UsuarioApiService apiService;
 
-    public UsuarioCliente(Usuario usuario) {
+    public UsuarioCliente() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        
+
         apiService = retrofit.create(UsuarioApiService.class);
-        
-         try {
+
+    }
+    
+    public void createUser(Usuario usuario){
+        try {
             Response<Usuario> response = apiService.createUsuario(usuario).execute();
             if (response.isSuccessful()) {
                 System.out.println("Usuario creado: " + response.body());
@@ -35,15 +37,6 @@ public class UsuarioCliente {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       
-         
     }
-    
-    
-    
-    
-
-            
-    
 
 }

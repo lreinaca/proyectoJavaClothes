@@ -1,21 +1,20 @@
-
 package modelo;
 
 public class Producto {
-    
-    private int productoId;
-    private int stock; 
-    private double precio; 
-    
+
+    private Integer productoId;
+    private Integer stock;
+    private Double precio;
+
     private String nombre;
     private String color;
-    private String talla; 
+    private String talla;
     private String material;
     private String descripcion;
     private String categoria;
     private String tipo;
 
-    public Producto(int productoId, int stock, double precio, String nombre, String color, String talla, String material, String descripcion, String categoria, String tipo) {
+    public Producto(Integer productoId, Integer stock, Double precio, String nombre, String color, String talla, String material, String descripcion, String categoria, String tipo) {
         this.productoId = productoId;
         this.stock = stock;
         this.precio = precio;
@@ -28,28 +27,27 @@ public class Producto {
         this.tipo = tipo;
     }
 
-
-    public int getProductoId() {
+    public Integer getProductoId() {
         return productoId;
     }
 
-    public void setProductoId(int productoId) {
+    public void setProductoId(Integer productoId) {
         this.productoId = productoId;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -108,11 +106,5 @@ public class Producto {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
-    
-    
-    
-    
 
 }

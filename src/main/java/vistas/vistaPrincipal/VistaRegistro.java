@@ -1,6 +1,7 @@
 package vistas.vistaPrincipal;
 
 import cliente.UsuarioCliente;
+import javax.swing.JOptionPane;
 import modelo.ENUMs.RolUsuario;
 import modelo.Usuario;
 
@@ -9,14 +10,14 @@ import modelo.Usuario;
  * @author ibarr
  */
 public class VistaRegistro extends javax.swing.JFrame {
+
     private UsuarioCliente usuarioCliente;
-    
-    
 
     public VistaRegistro() {
         this.setTitle("Registro");
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioCliente = new UsuarioCliente();
 
     }
 
@@ -306,7 +307,14 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void emptyField(){
+        txtIdUsuario.setText("");
+        txtNombre.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtClave.setText("");
+    }
     private void tgVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgVerContraseñaActionPerformed
         if (tgVerContraseña.isSelected()) {
             //mostrar la contraseña
@@ -317,17 +325,22 @@ public class VistaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_tgVerContraseñaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // construir el usuario 
-        String idUsuario = txtIdUsuario.getText();
-        String nombre = txtNombre.getText();
-        String email = txtEmail.getText();
-        String numeroDeTelefono = txtTelefono.getText();
-        String clave = String.valueOf(txtClave.getPassword());
+        try {
+            String idUsuario = txtIdUsuario.getText();
+            String nombre = txtNombre.getText();
+            String email = txtEmail.getText();
+            String numeroDeTelefono = txtTelefono.getText();
+            String clave = String.valueOf(txtClave.getPassword());
+            // agregar el try catch para manejo de excepciones 
+            Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
+            usuarioCliente.createUser(usuario);
+            emptyField();
 
-        Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
-        UsuarioCliente usuarioCliente = new UsuarioCliente(usuario);
-                
-       
+        } catch (RuntimeException e){
+            JOptionPane.showMessageDialog(null,"No se puede crear");
+            
+        }
+
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
