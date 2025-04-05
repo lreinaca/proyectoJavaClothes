@@ -9,11 +9,16 @@ public enum RolUsuario {
     Vendedor(2),
     Administrador(1);
     
-    Integer rolId;
+    private Integer rolId;
 
     private RolUsuario(Integer rolId) {
-        
+        this.rolId = rolId;
     }
+
+    public Integer getRolId() {
+        return rolId;
+    }
+    
     
     
     

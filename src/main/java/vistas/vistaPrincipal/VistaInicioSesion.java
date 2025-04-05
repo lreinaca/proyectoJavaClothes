@@ -1,5 +1,7 @@
 package vistas.vistaPrincipal;
 
+import cliente.UsuarioCliente;
+import dto.UsuarioLogin;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import vistas.vistaAdministrador.VistaAdministracionProductos;
@@ -11,12 +13,14 @@ import vistas.vistaVendedor.VistaGestionPedidos;
  * @author ibarr
  */
 public class VistaInicioSesion extends javax.swing.JFrame {
-    private Usuario usuario;
+
+    private UsuarioCliente usuarioCliente;
 
     public VistaInicioSesion() {
         this.setTitle("Inicio de sesión");
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioCliente = new UsuarioCliente();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +34,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        JPContraseña = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         btnAcceder = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -75,10 +79,10 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         txtCedula.setBackground(new java.awt.Color(255, 255, 255));
 
-        JPContraseña.setBackground(new java.awt.Color(255, 255, 255));
-        JPContraseña.addActionListener(new java.awt.event.ActionListener() {
+        txtClave.setBackground(new java.awt.Color(255, 255, 255));
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JPContraseñaActionPerformed(evt);
+                txtClaveActionPerformed(evt);
             }
         });
 
@@ -173,7 +177,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(txtCedula)
                             .addComponent(jLabel3)
-                            .addComponent(JPContraseña)
+                            .addComponent(txtClave)
                             .addComponent(btnAcceder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnGoogle, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -209,7 +213,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JPContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addComponent(txtClave, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -282,48 +286,62 @@ public class VistaInicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JPContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPContraseñaActionPerformed
+    // METODO PARA LIMPIAR LOS CAMPOS 
+    private void emptyFields() {
+        txtCedula.setText("");
+        txtClave.setText("");
+    }
 
-    }//GEN-LAST:event_JPContraseñaActionPerformed
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
 
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    // METODO PARA INICIAR SESIÓN
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {
-        
-        String cedula = txtCedula.getText();
-        String clave = txtCedula.getText();
-        
-        
-        
-        
-        
-        
-        if (txtCedula.getText().isEmpty() || JPContraseña.getText().isEmpty()) {
+
+        if (txtCedula.getText().isEmpty() || txtClave.getPassword() == null) {
+
             JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
 
         } else {
-            switch (txtCedula.getText()) {
-                case "123456": {
-                    VistaPrincipalCliente vista = new VistaPrincipalCliente();
-                    vista.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-                case "222222": {
-                    VistaAdministracionProductos vista = new VistaAdministracionProductos();
-                    vista.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-                case "333333": {
-                    VistaGestionPedidos vista = new VistaGestionPedidos();
-                    vista.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-                default:
+            try {
+                String cedula = txtCedula.getText();
+                String clave = String.valueOf(txtClave.getPassword());
 
-                    JOptionPane.showMessageDialog(null, "¡DATOS INCORRECTOS! intente nuevamente.");
-                    break;
+                UsuarioLogin usuarioLogin = new UsuarioLogin(cedula, clave);
+
+                Usuario usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
+
+                switch (usuarioLogueado.getIdRol().getRolId()) {
+                    case 3: {
+                        VistaPrincipalCliente vista = new VistaPrincipalCliente();
+                        vista.setVisible(true);
+                        this.dispose();
+                        break;
+                    }
+                    case 1: {
+                        VistaAdministracionProductos vista = new VistaAdministracionProductos();
+                        vista.setVisible(true);
+                        this.dispose();
+                        break;
+                    }
+                    case 2: {
+                        VistaGestionPedidos vista = new VistaGestionPedidos();
+                        vista.setVisible(true);
+                        this.dispose();
+                        break;
+                    }
+                    default:
+
+                        JOptionPane.showMessageDialog(null, "¡DATOS INCORRECTOS! intente nuevamente.");
+                        break;
+                }
+                emptyFields();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e.getMessage());
             }
+
         }
     }
 
@@ -335,15 +353,15 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIrARegistroActionPerformed
 
     private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
-        JOptionPane.showMessageDialog(null, "AQUI SE PUEDE INGRESAR CON TUS DATOS DE LA CUENTA DE GMAIL");
+        JOptionPane.showMessageDialog(null, "EN FUTURO DESARROLLO, SE PODRÁ INGRESAR CON SUS DATOS DE LA CUENTA DE GMAIL");
     }//GEN-LAST:event_btnGoogleActionPerformed
 
     private void tgVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgVerContraseñaActionPerformed
         if (tgVerContraseña.isSelected()) {
             //mostrar la contraseña
-            JPContraseña.setEchoChar((char) 0);
+            txtClave.setEchoChar((char) 0);
         } else {
-            JPContraseña.setEchoChar('•'); //ocultar
+            txtClave.setEchoChar('•'); //ocultar
         }
     }//GEN-LAST:event_tgVerContraseñaActionPerformed
 
@@ -355,7 +373,6 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField JPContraseña;
     private javax.swing.JButton btnAcceder;
     private javax.swing.JButton btnGoogle;
     private javax.swing.JButton btnIrARegistro;
@@ -375,5 +392,6 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JToggleButton tgVerContraseña;
     private javax.swing.JTextField txtCedula;
+    private javax.swing.JPasswordField txtClave;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package cliente;
 
+import dto.UsuarioLogin;
 import java.io.IOException;
 import modelo.Usuario;
 import retrofit2.Response;
@@ -25,8 +26,8 @@ public class UsuarioCliente {
         apiService = retrofit.create(UsuarioApiService.class);
 
     }
-    
-    public void createUser(Usuario usuario){
+
+    public void createUser(Usuario usuario) {
         try {
             Response<Usuario> response = apiService.createUsuario(usuario).execute();
             if (response.isSuccessful()) {
@@ -37,6 +38,19 @@ public class UsuarioCliente {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Usuario LoginUser(UsuarioLogin usuarioLogin) throws Exception{
+       
+            Response<Usuario> response = apiService.loginUsuario(usuarioLogin).execute();
+            if (response.isSuccessful()) {
+                System.out.println("Usuario loguedao" + response.body());
+                return response.body();
+            } else {
+                System.out.println("Datos ingresados incorrectos" + response.code());
+                throw new Exception("DATOS ERRADOS");
+            }
+      
     }
 
 }

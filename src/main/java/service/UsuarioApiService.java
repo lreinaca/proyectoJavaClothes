@@ -1,6 +1,7 @@
 
 package service;
 
+import dto.UsuarioLogin;
 import java.util.List;
 import modelo.Usuario;
 
@@ -27,6 +28,9 @@ public interface UsuarioApiService {
 
     @POST("/javaClothes/usuarios")
     Call<Usuario> createUsuario(@Body Usuario usuario);
+    
+    @POST("/javaClothes/usuarios/login")
+    Call<Usuario> loginUsuario(@Body UsuarioLogin usuarioLogin);
 
     @PUT("/api/usuarios/{id}")
     Call<Usuario> updateUsuario(@Path("id") String id, @Body Usuario usuario);
