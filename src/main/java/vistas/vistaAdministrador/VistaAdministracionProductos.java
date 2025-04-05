@@ -221,19 +221,19 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
         contenido.repaint();
     }//GEN-LAST:event_jmenuNuevoProductoActionPerformed
 
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaAdministracionProductos().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new VistaAdministracionProductos().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenido;
