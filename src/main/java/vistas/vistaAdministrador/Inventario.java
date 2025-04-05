@@ -1,6 +1,6 @@
 package vistas.vistaAdministrador;
 
-import cliente.ProductoCliente;
+import clienteApi.ProductoCliente;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

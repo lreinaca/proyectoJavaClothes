@@ -2,6 +2,7 @@
 package vistas.vistaCliente;
 
 import java.awt.BorderLayout;
+import modelo.Usuario;
 import vistas.vistaCompras.CarritoDeCompras;
 import vistas.vistaCompras.Favoritos;
 import vistas.vistaCompras.HistorialPedidosClientes;
@@ -11,11 +12,17 @@ import vistas.vistaPrincipal.VistaPrincipal;
  *
  * @author ibarr
  */
+
 public class VistaPrincipalCliente extends javax.swing.JFrame {
 
-    public VistaPrincipalCliente() {
+    Usuario usuarioLogueado; 
+    
+    public VistaPrincipalCliente(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
+        LlenarNombreUsuario(usuarioLogueado);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +34,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        txtNombreCliente = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuNuevo = new javax.swing.JMenu();
         perfilMenu = new javax.swing.JMenuItem();
@@ -59,10 +66,10 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("BIENVENIDO(A) A");
+        jLabel4.setText("BIENVENIDO(O) A");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Paula Hernández");
+        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombreCliente.setText("Paula Hernández");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,19 +89,19 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(77, 77, 77))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(txtNombreCliente)
                                 .addGap(149, 149, 149))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
-                .addComponent(jLabel2)
+                .addComponent(txtNombreCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -227,16 +234,21 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+      // DILIGENCIAR INFORMACIÓN DEL USUARIO LOGUEADO 
+    private void LlenarNombreUsuario(Usuario usuarioLogueado){
+        txtNombreCliente.setText(usuarioLogueado.getNombre());
+        
+    }
+    
     private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
         //REGISTRO
-        Favoritos vista = new Favoritos();
+        Favoritos vista = new Favoritos(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_signUpMenuItActionPerformed
 
     private void perfilMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMenuActionPerformed
-        CuentaInfoCliente vr = new CuentaInfoCliente();
+        CuentaInfoCliente vr = new CuentaInfoCliente(usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
@@ -309,14 +321,14 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
 
-        CarritoDeCompras vista = new CarritoDeCompras();
+        CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
 
     }
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        HistorialPedidosClientes vista = new HistorialPedidosClientes();
+        HistorialPedidosClientes vista = new HistorialPedidosClientes(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -333,7 +345,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_pantHActionPerformed1
 
     private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
-        Favoritos vista = new Favoritos();
+        Favoritos vista = new Favoritos(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_FavoritosMenuActionPerformed
@@ -368,13 +380,13 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaPrincipalCliente().setVisible(true);
-            }
-        });
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new VistaPrincipalCliente().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -387,7 +399,6 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     private javax.swing.JMenuItem cerrarSesionMenu;
     private javax.swing.JPanel contenido;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu4;
@@ -400,5 +411,6 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     private javax.swing.JMenuItem pantH;
     private javax.swing.JMenuItem pedidosMenu;
     private javax.swing.JMenuItem perfilMenu;
+    private javax.swing.JLabel txtNombreCliente;
     // End of variables declaration//GEN-END:variables
 }

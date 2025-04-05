@@ -1,6 +1,6 @@
 package vistas.vistaPrincipal;
 
-import cliente.UsuarioCliente;
+import clienteApi.UsuarioCliente;
 import javax.swing.JOptionPane;
 import modelo.ENUMs.RolUsuario;
 import modelo.Usuario;

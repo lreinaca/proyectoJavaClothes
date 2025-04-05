@@ -1,6 +1,6 @@
 package vistas.vistaPrincipal;
 
-import cliente.UsuarioCliente;
+import clienteApi.UsuarioCliente;
 import dto.UsuarioLogin;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -314,13 +314,13 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
                 switch (usuarioLogueado.getIdRol().getRolId()) {
                     case 3: {
-                        VistaPrincipalCliente vista = new VistaPrincipalCliente();
+                        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
                         vista.setVisible(true);
                         this.dispose();
                         break;
                     }
                     case 1: {
-                        VistaAdministracionProductos vista = new VistaAdministracionProductos();
+                        VistaAdministracionProductos vista = new VistaAdministracionProductos(usuarioLogueado);
                         vista.setVisible(true);
                         this.dispose();
                         break;

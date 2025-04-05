@@ -1,14 +1,17 @@
 
 package vistas.vistaCliente;
 
+import modelo.Usuario;
+
 /**
  *
  * @author Rossi
  */
 public class CuentaInfoCliente extends javax.swing.JPanel {
-
-    public CuentaInfoCliente() {
+    Usuario usuarioLogueado;
+    public CuentaInfoCliente(Usuario usuarioLogueado) {
         initComponents();
+    this.usuarioLogueado = usuarioLogueado;
     }
 
 

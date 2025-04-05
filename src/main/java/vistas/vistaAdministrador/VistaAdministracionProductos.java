@@ -1,15 +1,22 @@
 
 package vistas.vistaAdministrador;
 
+import clienteApi.UsuarioCliente;
 import java.awt.BorderLayout;
+import modelo.Usuario;
 import vistas.vistaPrincipal.VistaPrincipal;
 
 public class VistaAdministracionProductos extends javax.swing.JFrame {
-  
-    public VistaAdministracionProductos() {
+    
+    UsuarioCliente clienteApi;
+    
+    
+    public VistaAdministracionProductos(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
         setTitle("ADMINISTRACION DE INVENTARIOS");
+        this.clienteApi = new UsuarioCliente();
+        LlenarNombreUsuario(usuarioLogueado);
     }
   
     @SuppressWarnings("unchecked")
@@ -22,7 +29,7 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        txtNomAdmin = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuPerfil = new javax.swing.JMenu();
         jmenuCheckOut = new javax.swing.JMenuItem();
@@ -52,9 +59,9 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("BIENVENIDO");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("NOMBRE DEL ADMINISTRADOR");
+        txtNomAdmin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtNomAdmin.setForeground(new java.awt.Color(102, 102, 102));
+        txtNomAdmin.setText("NOMBRE DEL ADMINISTRADOR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,7 +76,7 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jLabel7))
+                        .addComponent(txtNomAdmin))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jLabel6))
@@ -80,12 +87,12 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(95, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(txtNomAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -175,7 +182,13 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    // DILIGENCIAR INFORMACIÓN DEL USUARIO LOGUEADO 
+    private void LlenarNombreUsuario(Usuario usuarioLogueado){
+        txtNomAdmin.setText(usuarioLogueado.getNombre());
+        
+    }
+    
     private void menuPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPerfilActionPerformed
 
     }//GEN-LAST:event_menuPerfilActionPerformed
@@ -240,7 +253,6 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem jmenuCheckOut;
@@ -250,5 +262,6 @@ public class VistaAdministracionProductos extends javax.swing.JFrame {
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenu menuPerfil;
     private javax.swing.JMenu menuVentas;
+    private javax.swing.JLabel txtNomAdmin;
     // End of variables declaration//GEN-END:variables
 }

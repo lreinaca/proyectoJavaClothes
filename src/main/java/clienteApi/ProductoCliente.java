@@ -1,4 +1,4 @@
-package cliente;
+package clienteApi;
 
 import java.util.List;
 import modelo.Producto;
