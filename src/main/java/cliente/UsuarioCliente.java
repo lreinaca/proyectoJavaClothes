@@ -39,16 +39,18 @@ public class UsuarioCliente {
             e.printStackTrace();
         }
     }
-
+    // METODO PARA LOGUEO DE USUARIOS, LANZA UNA EXCEPCIÓN 
     public Usuario LoginUser(UsuarioLogin usuarioLogin) throws Exception{
-       
+         
+            // el metodo loginUsuario recibe un dto llamado usuarioLogin, que solo tienen usuario y clave. 
             Response<Usuario> response = apiService.loginUsuario(usuarioLogin).execute();
+            
             if (response.isSuccessful()) {
                 System.out.println("Usuario loguedao" + response.body());
                 return response.body();
             } else {
                 System.out.println("Datos ingresados incorrectos" + response.code());
-                throw new Exception("DATOS ERRADOS");
+                throw new Exception("Datos ingresados incorrectos");
             }
       
     }

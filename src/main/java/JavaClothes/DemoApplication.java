@@ -1,5 +1,5 @@
 
-package main;
+package JavaClothes;
 
 import vistas.vistaPrincipal.VistaPrincipal;
 

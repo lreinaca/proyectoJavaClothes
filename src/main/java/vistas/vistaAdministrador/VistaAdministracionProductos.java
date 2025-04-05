@@ -2,7 +2,6 @@
 package vistas.vistaAdministrador;
 
 import java.awt.BorderLayout;
-import javax.swing.UIManager;
 import vistas.vistaPrincipal.VistaPrincipal;
 
 public class VistaAdministracionProductos extends javax.swing.JFrame {
