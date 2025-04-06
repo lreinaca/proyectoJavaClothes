@@ -67,4 +67,21 @@ public class ProductoCliente {
 
     }
 
+    //METODO PARA CREAR UN NUEVO PRODUCTO 
+    public Producto createProducto(Producto producto) throws Exception {
+        Response<Producto> response = apiService.createProducto(producto).execute();
+        if (response.isSuccessful()) {
+            Producto productoCreado = response.body();
+            System.out.println("Producto creado: " + response.body());
+            return productoCreado;
+            
+
+        } else {
+            System.out.println("Error al crear producto: " + response.code());
+            throw new Exception("Error al actualizar el producto");
+        }
+
+    }
+
+
 }
