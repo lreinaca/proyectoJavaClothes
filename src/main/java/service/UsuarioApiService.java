@@ -32,20 +32,20 @@ public interface UsuarioApiService {
     @POST("/javaClothes/usuarios/login")
     Call<Usuario> loginUsuario(@Body UsuarioLogin usuarioLogin);
 
-    @PUT("/api/usuarios/{id}")
+    @PUT("/javaClothes/usuarios/{id}")
     Call<Usuario> updateUsuario(@Path("id") String id, @Body Usuario usuario);
 
-    @DELETE("/api/usuarios/{id}")
+    @DELETE("/javaClothes/usuarios/{id}")
     Call<Void> deleteUsuario(@Path("id") String id);
 
-    @GET("/api/usuarios/buscar")
+    @GET("/javaClothes/usuarios/buscar")
     Call<List<Usuario>> buscarUsuarios(
         @Query("nombre") String nombre,
         @Query("email") String email,
         @Query("edad") int edad
     );
 
-    @GET("/api/usuarios/auth")
+    @GET("/javaClothes/usuarios/auth")
     Call<Usuario> getUserByToken(@Header("Authorization") String authToken);
     
 }
