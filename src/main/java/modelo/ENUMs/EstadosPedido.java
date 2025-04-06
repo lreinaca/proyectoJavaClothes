@@ -1,5 +1,5 @@
 
-package main.java.modelo.ENUMs;
+package modelo.ENUMs;
 
 public enum EstadosPedido {
     Relizado,

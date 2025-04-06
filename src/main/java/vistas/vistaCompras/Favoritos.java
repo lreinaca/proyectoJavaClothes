@@ -2,6 +2,7 @@
 package vistas.vistaCompras;
 
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
 /**
@@ -9,10 +10,11 @@ import vistas.vistaCliente.VistaPrincipalCliente;
  * @author juanv
  */
 public class Favoritos extends javax.swing.JFrame {
-
-    public Favoritos() {
+    Usuario usuarioLogueado;
+    public Favoritos(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
     }
 
     @SuppressWarnings("unchecked")
@@ -166,7 +168,7 @@ public class Favoritos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-      VistaPrincipalCliente vista = new VistaPrincipalCliente();
+      VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed

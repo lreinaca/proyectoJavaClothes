@@ -1,12 +1,20 @@
-
 package vistas.vistaAdministrador;
 
+import clienteApi.ProductoCliente;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
 
 public class Inventario extends javax.swing.JPanel {
 
+    ProductoCliente productoCliente;
+
     public Inventario() {
         initComponents();
+        this.productoCliente = new ProductoCliente();
+        listarProductos();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +29,7 @@ public class Inventario extends javax.swing.JPanel {
         jPanel13 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProductos = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -113,7 +121,7 @@ public class Inventario extends javax.swing.JPanel {
             .addGap(0, 15, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"100", "Pantalon Hombre", "Blanco", "S", "Lino", "130000", "Pantalon tiro alto, plieges", "8"},
                 {"101", "Blusa Manga Larga", "Roja", "XXL", "Seda", "90000", "Blusa con encajes  y detalles romanticos", "2"},
@@ -124,7 +132,7 @@ public class Inventario extends javax.swing.JPanel {
                 "IdProducto", "Producto", "Color", "Talla", "Material", "Precio", "Descripcion", "Stock"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbProductos);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ADMINISTRACIÓN DE INVENTARIO"));
 
@@ -338,12 +346,53 @@ public class Inventario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
+    private void listarProductos() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"ID_Producto",
+            "Nombre_Producto", "Color",
+            "Talla", "Material", "Precio",
+            "Descripcion", "Stock"});
+        try {
+            List<Producto> productos = productoCliente.listarTodosLosProductos();
+
+            for (Producto producto : productos) {
+                model.addRow(new Object[]{
+                    producto.getProductoId(),
+                    producto.getNombre(),
+                    producto.getColor(),
+                    producto.getTalla(),
+                    producto.getMaterial(),
+                    producto.getPrecio(),
+                    producto.getDescripcion(),
+                    producto.getStock()
+                });
+            }
+            tbProductos.setModel(model);
+
+            // Ajustar el ancho de las columnas
+            tbProductos.getColumnModel().getColumn(0).setPreferredWidth(70);  // ID_Producto
+            tbProductos.getColumnModel().getColumn(1).setPreferredWidth(150); // Nombre_Producto
+            tbProductos.getColumnModel().getColumn(2).setPreferredWidth(80);  // Color
+            tbProductos.getColumnModel().getColumn(3).setPreferredWidth(50);  // Talla
+            tbProductos.getColumnModel().getColumn(4).setPreferredWidth(100); // Material
+            tbProductos.getColumnModel().getColumn(5).setPreferredWidth(75);  // Precio
+            tbProductos.getColumnModel().getColumn(6).setPreferredWidth(200); // Descripción
+            tbProductos.getColumnModel().getColumn(7).setPreferredWidth(60);  // Stock
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+
+
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
         JOptionPane.showMessageDialog(null, "EL PRODUCTO HA SIDO EDITADO CORRECTAMENTE");
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       JOptionPane.showMessageDialog(null, "APARECE LA INFORMACIÓN DEL PRODUCTO A EDITAR");
+        JOptionPane.showMessageDialog(null, "APARECE LA INFORMACIÓN DEL PRODUCTO A EDITAR");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -368,7 +417,6 @@ public class Inventario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -377,5 +425,6 @@ public class Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable tbProductos;
     // End of variables declaration//GEN-END:variables
 }

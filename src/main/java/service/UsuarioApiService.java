@@ -1,6 +1,7 @@
 
 package service;
 
+import dto.UsuarioLogin;
 import java.util.List;
 import modelo.Usuario;
 
@@ -19,29 +20,32 @@ import retrofit2.http.Query;
  * @author lreinac
  */
 public interface UsuarioApiService {
-    @GET("/api/usuarios")
+    @GET("/javaClothes/usuarios")
     Call<List<Usuario>> getAllUsuarios();
 
-    @GET("/api/usuarios/{id}")
+    @GET("/javaClothes/usuarios/{id}")
     Call<Usuario> getUsuarioById(@Path("id") String id);
 
-    @POST("/api/usuarios")
+    @POST("/javaClothes/usuarios")
     Call<Usuario> createUsuario(@Body Usuario usuario);
+    
+    @POST("/javaClothes/usuarios/login")
+    Call<Usuario> loginUsuario(@Body UsuarioLogin usuarioLogin);
 
-    @PUT("/api/usuarios/{id}")
+    @PUT("/javaClothes/usuarios/{id}")
     Call<Usuario> updateUsuario(@Path("id") String id, @Body Usuario usuario);
 
-    @DELETE("/api/usuarios/{id}")
+    @DELETE("/javaClothes/usuarios/{id}")
     Call<Void> deleteUsuario(@Path("id") String id);
 
-    @GET("/api/usuarios/buscar")
+    @GET("/javaClothes/usuarios/buscar")
     Call<List<Usuario>> buscarUsuarios(
         @Query("nombre") String nombre,
         @Query("email") String email,
         @Query("edad") int edad
     );
 
-    @GET("/api/usuarios/auth")
+    @GET("/javaClothes/usuarios/auth")
     Call<Usuario> getUserByToken(@Header("Authorization") String authToken);
     
 }

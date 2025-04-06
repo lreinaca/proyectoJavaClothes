@@ -15,6 +15,8 @@ public class Usuario {
     private String numeroDeTelefono;
     private RolUsuario idRol;
     private String clave;
+    
+    
 
     public Usuario(String idUsuario, String nombre, String numeroDeTelefono, String email, RolUsuario idRol, String clave) {
         this.idUsuario = idUsuario;
@@ -24,6 +26,13 @@ public class Usuario {
         this.idRol = idRol;
         this.clave = clave;
     }
+    
+     public Usuario(String nombre, String numeroDeTelefono, String email) {
+        this.nombre = nombre;
+        this.numeroDeTelefono = numeroDeTelefono;
+        this.email = email;
+    }
+
 
     
 

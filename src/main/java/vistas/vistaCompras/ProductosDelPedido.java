@@ -1,6 +1,7 @@
 
 package vistas.vistaCompras;
 
+import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
 /**
@@ -8,10 +9,12 @@ import vistas.vistaCliente.VistaPrincipalCliente;
  * @author juanv
  */
 public class ProductosDelPedido extends javax.swing.JFrame {
-
-    public ProductosDelPedido() {
+    
+    Usuario usuarioLogueado;
+    public ProductosDelPedido(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
     }
 
 
@@ -158,13 +161,13 @@ public class ProductosDelPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHistorialPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialPActionPerformed
-        HistorialPedidosClientes vista = new HistorialPedidosClientes();
+        HistorialPedidosClientes vista = new HistorialPedidosClientes(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHistorialPActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-            VistaPrincipalCliente vista = new VistaPrincipalCliente();
+            VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed

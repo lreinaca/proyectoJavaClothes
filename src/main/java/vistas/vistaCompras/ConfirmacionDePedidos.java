@@ -1,7 +1,7 @@
 package vistas.vistaCompras;
 
+import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
-import vistas.vistaCompras.PedidoRealizado;
 
 /**
  *
@@ -9,12 +9,11 @@ import vistas.vistaCompras.PedidoRealizado;
  */
 public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ProductosFavoritos1
-     */
-    public ConfirmacionDePedidos() {
+    Usuario usuarioLogueado;
+    public ConfirmacionDePedidos(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
     }
 
     @SuppressWarnings("unchecked")
@@ -186,7 +185,7 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CarritoDeCompras vista = new CarritoDeCompras();
+        CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -196,13 +195,13 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        PedidoRealizado vista = new PedidoRealizado();
+        PedidoRealizado vista = new PedidoRealizado(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        VistaPrincipalCliente vista = new VistaPrincipalCliente();
+        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

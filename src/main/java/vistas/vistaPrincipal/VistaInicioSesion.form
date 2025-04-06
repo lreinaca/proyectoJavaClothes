@@ -105,7 +105,7 @@
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtCedula" max="32767" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JPContraseña" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtClave" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnAcceder" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnGoogle" pref="304" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
@@ -151,7 +151,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JPContraseña" pref="31" max="32767" attributes="0"/>
+                              <Component id="txtClave" pref="31" max="32767" attributes="0"/>
                               <EmptySpace pref="11" max="32767" attributes="0"/>
                               <Component id="jLabel6" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
@@ -206,14 +206,14 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="JPContrase&#xf1;a">
+            <Component class="javax.swing.JPasswordField" name="txtClave">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JPContrase&#xf1;aActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClaveActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">

@@ -1,17 +1,18 @@
 package vistas.vistaCompras;
 
+import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
-import vistas.vistaCompras.ProductosDelPedido;
 
 /**
  *
  * @author juanv
  */
 public class HistorialPedidosClientes extends javax.swing.JFrame {
-
-    public HistorialPedidosClientes() {
+    Usuario usuarioLogueado;
+    public HistorialPedidosClientes(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioLogueado = usuarioLogueado;
     }
 
     @SuppressWarnings("unchecked")
@@ -199,19 +200,19 @@ public class HistorialPedidosClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoComprasActionPerformed
-        CarritoDeCompras vista = new CarritoDeCompras();
+        CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCarritoComprasActionPerformed
 
     private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
-        VistaPrincipalCliente vista = new VistaPrincipalCliente();
+        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        ProductosDelPedido vista = new ProductosDelPedido();
+        ProductosDelPedido vista = new ProductosDelPedido(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProductosActionPerformed
