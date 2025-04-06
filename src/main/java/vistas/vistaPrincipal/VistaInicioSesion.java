@@ -299,7 +299,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
     // METODO PARA INICIAR SESIÓN
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {
 
-        if (txtCedula.getText().isEmpty() || txtClave.getPassword() == null) {
+        if (txtCedula.getText().isEmpty() || txtClave.getPassword().length == 0) {
 
             JOptionPane.showMessageDialog(null, "¡Rellene todas las casillas!");
 

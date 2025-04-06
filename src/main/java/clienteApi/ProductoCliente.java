@@ -13,9 +13,11 @@ import service.ProductoApiService;
  */
 public class ProductoCliente {
 
+    // ATRIBUTOS
     private static final String BASE_URL = "http://localhost:8080";
     private static ProductoApiService apiService;
 
+    // CONSTRUCTOR 
     public ProductoCliente() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -24,6 +26,7 @@ public class ProductoCliente {
         apiService = retrofit.create(ProductoApiService.class);
     }
 
+    // METODO PARA OBTENER TODOS LOS PRODUCTOS
     public List<Producto> listarTodosLosProductos() throws Exception {
 
         Response<List<Producto>> response = apiService.getAllProductos().execute();
@@ -33,7 +36,35 @@ public class ProductoCliente {
             return productos;
         } else {
             System.out.println("Error: " + response.code());
-            throw new Exception("Producto No Encontrado");
+            throw new Exception("Error en el cargue de Información de Productos");
         }
     }
+
+    // METODO PARA ENCONTRAR UN PRODUCTO POR SU ID
+    public Producto findProductoById(Integer idProducto) throws Exception {
+        Response<Producto> response = apiService.getProductoById(idProducto).execute();
+        if (response.isSuccessful()) {
+            Producto producto = response.body();
+            System.out.println("Producto Encontrado: " + response.body());
+            return producto;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("El producto no fue Encontrado");
+        }
+
+    }
+
+    // METODO PARA EDITAR UN PRODUCTO POR SU ID
+    public void updateProducto(Integer idProducto, Producto producto) throws Exception {
+        Response<Producto> response = apiService.updateProducto(idProducto, producto).execute();
+        if (response.isSuccessful()) {
+            System.out.println("Producto actualizado: " + response.body());
+
+        } else {
+            System.out.println("Error al actualizar producto: " + response.code());
+            throw new Exception("Error al actualizar el producto");
+        }
+
+    }
+
 }
