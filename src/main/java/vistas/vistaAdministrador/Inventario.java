@@ -14,7 +14,6 @@ public class Inventario extends javax.swing.JPanel {
         initComponents();
         this.productoCliente = new ProductoCliente();
         listarProductos();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -369,32 +368,71 @@ public class Inventario extends javax.swing.JPanel {
 
     }
 
+    // METODO PARA LIMPIAR TODAS LAS CASILLAS 
+    private void emptyFields() {
+        txtColorProducto.setText("");
+        txtDescripcion.setText("");
+        txtIdProducto.setText("");
+        txtMaterial.setText("");
+        txtNombreProducto.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+        txtTalla.setText("");
 
+    }
+
+    // METODO PARA EDITAR UN PRODUCTO DEL INVENTARIO 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
-        JOptionPane.showMessageDialog(null, "EL PRODUCTO HA SIDO EDITADO CORRECTAMENTE");
+
+        try {
+            Integer idProducto = validarIdProducto();
+            if (idProducto != null) {
+                String color = txtColorProducto.getText();
+                String descripcion = txtDescripcion.getText();
+                String material = txtMaterial.getText();
+                String nombre = txtNombreProducto.getText();
+                Double precio = Double.valueOf(txtPrecio.getText());
+                Integer stock = Integer.valueOf(txtStock.getText());
+                String talla = txtTalla.getText();
+
+                Producto productoAeditar = new Producto(idProducto, stock,
+                        precio, nombre, color, talla, material, descripcion,
+                        "Hombre", "Camiseta");
+
+                productoCliente.updateProducto(idProducto, productoAeditar);
+
+                JOptionPane.showMessageDialog(null, "Producto Editado Correctamente");
+                emptyFields();
+                listarProductos();
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnEditarProductoActionPerformed
+
     // METODO PARA VALIDAR EL ID DEL PRODUCTO INGRESADO 
-    public Integer validarIdProducto(Integer idProducto) {
+    public Integer validarIdProducto() throws NumberFormatException, IllegalArgumentException {
         String texto = txtIdProducto.getText().trim();
 
         if (texto.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un ID de producto.");
-            txtIdProducto.requestFocus(); //n esto es para que java swing ponga el cursor de nuevo en ese campo de texto
-            return null;
+            txtIdProducto.requestFocus(); // esto es para que java swing ponga el cursor de nuevo en ese campo de texto
+            throw new IllegalArgumentException("Debe ingresar un ID de producto.");
         }
 
         try {
             return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El ID del producto debe ser un número entero válido.");
-            txtIdProducto.requestFocus();
-            return null;
+            txtIdProducto.requestFocus(); // esto es para que java swing ponga el cursor de nuevo en ese campo de texto
+            throw new NumberFormatException("El ID del producto debe ser un número entero válido.");
         }
     }
 
+    // METODO PARA CONSULTAR UN PRODUCTO POR SU ID.
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Integer idProducto = validarIdProducto(Integer.valueOf(txtIdProducto.getText()));
+        
         try {
+            Integer idProducto = validarIdProducto();
             if (idProducto != null) {
                 Producto productoEncontrado = productoCliente.findProductoById(idProducto);
                 txtColorProducto.setText(productoEncontrado.getColor());
@@ -405,10 +443,9 @@ public class Inventario extends javax.swing.JPanel {
                 txtStock.setText(String.valueOf(productoEncontrado.getStock()));
                 txtTalla.setText(productoEncontrado.getTalla());
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
