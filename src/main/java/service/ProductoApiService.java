@@ -2,10 +2,10 @@ package service;
 
 import java.util.List;
 import modelo.Producto;
-import modelo.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -23,6 +23,10 @@ public interface ProductoApiService {
     
     @PUT("/api/productos/{id}")
     Call<Producto> updateProducto(@Path("id") Integer id, @Body Producto producto);
+    
+    @POST("/api/productos")
+    Call<Producto> createProducto(@Body Producto producto);
+    
     
 
     
