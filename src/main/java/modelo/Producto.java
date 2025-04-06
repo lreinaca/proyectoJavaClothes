@@ -2,10 +2,10 @@ package modelo;
 
 public class Producto {
 
+
     private Integer productoId;
     private Integer stock;
     private Double precio;
-
     private String nombre;
     private String color;
     private String talla;

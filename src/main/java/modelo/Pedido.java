@@ -83,11 +83,4 @@ public class Pedido {
         this.codigoCompra = codigoCompra;
     }
     
-    
-    
-    
-    
-    
-    
-    
 }
