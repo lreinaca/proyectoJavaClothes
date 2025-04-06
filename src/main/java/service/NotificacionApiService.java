@@ -20,7 +20,6 @@ import retrofit2.http.Query;
  */
 public interface NotificacionApiService {
     
-    
     @GET("/api/notificaciones")
     Call<List<Usuario>> getAllNotificaciones();
 

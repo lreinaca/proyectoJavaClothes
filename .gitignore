@@ -67,3 +67,4 @@ bin/
 
 ### VS Code ###
 .vscode/
+/target/
