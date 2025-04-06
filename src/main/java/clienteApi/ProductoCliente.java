@@ -33,7 +33,22 @@ public class ProductoCliente {
             return productos;
         } else {
             System.out.println("Error: " + response.code());
-            throw new Exception("Producto No Encontrado");
+            throw new Exception("Error en el cargue de Información de Productos");
         }
     }
+    
+    public Producto findProductoById (Integer idProducto) throws Exception{
+        Response<Producto> response = apiService.getProductoById(idProducto).execute();
+        if (response.isSuccessful()) {
+            Producto producto = response.body();
+            System.out.println("Producto Encontrado: " + response.body());
+            return producto;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("El producto no fue Encontrado");
+        }
+        
+    }
+    
+    
 }
