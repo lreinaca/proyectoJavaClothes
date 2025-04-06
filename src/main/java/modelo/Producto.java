@@ -1,18 +1,11 @@
 package modelo;
 
 public class Producto {
-<<<<<<< HEAD
-    
-    private int productoId;
-    private int stock; 
-    private double precio; 
-=======
+
 
     private Integer productoId;
     private Integer stock;
     private Double precio;
-
->>>>>>> 97d7d1a4ff9f51592948f495bbf0e6dad5134644
     private String nombre;
     private String color;
     private String talla;
