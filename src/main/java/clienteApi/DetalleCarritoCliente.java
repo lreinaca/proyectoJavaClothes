@@ -1,0 +1,80 @@
+package clienteApi;
+
+import java.util.List;
+import modelo.DetalleCarrito;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import service.DetalleCarritoApiService;
+public class DetalleCarritoCliente {
+    // ATRIBUTOS
+    private static final String BASE_URL = "http://localhost:8080";
+    private static DetalleCarritoApiService apiService;
+
+    // CONSTRUCTOR 
+    public DetalleCarritoCliente() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiService = retrofit.create(DetalleCarritoApiService.class);
+    }
+
+    // METODO PARA OBTENER TODOS LOS DETALLE CARRITO 
+    public List<DetalleCarrito> listarTodosLosDetalleCarrito() throws Exception {
+
+        Response<List<DetalleCarrito>> response = apiService.getAllDetalleCarrito().execute();
+        if (response.isSuccessful()) {
+            List<DetalleCarrito> detalleCarrito = response.body();
+            detalleCarrito.forEach(usuario -> System.out.println(usuario));
+            return detalleCarrito;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("Error en el cargue de Información de Detalle Carrito");
+        }
+    }
+
+    // METODO PARA ENCONTRAR UN  DETALLE CARRITO POR SU ID
+    public DetalleCarrito findDetalleCarritoById(int idDetalleCarrito, int cantidad) throws Exception {
+        Response<DetalleCarrito> response = apiService.getDetalleCarritoById(idDetalleCarrito, cantidad).execute();
+        if (response.isSuccessful()) {
+            DetalleCarrito detalleCarrito = response.body();
+            System.out.println("Detalle Carrito Encontrado: " + response.body());
+            return detalleCarrito;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("El Detalle Carrito no fue Encontrado");
+        }
+
+    }
+
+    // METODO PARA EDITAR UN DETALLE CARRITO POR SU ID
+    public void updateDetalleCarrito(int idDetalleCarrito, int cantidad, DetalleCarrito detalleCarrito) throws Exception {
+        Response<DetalleCarrito> response = apiService.updateDetalleCarrito(idDetalleCarrito, cantidad, detalleCarrito).execute();
+        if (response.isSuccessful()) {
+            System.out.println("Detalle Carrito actualizado: " + response.body());
+
+        } else {
+            System.out.println("Error al actualizar Detalle Carrito: " + response.code());
+            throw new Exception("Error al actualizar el Detalle Carrito");
+        }
+
+    }
+
+    //METODO PARA CREAR UN NUEVO Detalle Carrito
+    public DetalleCarrito createDetalleCarrito(DetalleCarrito detalleCarrito) throws Exception {
+        Response<DetalleCarrito> response = apiService.createDetalleCarrito(detalleCarrito).execute();
+        if (response.isSuccessful()) {
+            DetalleCarrito detalleCarritoCreado = response.body();
+            System.out.println("Detalle Carrito creado: " + response.body());
+            return detalleCarritoCreado;
+            
+
+        } else {
+            System.out.println("Error al crear Detalle Carrito: " + response.code());
+            throw new Exception("Error al actualizar el Detalle Carrito"); 
+        }
+
+    }
+
+}
