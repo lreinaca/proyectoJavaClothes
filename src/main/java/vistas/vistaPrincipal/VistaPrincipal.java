@@ -36,6 +36,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         menuPerfil = new javax.swing.JMenu();
         loginMenuIt = new javax.swing.JMenuItem();
         signUpMenuIt = new javax.swing.JMenuItem();
+        salir = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -92,7 +93,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(303, Short.MAX_VALUE)
+                .addContainerGap(159, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -138,6 +139,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         menuPerfil.add(signUpMenuIt);
+
+        salir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        menuPerfil.add(salir);
 
         jMenuBar1.add(menuPerfil);
         jMenuBar1.add(jMenu3);
@@ -300,6 +310,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         contenido.repaint();
     }//GEN-LAST:event_calzaMMenuItActionPerformed
 
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        System.exit(0); // Cierra completamente la aplicación
+    }//GEN-LAST:event_salirActionPerformed
+
 
 //    public static void main(String args[]) {
 //
@@ -331,6 +345,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuPerfil;
     private javax.swing.JMenuItem pantFMenuIt;
     private javax.swing.JMenuItem pantMMenult;
+    private javax.swing.JMenuItem salir;
     private javax.swing.JMenuItem signUpMenuIt;
     // End of variables declaration//GEN-END:variables
 }

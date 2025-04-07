@@ -3,7 +3,6 @@ package clienteApi;
 import dto.DetalleCompraCliente;
 import java.util.List;
 import modelo.CarritoCompras;
-import modelo.Producto;
 import modelo.Usuario;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -11,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import service.CarritoComprasApiService;
 
 public class CarritoComprasCliente {
+
     // ATRIBUTOS
     private static final String BASE_URL = "http://localhost:8080";
     private static CarritoComprasApiService apiService;
@@ -74,11 +74,10 @@ public class CarritoComprasCliente {
             CarritoCompras carritoComprasCreado = response.body();
             System.out.println("Carrito Compras creado: " + response.body());
             return carritoComprasCreado;
-            
 
         } else {
             System.out.println("Error al crear Carrito Compras: " + response.code());
-            throw new Exception("Error al actualizar el Carrito Compras"); 
+            throw new Exception("Error al actualizar el Carrito Compras");
         }
 
     }

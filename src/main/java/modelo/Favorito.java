@@ -39,6 +39,12 @@ public class Favorito {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
+    @Override
+    public String toString() {
+        return "Favorito{" + "favoritoId=" + favoritoId + ", usuario=" + usuario + ", producto=" + producto + '}';
+    }
+    
     
     
 

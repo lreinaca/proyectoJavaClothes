@@ -107,4 +107,11 @@ public class Producto {
         this.tipo = tipo;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" + "productoId=" + productoId + ", stock=" + stock + ", precio=" + precio + ", nombre=" + nombre + ", color=" + color + ", talla=" + talla + ", material=" + material + ", descripcion=" + descripcion + ", categoria=" + categoria + ", tipo=" + tipo + '}';
+    }
+    
+    
+
 }
