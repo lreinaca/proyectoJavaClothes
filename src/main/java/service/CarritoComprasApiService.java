@@ -1,5 +1,6 @@
 package service;
 
+import dto.DetalleCompraCliente;
 import java.util.List;
 import modelo.CarritoCompras;
 import modelo.Usuario;
@@ -17,14 +18,14 @@ public interface CarritoComprasApiService {
     @GET("/api/carritoCompras")
     Call<List<CarritoCompras>> getAllCarritoCompras();
 
-    @GET("/api/carritoCompras/{idCarrito}/{id}")
-    Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("id") Usuario usuario);
+    @GET("/api/carritoCompras/{idCarrito}/{idUsuario}")
+    Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") String idUsuario);
 
-    @POST("/api/carritoCompras/")
-    Call<CarritoCompras> createCarritoCompras(@Body CarritoCompras carritoCompras);
+    @POST("/api/carritoCompras")
+    Call<CarritoCompras> createCarritoCompras(@Body DetalleCompraCliente carritoCompras);
 
-    @PUT("/api/carritoCompras/{idCarrito}/{id}")
-    Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras,@Path ("id") Usuario usuario, @Body CarritoCompras carritoCompras);
+    @PUT("/api/carritoCompras/{idCarrito}")
+    Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras, @Body DetalleCompraCliente carritoCompras);
 
     @DELETE("/api/carritoCompras/{idCarrito}")
     Call<Void> deleteCarritoCompras(@Path("idCarrito") Integer idCarritoCompras);
