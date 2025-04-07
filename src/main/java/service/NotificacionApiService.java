@@ -21,19 +21,19 @@ import retrofit2.http.Query;
 public interface NotificacionApiService {
     
     @GET("/api/notificaciones")
-    Call<List<Usuario>> getAllNotificaciones();
+    Call<List<Notificacion>> getAllNotificaciones();
 
     @GET("/api/notificaciones/{id}")
-    Call<Usuario> getNotificacionById(@Path("id") String id);
+    Call<Notificacion> getNotificacionById(@Path("id") String id);
     
     @GET("/api/notificaciones/{id}")
-    Call<Usuario> getNotificacionByCliente(@Path("id") String id); 
+    Call<Notificacion> getNotificacionByCliente(@Path("id") String id); 
 
     @POST("/api/notificaciones")
-    Call<Usuario> createNotificacion(@Body Notificacion notificacion);
+    Call<Notificacion> createNotificacion(@Body Notificacion notificacion);
 
     @PUT("/api/notificaciones/{id}")
-    Call<Usuario> updateNotificacion(@Path("id") String idNotificacion, @Body Notificacion notificacion);
+    Call<Notificacion> updateNotificacion(@Path("id") String idNotificacion, @Body Notificacion notificacion);
 
     @DELETE("/api/notificaciones/{id}")
     Call<Void> deleteNotificacion(@Path("id") String id);

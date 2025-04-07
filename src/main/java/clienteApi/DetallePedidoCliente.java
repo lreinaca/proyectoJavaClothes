@@ -1,5 +1,8 @@
 package clienteApi;
 
+import modelo.DetallePedido;
+import modelo.Pedido;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import service.DetallePedidoApiService;
@@ -9,8 +12,9 @@ import service.DetallePedidoApiService;
  * @author Rossi
  */
 public class DetallePedidoCliente {
-     private static final String BASE_URL = "http://localhost:8080";
-     private static DetallePedidoApiService detalleApiService;
+
+    private static final String BASE_URL = "http://localhost:8080";
+    private static DetallePedidoApiService detalleApiService;
 
     public DetallePedidoCliente() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -20,5 +24,42 @@ public class DetallePedidoCliente {
 
         detalleApiService = retrofit.create(DetallePedidoApiService.class);
 
+    }
+
+    // metodo crear detalle pedido
+    public void createDetallePedido(DetallePedido detallePedido) throws Exception {
+        Response<DetallePedido> response = detalleApiService.createDetallePedido(detallePedido).execute();
+        if (response.isSuccessful()) {
+            DetallePedido detalleCreado = response.body();
+            System.out.println("Detalle de pedido creado: " + response.body());
+        } else {
+            System.out.println("Error al crear detalle de pedido: " + response.code());
+            throw new Exception("Error al crear el detalle de pedido");
+        }
+    }
+
+    //obetener detalle pedido por id
+    public DetallePedido getDetallesByPedidoId(String id) throws Exception {
+        Response<DetallePedido> response = detalleApiService.getDetallesByPedidoId(id).execute();
+        if (response.isSuccessful()) {
+            DetallePedido detalle = response.body();
+            System.out.println("Detalle de pedido encontrado: " + response.body());
+            return detalle;
+        } else {
+            System.out.println("Error al obtener detalle de pedido: " + response.code());
+            throw new Exception("Error al obtener el detalle de pedido");
+        }
+    }
+
+    // metodo actualizar detalle pedido
+    public void updateDetallePedido(String idDetalle, Pedido pedido) throws Exception {
+        Response<DetallePedido> response = detalleApiService.updateDetallePedido(idDetalle, pedido).execute();
+        if (response.isSuccessful()) {
+            DetallePedido detalleActualizado = response.body();
+            System.out.println("Detalle de pedido actualizado: " + response.body());
+        } else {
+            System.out.println("Error al actualizar detalle de pedido: " + response.code());
+            throw new Exception("Error al actualizar el detalle de pedido");
+        }
     }
 }

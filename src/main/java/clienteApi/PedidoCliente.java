@@ -1,5 +1,9 @@
 package clienteApi;
 
+import java.util.List;
+
+import modelo.Pedido;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import service.PedidoApiService;
@@ -20,6 +24,81 @@ public class PedidoCliente {
                 .build();
 
         pedidoApiService = retrofit.create(PedidoApiService.class);
-
     }
+
+    //buscarPedido
+    public void buscarPedido(Pedido pedido) throws Exception {
+        String idUsuario = pedido.getCliente().getIdUsuario();
+        Response<List<Pedido>> response = pedidoApiService.buscarPedido(idUsuario, pedido.getEstado(), pedido.getFecha()).execute();
+        if (response.isSuccessful()) {
+            List<Pedido> pedidos = response.body();
+            pedidos.forEach(p -> System.out.println("Pedido(s) encontrado: " + p));
+        } else {
+            System.out.println("Error al buscar pedido: " + response.code());
+            throw new Exception("Error al buscar el pedido");
+        }
+    }
+
+    // metodo actualizar pedido
+    public void updatePedido(String idPedido, Pedido pedido) throws Exception {
+        Response<Pedido> response = pedidoApiService.updatePedido(idPedido, pedido).execute();
+        if (response.isSuccessful()) {
+            Pedido pedidoActualizado = response.body();
+            System.out.println("Pedido actualizado: " + response.body());
+        } else {
+            System.out.println("Error al actualizar pedido: " + response.code());
+            throw new Exception("Error al actualizar el pedido");
+        }
+    }
+
+    //metodo para crear pedido
+    public void createPedido(Pedido pedido) throws Exception {
+        Response<Pedido> response = pedidoApiService.createPedido(pedido).execute();
+        if (response.isSuccessful()) {
+            Pedido pedidoCreado = response.body();
+            System.out.println("Pedido creado: " + response.body());
+        } else {
+            System.out.println("Error al crear pedido: " + response.code());
+            throw new Exception("Error al crear el pedido");
+        }
+    }
+
+    // metodo eliminar Pedido
+    public void deletePedido(String idPedido) throws Exception {
+        Response<Void> response = pedidoApiService.deletePedido(idPedido).execute();
+        if (response.isSuccessful()) {
+            System.out.println("Pedido eliminado: " + idPedido);
+        } else {
+            System.out.println("Error al eliminar pedido: " + response.code());
+            throw new Exception("Error al eliminar el pedido");
+        }
+    }
+
+    // metodo para obtener todos los pedidos
+    public List<Pedido> getAllPedidos() throws Exception {
+        Response<List<Pedido>> response = pedidoApiService.getAllPedidos().execute();
+        if (response.isSuccessful()) {
+            List<Pedido> pedidos = response.body();
+            pedidos.forEach(p -> System.out.println("Lista de pedidos: " + p));
+            return pedidos;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("Error al obtener la lista de pedidos");
+        }
+    }
+
+    // metodo para obtener pedido por id
+    public Pedido getPedidoById(String idPedido) throws Exception {
+        Response<Pedido> response = pedidoApiService.getPedidoById(idPedido).execute();
+        if (response.isSuccessful()) {
+            Pedido pedido = response.body();
+            System.out.println("Pedido encontrado: " + response.body());
+            return pedido;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("Pedido no encontrado");
+
+        }
+    }
+
 }
