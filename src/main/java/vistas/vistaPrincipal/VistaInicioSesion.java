@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import modelo.Usuario;
 import vistas.vistaAdministrador.VistaAdministracionProductos;
 import vistas.vistaCliente.VistaPrincipalCliente;
-import vistas.vistaVendedor.VistaGestionPedidos;
+import vistas.vistaVendedor.VistaPrincipalVendedor;
 
 /**
  *
@@ -326,7 +326,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                         break;
                     }
                     case 2: {
-                        VistaGestionPedidos vista = new VistaGestionPedidos();
+                        VistaPrincipalVendedor vista = new VistaPrincipalVendedor(usuarioLogueado);
                         vista.setVisible(true);
                         this.dispose();
                         break;

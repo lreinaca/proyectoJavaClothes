@@ -1,15 +1,28 @@
 package vistas.vistaCliente;
 
+import modelo.Usuario;
+
 /**
  *
  * @author Rossi
  */
 public class ExplorarCamisaMasc extends javax.swing.JPanel {
-
+    
+    // ATIBUTOS 
+    Usuario usuarioLogueado; 
+    
+    // CONSTRUCTOR PARA USUARIO LOGUEADO 
+    public ExplorarCamisaMasc(Usuario usuarioLogueado) {
+        initComponents();
+        this.usuarioLogueado = usuarioLogueado;
+    }
+    
+    // CONSTRUCTOR PARA VISTA PRINCIPAL SIN LOGUEO 
     public ExplorarCamisaMasc() {
         initComponents();
-        
     }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -368,7 +381,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DescripcionArticulo vista = new DescripcionArticulo();
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado);
         vista.setVisible(true);      
         
     }//GEN-LAST:event_jButton1ActionPerformed

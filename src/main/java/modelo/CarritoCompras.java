@@ -1,20 +1,25 @@
-
 package modelo;
+
+import java.util.List;
 
 /**
  *
  * @author lreinac
  */
-
 public class CarritoCompras {
-    private int carritoId;
-    private Usuario usuario; 
 
+    // ATRIBUTOS 
+    private int carritoId;
+    private Usuario usuario;
+    private List<DetalleCarrito> detallesCarritos;
+
+    // CONSTRUCTOR 
     public CarritoCompras(int carritoId, Usuario usuario) {
         this.carritoId = carritoId;
         this.usuario = usuario;
     }
 
+    // GETTERS AND SETTERS 
     public int getCarritoId() {
         return carritoId;
     }
@@ -30,7 +35,13 @@ public class CarritoCompras {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
+
+    public List<DetalleCarrito> getDetallesCarritos() {
+        return detallesCarritos;
+    }
+
+    public void setDetallesCarritos(List<DetalleCarrito> detallesCarritos) {
+        this.detallesCarritos = detallesCarritos;
+    }
 
 }

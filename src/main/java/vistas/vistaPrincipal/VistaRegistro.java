@@ -334,6 +334,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             // agregar el try catch para manejo de excepciones 
             Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
             usuarioCliente.createUser(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario Registrado Exitosamente");
             emptyField();
 
         } catch (RuntimeException e){

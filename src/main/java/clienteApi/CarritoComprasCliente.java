@@ -1,5 +1,6 @@
 package clienteApi;
 
+import dto.DetalleCompraCliente;
 import java.util.List;
 import modelo.CarritoCompras;
 import modelo.Producto;
@@ -37,9 +38,9 @@ public class CarritoComprasCliente {
         }
     }
 
-    // METODO PARA ENCONTRAR UN  CARRITOCOMPRAS POR SU ID
+    // METODO PARA ENCONTRAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public CarritoCompras findCarritoComprasById(Integer idCarritoCompras, Usuario usuario) throws Exception {
-        Response<CarritoCompras> response = apiService.getCarritoComprasById(idCarritoCompras, usuario).execute();
+        Response<CarritoCompras> response = apiService.getCarritoComprasById(idCarritoCompras, usuario.getIdUsuario()).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoCompras = response.body();
             System.out.println("Carrito Compras Encontrado: " + response.body());
@@ -52,8 +53,9 @@ public class CarritoComprasCliente {
     }
 
     // METODO PARA EDITAR UN CARRITO COMPRAS POR SU ID
-    public void updateCarritoCompras(Integer idCarritoCompras,Usuario usuario, CarritoCompras carritoCompras) throws Exception {
-        Response<CarritoCompras> response = apiService.updateCarritoCompras(idCarritoCompras,usuario, carritoCompras).execute();
+    public void updateCarritoCompras(CarritoCompras carritoCompras, Integer idProducto) throws Exception {
+        DetalleCompraCliente compraCliente = new DetalleCompraCliente(carritoCompras, idProducto);
+        Response<CarritoCompras> response = apiService.updateCarritoCompras(carritoCompras.getCarritoId(), compraCliente).execute();
         if (response.isSuccessful()) {
             System.out.println("CarritoCompras actualizado: " + response.body());
 
@@ -65,8 +67,9 @@ public class CarritoComprasCliente {
     }
 
     //METODO PARA CREAR UN NUEVO CARRITO COMPRAS
-    public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras) throws Exception {
-        Response<CarritoCompras> response = apiService.createCarritoCompras(carritoCompras).execute();
+    public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras, Integer idProducto) throws Exception {
+        DetalleCompraCliente compraCliente = new DetalleCompraCliente(carritoCompras, idProducto);
+        Response<CarritoCompras> response = apiService.createCarritoCompras(compraCliente).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoComprasCreado = response.body();
             System.out.println("Carrito Compras creado: " + response.body());
