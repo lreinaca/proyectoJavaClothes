@@ -35,4 +35,8 @@ public interface DetalleCarritoApiService {
         @Query("id") int idDetalleCarrito,
         @Query("cantidad") int cantidad
     );
+    
+    @GET("/api/detalleCarrito/{idUsuario}")
+    Call<List<DetalleCarrito>> getCarritoComprasById(@Path ("idUsuario") String idUsuario);
+
 }

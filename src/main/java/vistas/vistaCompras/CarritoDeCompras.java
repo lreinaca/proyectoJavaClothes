@@ -1,9 +1,9 @@
 package vistas.vistaCompras;
 
-import clienteApi.CarritoComprasCliente;
+import clienteApi.DetalleCarritoCliente;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.CarritoCompras;
 import modelo.DetalleCarrito;
 import modelo.Producto;
 import modelo.Usuario;
@@ -17,14 +17,14 @@ public class CarritoDeCompras extends javax.swing.JFrame {
 
     //ATRUBUTOS 
     Usuario usuarioLogueado;
-    CarritoComprasCliente detalleCarrito;
+    DetalleCarritoCliente detalleCarrito;
 
     // CONSTRUCTOR 
     public CarritoDeCompras(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
-        this.detalleCarrito = new CarritoComprasCliente();
+        this.detalleCarrito = new DetalleCarritoCliente();
         listarProductos();
 
     }
@@ -35,9 +35,9 @@ public class CarritoDeCompras extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Nombre_Producto", "Color",
             "Talla", "Material", "Precio",});
         try {
-            CarritoCompras carritoCliente = detalleCarrito.findCarritoComprasById(1, usuarioLogueado);
+            List<DetalleCarrito> detallesCarrito = detalleCarrito.findCarritoComprasById(usuarioLogueado);
 
-            for (DetalleCarrito detalle : carritoCliente.getDetallesCarritos()) {
+            for (DetalleCarrito detalle : detallesCarrito) {
                 Producto producto = detalle.getProducto();
 
                 model.addRow(new Object[]{
@@ -45,13 +45,12 @@ public class CarritoDeCompras extends javax.swing.JFrame {
                     producto.getColor(),
                     producto.getTalla(),
                     producto.getMaterial(),
-                    producto.getPrecio(),
-                });
+                    producto.getPrecio(),});
             }
             tbHistorialProductos.setModel(model);
 
             // Ajustar el ancho de las columnas
-                       tbHistorialProductos.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre_Producto
+            tbHistorialProductos.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre_Producto
             tbHistorialProductos.getColumnModel().getColumn(1).setPreferredWidth(80);  // Color
             tbHistorialProductos.getColumnModel().getColumn(2).setPreferredWidth(50);  // Talla
             tbHistorialProductos.getColumnModel().getColumn(3).setPreferredWidth(100); // Material
