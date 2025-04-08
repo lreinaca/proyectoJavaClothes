@@ -2,6 +2,7 @@ package clienteApi;
 
 import java.util.List;
 import modelo.DetalleCarrito;
+import modelo.Usuario;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -73,6 +74,20 @@ public class DetalleCarritoCliente {
         } else {
             System.out.println("Error al crear Detalle Carrito: " + response.code());
             throw new Exception("Error al actualizar el Detalle Carrito"); 
+        }
+
+    }
+    
+    // METODO PARA ENCONTRAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
+    public List<DetalleCarrito> findCarritoComprasById(Usuario usuario) throws Exception {
+        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getIdUsuario()).execute();
+        if (response.isSuccessful()) {
+            List<DetalleCarrito> detallesCarrito = response.body();
+            System.out.println("Carrito Compras Encontrado: " + response.body());
+            return detallesCarrito;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("El CarritoCompras no fue Encontrado");
         }
 
     }

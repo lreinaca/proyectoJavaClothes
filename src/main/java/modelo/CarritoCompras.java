@@ -44,4 +44,11 @@ public class CarritoCompras {
         this.detallesCarritos = detallesCarritos;
     }
 
+    @Override
+    public String toString() {
+        return "CarritoCompras{" + "carritoId=" + carritoId + ", usuario=" + usuario + ", detallesCarritos=" + detallesCarritos + '}';
+    }
+    
+    
+
 }

@@ -1,7 +1,11 @@
-
 package vistas.vistaCompras;
 
+import clienteApi.DetalleCarritoCliente;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DetalleCarrito;
+import modelo.Producto;
 import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
@@ -11,13 +15,52 @@ import vistas.vistaCliente.VistaPrincipalCliente;
  */
 public class CarritoDeCompras extends javax.swing.JFrame {
 
+    //ATRUBUTOS 
     Usuario usuarioLogueado;
+    DetalleCarritoCliente detalleCarrito;
+
+    // CONSTRUCTOR 
     public CarritoDeCompras(Usuario usuarioLogueado) {
         initComponents();
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
+        this.detalleCarrito = new DetalleCarritoCliente();
+        listarProductos();
+
     }
 
+// METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
+    private void listarProductos() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Nombre_Producto", "Color",
+            "Talla", "Material", "Precio",});
+        try {
+            List<DetalleCarrito> detallesCarrito = detalleCarrito.findCarritoComprasById(usuarioLogueado);
+
+            for (DetalleCarrito detalle : detallesCarrito) {
+                Producto producto = detalle.getProducto();
+
+                model.addRow(new Object[]{
+                    producto.getNombre(),
+                    producto.getColor(),
+                    producto.getTalla(),
+                    producto.getMaterial(),
+                    producto.getPrecio(),});
+            }
+            tbHistorialProductos.setModel(model);
+
+            // Ajustar el ancho de las columnas
+            tbHistorialProductos.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre_Producto
+            tbHistorialProductos.getColumnModel().getColumn(1).setPreferredWidth(80);  // Color
+            tbHistorialProductos.getColumnModel().getColumn(2).setPreferredWidth(50);  // Talla
+            tbHistorialProductos.getColumnModel().getColumn(3).setPreferredWidth(100); // Material
+            tbHistorialProductos.getColumnModel().getColumn(4).setPreferredWidth(75);  // Precio
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -150,7 +193,7 @@ public class CarritoDeCompras extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -235,16 +278,15 @@ public class CarritoDeCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-            VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
+        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-      JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE ELIMINADO DE TU CARRITO DE COMPRAS");
+        JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE ELIMINADO DE TU CARRITO DE COMPRAS");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;

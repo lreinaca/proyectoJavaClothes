@@ -82,5 +82,11 @@ public class Pedido {
     public void setCodigoCompra(String codigoCompra) {
         this.codigoCompra = codigoCompra;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "pedidoId=" + pedidoId + ", factura=" + factura + ", cliente=" + cliente + ", estado=" + estado + ", fecha=" + fecha + ", codigoCompra=" + codigoCompra + ", detallesVenta=" + detallesVenta + '}';
+    }
+    
     
 }

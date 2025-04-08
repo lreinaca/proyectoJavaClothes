@@ -49,6 +49,11 @@ public class Factura {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+    @Override
+    public String toString() {
+        return "Factura{" + "facturaId=" + facturaId + ", totalPagar=" + totalPagar + ", fecha=" + fecha + ", pedido=" + pedido + '}';
+    }
     
     
     

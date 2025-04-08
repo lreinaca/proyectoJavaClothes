@@ -7,22 +7,21 @@ import modelo.Usuario;
  * @author Rossi
  */
 public class ExplorarCamisaMasc extends javax.swing.JPanel {
-    
+
     // ATIBUTOS 
-    Usuario usuarioLogueado; 
-    
+    Usuario usuarioLogueado;
+
     // CONSTRUCTOR PARA USUARIO LOGUEADO 
     public ExplorarCamisaMasc(Usuario usuarioLogueado) {
         initComponents();
         this.usuarioLogueado = usuarioLogueado;
     }
-    
+
     // CONSTRUCTOR PARA VISTA PRINCIPAL SIN LOGUEO 
     public ExplorarCamisaMasc() {
         initComponents();
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,17 +36,17 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        txtProducto1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        txtProducto2 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        lblTituloProducto3 = new javax.swing.JLabel();
+        txtProducto3 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,13 +106,13 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Tee Graphic Horizon");
 
-        jButton1.setBackground(new java.awt.Color(241, 234, 255));
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("$70.000");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtProducto1.setBackground(new java.awt.Color(241, 234, 255));
+        txtProducto1.setForeground(new java.awt.Color(51, 51, 51));
+        txtProducto1.setText("$70.000");
+        txtProducto1.setBorder(null);
+        txtProducto1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtProducto1ActionPerformed(evt);
             }
         });
 
@@ -127,7 +126,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -141,7 +140,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -171,13 +170,13 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Denim Street Clasic");
 
-        jButton4.setBackground(new java.awt.Color(241, 234, 255));
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setText("$130.900");
-        jButton4.setBorder(null);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        txtProducto2.setBackground(new java.awt.Color(241, 234, 255));
+        txtProducto2.setForeground(new java.awt.Color(51, 51, 51));
+        txtProducto2.setText("$130.900");
+        txtProducto2.setBorder(null);
+        txtProducto2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                txtProducto2ActionPerformed(evt);
             }
         });
 
@@ -194,7 +193,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtProducto2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -205,7 +204,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
@@ -230,14 +229,19 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("Polo Relax Cream");
+        lblTituloProducto3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTituloProducto3.setForeground(new java.awt.Color(102, 102, 102));
+        lblTituloProducto3.setText("Polo Relax Cream");
 
-        jButton5.setBackground(new java.awt.Color(241, 234, 255));
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setText("$96.000");
-        jButton5.setBorder(null);
+        txtProducto3.setBackground(new java.awt.Color(241, 234, 255));
+        txtProducto3.setForeground(new java.awt.Color(51, 51, 51));
+        txtProducto3.setText("$96.000");
+        txtProducto3.setBorder(null);
+        txtProducto3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProducto3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -249,11 +253,11 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
+                .addComponent(lblTituloProducto3)
                 .addGap(32, 32, 32))
         );
         jPanel10Layout.setVerticalGroup(
@@ -262,9 +266,9 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(lblTituloProducto3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
 
@@ -376,24 +380,37 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    // CARGA EL DETALLE DEL SEGUNDO PRODUCTO
+    private void txtProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto2ActionPerformed
+        Integer idProducto = 104;
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado);
-        vista.setVisible(true);      
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtProducto2ActionPerformed
+
+    // CARGA EL DETALLE DEL PRIMER PRODUCTO 
+    private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
+        Integer idProducto = 101;
+
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
+
+
+    }//GEN-LAST:event_txtProducto1ActionPerformed
+
+    // CARGA EL DETALLE DEL TERCER PRODUCTO 
+    private void txtProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto3ActionPerformed
+        Integer idProducto = 105;
+
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
+    }//GEN-LAST:event_txtProducto3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenido;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -410,5 +427,9 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblTituloProducto3;
+    private javax.swing.JButton txtProducto1;
+    private javax.swing.JButton txtProducto2;
+    private javax.swing.JButton txtProducto3;
     // End of variables declaration//GEN-END:variables
 }

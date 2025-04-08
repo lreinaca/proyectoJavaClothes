@@ -47,6 +47,11 @@ public class DetallePedido {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
+    @Override
+    public String toString() {
+        return "DetallePedido{" + "detalleId=" + detalleId + ", cantidad=" + cantidad + ", pedido=" + pedido + ", producto=" + producto + '}';
+    }
     
     
     
