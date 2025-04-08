@@ -1,6 +1,8 @@
 package vistas.vistaCompras;
 
 import clienteApi.DetalleCarritoCliente;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,8 +20,9 @@ import vistas.vistaCliente.VistaPrincipalCliente;
 public class CarritoDeCompras extends javax.swing.JFrame {
 
     //ATRUBUTOS 
-    Usuario usuarioLogueado;
-    DetalleCarritoCliente detalleCarrito;
+    private Usuario usuarioLogueado;
+    private DetalleCarritoCliente detalleCarrito;
+    private String nombreProductoSeleccionado;
 
     // CONSTRUCTOR 
     public CarritoDeCompras(Usuario usuarioLogueado) {
@@ -31,7 +34,7 @@ public class CarritoDeCompras extends javax.swing.JFrame {
 
     }
 
-// METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
+    // METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
     private void listarProductos() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Nombre_Producto", "Color",
@@ -62,6 +65,21 @@ public class CarritoDeCompras extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
+    }
+
+    // METODO PARA CAPTURAR EL PRODUCTO SELECCIONADO 
+    private void seleccionarProducto() {
+        tbHistorialProductos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = tbHistorialProductos.rowAtPoint(e.getPoint());
+
+                if (fila >= 0) {
+                    nombreProductoSeleccionado = tbHistorialProductos.getValueAt(fila, 0).toString();
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + nombreProductoSeleccionado);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -286,12 +304,14 @@ public class CarritoDeCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
         try {
             Integer idProducto = 101;
             detalleCarrito.deleteDetalleCarritoPorProducto(usuarioLogueado, idProducto);
+            listarProductos();
         } catch (Exception ex) {
             Logger.getLogger(CarritoDeCompras.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 

@@ -1,9 +1,8 @@
 package service;
 
-import dto.DetalleCompraCliente;
+import dto.DetalleCompraClienteDTO;
 import java.util.List;
 import modelo.CarritoCompras;
-import modelo.Usuario;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,10 +21,10 @@ public interface CarritoComprasApiService {
     Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") String idUsuario);
 
     @POST("/api/carritoCompras")
-    Call<CarritoCompras> createCarritoCompras(@Body DetalleCompraCliente carritoCompras);
+    Call<CarritoCompras> createCarritoCompras(@Body DetalleCompraClienteDTO carritoCompras);
 
     @PUT("/api/carritoCompras/{idCarrito}")
-    Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras, @Body DetalleCompraCliente carritoCompras);
+    Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras, @Body DetalleCompraClienteDTO carritoCompras);
 
     @DELETE("/api/carritoCompras/{idCarrito}")
     Call<Void> deleteCarritoCompras(@Path("idCarrito") Integer idCarritoCompras);

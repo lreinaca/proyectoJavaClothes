@@ -7,14 +7,14 @@ import java.util.List;
  *
  * @author lreinac
  */
-public class DetalleCompraCliente {
+public class DetalleCompraClienteDTO {
 
     // ATRIBUTOS
     private CarritoCompras carritoCompras;
     private Integer idProducto;
 
     // CONSTRUCTOR
-    public DetalleCompraCliente(CarritoCompras carritoCompras, Integer idProducto) {
+    public DetalleCompraClienteDTO(CarritoCompras carritoCompras, Integer idProducto) {
         this.carritoCompras = carritoCompras;
         this.idProducto = idProducto;
     }
