@@ -1,7 +1,7 @@
 package vistas.vistaPrincipal;
 
 import clienteApi.UsuarioCliente;
-import dto.UsuarioLogin;
+import dto.UsuarioLoginDTO;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import vistas.vistaAdministrador.VistaAdministracionProductos;
@@ -308,7 +308,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                 String cedula = txtCedula.getText();
                 String clave = String.valueOf(txtClave.getPassword());
 
-                UsuarioLogin usuarioLogin = new UsuarioLogin(cedula, clave);
+                UsuarioLoginDTO usuarioLogin = new UsuarioLoginDTO(cedula, clave);
 
                 Usuario usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
 

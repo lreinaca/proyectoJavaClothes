@@ -297,13 +297,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         if(!(usuarioLogueado==null)){
         this.usuarioLogueado.getIdUsuario();
         int idCarritoCompras = 1;
-//        String color = String.valueOf(txtColor.getSelectedItem());
-//        String descripcion = txtDescripcion.getText();
         Integer idProducto = Integer.valueOf(txtIdProducto.getText());
-//        String material = txtMaterial.getText();
-//        String nombreProducto = txtNombreProducto.getText();
-//        Double precio = Double.valueOf(txtPrecio.getText());
-//        String talla = String.valueOf(txtTalla.getSelectedItem());
 
         try {
             // 1ero buscar si existe un carrito de compras asociado a el usuario logueado

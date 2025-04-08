@@ -1,6 +1,6 @@
 package clienteApi;
 
-import dto.UsuarioLogin;
+import dto.UsuarioLoginDTO;
 import java.io.IOException;
 import modelo.Usuario;
 import retrofit2.Response;
@@ -42,7 +42,7 @@ public class UsuarioCliente {
     }
 
     // METODO PARA LOGUEO DE USUARIOS, LANZA UNA EXCEPCIÓN 
-    public Usuario LoginUser(UsuarioLogin usuarioLogin) throws Exception {
+    public Usuario LoginUser(UsuarioLoginDTO usuarioLogin) throws Exception {
 
         // el metodo loginUsuario recibe un dto llamado usuarioLogin, que solo tienen usuario y clave. 
         Response<Usuario> response = apiService.loginUsuario(usuarioLogin).execute();

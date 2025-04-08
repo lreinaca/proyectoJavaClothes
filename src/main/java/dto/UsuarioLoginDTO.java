@@ -5,11 +5,11 @@ package dto;
  *
  * 
  */
-public class UsuarioLogin {
+public class UsuarioLoginDTO {
     private String idUsuario;
     private String clave;
 
-    public UsuarioLogin(String idUsuario, String clave) {
+    public UsuarioLoginDTO(String idUsuario, String clave) {
         this.idUsuario = idUsuario;
         this.clave = clave;
     }

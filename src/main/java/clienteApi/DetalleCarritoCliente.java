@@ -7,7 +7,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import service.DetalleCarritoApiService;
+
 public class DetalleCarritoCliente {
+
     // ATRIBUTOS
     private static final String BASE_URL = "http://localhost:8080";
     private static DetalleCarritoApiService apiService;
@@ -21,9 +23,8 @@ public class DetalleCarritoCliente {
         apiService = retrofit.create(DetalleCarritoApiService.class);
     }
 
-    // METODO PARA OBTENER TODOS LOS DETALLE CARRITO 
+    // METODO PARA OBTENER TODOS LOS DETALLES CARRITO 
     public List<DetalleCarrito> listarTodosLosDetalleCarrito() throws Exception {
-
         Response<List<DetalleCarrito>> response = apiService.getAllDetalleCarrito().execute();
         if (response.isSuccessful()) {
             List<DetalleCarrito> detalleCarrito = response.body();
@@ -69,15 +70,14 @@ public class DetalleCarritoCliente {
             DetalleCarrito detalleCarritoCreado = response.body();
             System.out.println("Detalle Carrito creado: " + response.body());
             return detalleCarritoCreado;
-            
 
         } else {
             System.out.println("Error al crear Detalle Carrito: " + response.code());
-            throw new Exception("Error al actualizar el Detalle Carrito"); 
+            throw new Exception("Error al actualizar el Detalle Carrito");
         }
 
     }
-    
+
     // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public List<DetalleCarrito> findCarritoComprasById(Usuario usuario) throws Exception {
         Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getIdUsuario()).execute();
@@ -91,8 +91,8 @@ public class DetalleCarritoCliente {
         }
 
     }
-    
-    // METODO PARA ELI INAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
+
+    // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL USUARIO 
     public void deleteDetalleCarritoPorProducto(Usuario usuario, int idProducto) throws Exception {
         Response<Void> response = apiService.deleteDetalleCarritoPorProducto(idProducto, usuario.getIdUsuario()).execute();
         if (response.isSuccessful()) {

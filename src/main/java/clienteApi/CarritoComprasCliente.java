@@ -1,6 +1,6 @@
 package clienteApi;
 
-import dto.DetalleCompraCliente;
+import dto.DetalleCompraClienteDTO;
 import java.util.List;
 import modelo.CarritoCompras;
 import modelo.Usuario;
@@ -54,7 +54,7 @@ public class CarritoComprasCliente {
 
     // METODO PARA EDITAR UN CARRITO COMPRAS POR SU ID
     public void updateCarritoCompras(CarritoCompras carritoCompras, Integer idProducto) throws Exception {
-        DetalleCompraCliente compraCliente = new DetalleCompraCliente(carritoCompras, idProducto);
+        DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
         Response<CarritoCompras> response = apiService.updateCarritoCompras(carritoCompras.getCarritoId(), compraCliente).execute();
         if (response.isSuccessful()) {
             System.out.println("CarritoCompras actualizado: " + response.body());
@@ -68,7 +68,7 @@ public class CarritoComprasCliente {
 
     //METODO PARA CREAR UN NUEVO CARRITO COMPRAS
     public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras, Integer idProducto) throws Exception {
-        DetalleCompraCliente compraCliente = new DetalleCompraCliente(carritoCompras, idProducto);
+        DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
         Response<CarritoCompras> response = apiService.createCarritoCompras(compraCliente).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoComprasCreado = response.body();
