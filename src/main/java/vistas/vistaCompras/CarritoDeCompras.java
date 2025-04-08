@@ -2,6 +2,8 @@ package vistas.vistaCompras;
 
 import clienteApi.DetalleCarritoCliente;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCarrito;
@@ -284,7 +286,12 @@ public class CarritoDeCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        JOptionPane.showMessageDialog(null, "EL PRODUCTO FUE ELIMINADO DE TU CARRITO DE COMPRAS");
+        try {
+            Integer idProducto = 101;
+            detalleCarrito.deleteDetalleCarritoPorProducto(usuarioLogueado, idProducto);
+        } catch (Exception ex) {
+            Logger.getLogger(CarritoDeCompras.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 

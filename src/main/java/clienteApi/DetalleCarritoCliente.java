@@ -78,18 +78,29 @@ public class DetalleCarritoCliente {
 
     }
     
-    // METODO PARA ENCONTRAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
+    // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public List<DetalleCarrito> findCarritoComprasById(Usuario usuario) throws Exception {
         Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getIdUsuario()).execute();
         if (response.isSuccessful()) {
             List<DetalleCarrito> detallesCarrito = response.body();
-            System.out.println("Carrito Compras Encontrado: " + response.body());
+            System.out.println("Detalle Carrito Compras Encontrado: " + response.body());
             return detallesCarrito;
         } else {
             System.out.println("Error: " + response.code());
-            throw new Exception("El CarritoCompras no fue Encontrado");
+            throw new Exception("El DetalleCarritoCompras no fue Encontrado");
         }
 
+    }
+    
+    // METODO PARA ELI INAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
+    public void deleteDetalleCarritoPorProducto(Usuario usuario, int idProducto) throws Exception {
+        Response<Void> response = apiService.deleteDetalleCarritoPorProducto(idProducto, usuario.getIdUsuario()).execute();
+        if (response.isSuccessful()) {
+            System.out.println("Detalle Carrito Compras Eliminado " + response.body());
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("El Detalle Carrito Compras no fue eliminado");
+        }
     }
 
 }
