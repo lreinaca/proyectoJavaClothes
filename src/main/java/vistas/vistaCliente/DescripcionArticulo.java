@@ -1,11 +1,15 @@
 package vistas.vistaCliente;
 
 import clienteApi.CarritoComprasCliente;
+import clienteApi.FavoritoCliente;
 import clienteApi.ProductoCliente;
 import javax.swing.JOptionPane;
 import modelo.CarritoCompras;
+import modelo.ENUMs.RolUsuario;
+import modelo.Favorito;
 import modelo.Producto;
 import modelo.Usuario;
+import service.FavoritoApiService;
 
 public class DescripcionArticulo extends javax.swing.JFrame {
 
@@ -13,6 +17,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     Usuario usuarioLogueado;
     CarritoComprasCliente carritoComprasCliente;
     ProductoCliente productoCliente;
+    FavoritoCliente favoritoCliente;
     Integer idProducto;
 
     // CONSTRUCTOR 
@@ -23,6 +28,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         this.carritoComprasCliente = new CarritoComprasCliente();
         this.idProducto = idProducto;
         this.productoCliente = new ProductoCliente();
+        this.favoritoCliente = new FavoritoCliente();
         diligenciarInfoProducto(idProducto);
 
     }
@@ -40,7 +46,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         txtTalla = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtColor = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        btnFavorito = new javax.swing.JButton();
         txtMaterial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -84,12 +90,12 @@ public class DescripcionArticulo extends javax.swing.JFrame {
 
         txtColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BLANCO", "NEGRO", "BEIGE", "CRUDO", "AZUL" }));
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Añadir a favoritos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnFavorito.setBackground(new java.awt.Color(51, 51, 51));
+        btnFavorito.setForeground(new java.awt.Color(255, 255, 255));
+        btnFavorito.setText("Añadir a favoritos");
+        btnFavorito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnFavoritoActionPerformed(evt);
             }
         });
 
@@ -164,16 +170,15 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                                         .addComponent(txtPrecio))
                                     .addComponent(btnCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNombreProducto)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(21, 21, 21)
-                                            .addComponent(txtTalla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(btnFavorito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(txtTalla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(41, 41, 41)
@@ -213,7 +218,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(41, 41, 41)
-                                .addComponent(jButton2)))
+                                .addComponent(btnFavorito)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -268,13 +273,28 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritoActionPerformed
+        try{
         JOptionPane.showMessageDialog(null, "Funcionalidad en Construccción");
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(!(usuarioLogueado==null)){
+            idProducto = Integer.parseInt(txtIdProducto.getText());
+            int id = 12345;
+            Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
+            favoritoCliente.createFavorito(fav);
+            JOptionPane.showMessageDialog(null, "Añadido a favoritos");
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
+        }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_btnFavoritoActionPerformed
 
     // METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-
+        if(!(usuarioLogueado==null)){
         this.usuarioLogueado.getIdUsuario();
         int idCarritoCompras = 1;
 //        String color = String.valueOf(txtColor.getSelectedItem());
@@ -305,15 +325,19 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
 
+        }
 
     }//GEN-LAST:event_btnCarritoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnFavorito;
     private javax.swing.JLabel imagenProducto;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
