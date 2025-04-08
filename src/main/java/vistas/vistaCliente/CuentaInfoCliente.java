@@ -242,6 +242,7 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
 
             Usuario usuario = new Usuario(nombre, telefono, email);
             usuarioCliente.updateUser(cedula,usuario);
+            JOptionPane.showMessageDialog(null, "Datos Actualizados");
             
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
