@@ -61,7 +61,17 @@ public class DescripcionArticulo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        imagenProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/camisaMasc1.jpg"))); // NOI18N
+        imagenProducto.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://res.cloudinary.com/djn8thk2s/image/upload/v1745598736/camisaMasc2_dgtnvx.jpg")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
         txtNombreProducto.setBackground(new java.awt.Color(0, 0, 0));
         txtNombreProducto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -229,7 +239,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaterial)
-                        .addContainerGap(70, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
