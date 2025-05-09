@@ -312,7 +312,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
                 Usuario usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
 
-                switch (usuarioLogueado.getIdRol().getRolId()) {
+                switch (usuarioLogueado.getIdRol()) {
                     case 3: {
                         VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
                         vista.setVisible(true);

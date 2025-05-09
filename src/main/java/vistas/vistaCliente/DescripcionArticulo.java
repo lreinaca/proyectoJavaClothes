@@ -305,7 +305,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     // METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         if(!(usuarioLogueado==null)){
-        this.usuarioLogueado.getIdUsuario();
+        this.usuarioLogueado.getUsua_id();
         int idCarritoCompras = 1;
         Integer idProducto = Integer.valueOf(txtIdProducto.getText());
 

@@ -1,47 +1,39 @@
 package modelo;
 
-import modelo.ENUMs.RolUsuario;
-
-/**
- *
- * @author juanv
- */
 public class Usuario {
     
-    private String idUsuario;
+    private String usua_id;
     
     private String nombre;
-    private String email;
-    private String numeroDeTelefono;
-    private RolUsuario idRol;
+    private String correo;
+    private String telefono;
+    private Integer rol_rol_id;
     private String clave;
     
-    
-
-    public Usuario(String idUsuario, String nombre, String numeroDeTelefono, String email, RolUsuario idRol, String clave) {
-        this.idUsuario = idUsuario;
+    public Usuario(String idUsuario, String nombre, String numeroDeTelefono, String email, Integer idRol, String clave) {
+        this.usua_id = idUsuario;
         this.nombre = nombre;
-        this.numeroDeTelefono = numeroDeTelefono;
-        this.email = email;
-        this.idRol = idRol;
+        this.telefono = numeroDeTelefono;
+        this.correo = email;
+        this.rol_rol_id = idRol;
         this.clave = clave;
     }
     
      public Usuario(String nombre, String numeroDeTelefono, String email) {
         this.nombre = nombre;
-        this.numeroDeTelefono = numeroDeTelefono;
-        this.email = email;
+        this.telefono = numeroDeTelefono;
+        this.correo = email;
     }
 
 
     
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public String getUsua_id() {
+        return usua_id;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsua_id(String usua_id) {
+        this.usua_id = usua_id;
     }
 
     public String getNombre() {
@@ -52,28 +44,28 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getNumeroDeTelefono() {
-        return numeroDeTelefono;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setNumeroDeTelefono(String numeroDeTelefono) {
-        this.numeroDeTelefono = numeroDeTelefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public RolUsuario getIdRol() {
-        return idRol;
+    public Integer getIdRol() {
+        return rol_rol_id;
     }
 
-    public void setIdRol(RolUsuario idRol) {
-        this.idRol = idRol;
+    public void setIdRol(Integer idRol) {
+        this.rol_rol_id = idRol;
     }
 
 
@@ -87,7 +79,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", nombre=" + nombre + ", email=" + email + ", numeroDeTelefono=" + numeroDeTelefono + ", idRol=" + idRol + ", clave=" + clave + '}';
+        return "Usuario{" + "idUsuario=" + usua_id + ", nombre=" + nombre + ", email=" + correo + ", numeroDeTelefono=" + telefono + ", idRol=" + rol_rol_id + ", clave=" + clave + '}';
     }
     
     

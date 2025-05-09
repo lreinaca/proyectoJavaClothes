@@ -80,7 +80,7 @@ public class DetalleCarritoCliente {
 
     // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public List<DetalleCarrito> findCarritoComprasById(Usuario usuario) throws Exception {
-        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getIdUsuario()).execute();
+        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getUsua_id()).execute();
         if (response.isSuccessful()) {
             List<DetalleCarrito> detallesCarrito = response.body();
             System.out.println("Detalle Carrito Compras Encontrado: " + response.body());
@@ -94,7 +94,7 @@ public class DetalleCarritoCliente {
 
     // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL USUARIO 
     public void deleteDetalleCarritoPorProducto(Usuario usuario, int idProducto) throws Exception {
-        Response<Void> response = apiService.deleteDetalleCarritoPorProducto(idProducto, usuario.getIdUsuario()).execute();
+        Response<Void> response = apiService.deleteDetalleCarritoPorProducto(idProducto, usuario.getUsua_id()).execute();
         if (response.isSuccessful()) {
             System.out.println("Detalle Carrito Compras Eliminado " + response.body());
         } else {

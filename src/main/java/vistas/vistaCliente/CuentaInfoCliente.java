@@ -22,10 +22,10 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
 
     //METODO PARA MOSTAR INFORMACIÓN 
     private void mostrarInfoCliente(Usuario usuarioLogueado) {
-        txtEmail.setText(usuarioLogueado.getEmail());
+        txtEmail.setText(usuarioLogueado.getCorreo());
         txtNombre.setText(usuarioLogueado.getNombre());
-        txtTelefono.setText(usuarioLogueado.getNumeroDeTelefono());
-        lblCedula.setText(usuarioLogueado.getIdUsuario());
+        txtTelefono.setText(usuarioLogueado.getTelefono());
+        lblCedula.setText(usuarioLogueado.getUsua_id());
         lblNombre.setText(usuarioLogueado.getNombre());
     }
 

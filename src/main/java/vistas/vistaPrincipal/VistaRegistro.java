@@ -332,7 +332,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             String numeroDeTelefono = txtTelefono.getText();
             String clave = String.valueOf(txtClave.getPassword());
             // agregar el try catch para manejo de excepciones 
-            Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email, RolUsuario.Cliente, clave);
+            Usuario usuario = new Usuario(idUsuario, nombre, numeroDeTelefono, email,3, clave);
             usuarioCliente.createUser(usuario);
             JOptionPane.showMessageDialog(null, "Usuario Registrado Exitosamente");
             emptyField();
