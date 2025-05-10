@@ -28,7 +28,7 @@ public class PedidoCliente {
 
     //buscarPedido
     public void buscarPedido(Pedido pedido) throws Exception {
-        String idUsuario = pedido.getCliente().getIdUsuario();
+        String idUsuario = pedido.getCliente().getUsua_id();
         Response<List<Pedido>> response = pedidoApiService.buscarPedido(idUsuario, pedido.getEstado(), pedido.getFecha()).execute();
         if (response.isSuccessful()) {
             List<Pedido> pedidos = response.body();

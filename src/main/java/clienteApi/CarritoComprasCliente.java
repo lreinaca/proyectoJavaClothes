@@ -40,7 +40,7 @@ public class CarritoComprasCliente {
 
     // METODO PARA ENCONTRAR UN  CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public CarritoCompras findCarritoComprasById(Integer idCarritoCompras, Usuario usuario) throws Exception {
-        Response<CarritoCompras> response = apiService.getCarritoComprasById(idCarritoCompras, usuario.getIdUsuario()).execute();
+        Response<CarritoCompras> response = apiService.getCarritoComprasById(idCarritoCompras, usuario.getUsua_id()).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoCompras = response.body();
             System.out.println("Carrito Compras Encontrado: " + response.body());
