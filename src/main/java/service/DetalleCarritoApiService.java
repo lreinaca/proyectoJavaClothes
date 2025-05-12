@@ -36,9 +36,9 @@ public interface DetalleCarritoApiService {
     );
     
     @GET("/api/detalleCarrito/usuario/{idUsuario}")
-    Call<List<DetalleCarrito>> getCarritoComprasById(@Path ("idUsuario") String idUsuario);
+    Call<List<DetalleCarrito>> getCarritoComprasById(@Path ("idUsuario") Integer idUsuario);
     
     @DELETE("/api/detalleCarrito/producto/{productoId}/usuario/{idUsuario}")
-    Call<Void> deleteDetalleCarritoPorProducto(@Path("productoId") int productoId, @Path ("idUsuario") String idUsuario);
+    Call<Void> deleteDetalleCarritoPorProducto(@Path("productoId") int productoId, @Path ("idUsuario") Integer idUsuario);
 
 }

@@ -18,7 +18,7 @@ public interface CarritoComprasApiService {
     Call<List<CarritoCompras>> getAllCarritoCompras();
 
     @GET("/api/carritoCompras/{idCarrito}/{idUsuario}")
-    Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") String idUsuario);
+    Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") Integer idUsuario);
 
     @POST("/api/carritoCompras")
     Call<CarritoCompras> createCarritoCompras(@Body DetalleCompraClienteDTO carritoCompras);

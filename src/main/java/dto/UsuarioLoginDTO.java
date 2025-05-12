@@ -6,19 +6,20 @@ package dto;
  * 
  */
 public class UsuarioLoginDTO {
-    private String idUsuario;
+    private Integer idUsuario;
     private String clave;
 
-    public UsuarioLoginDTO(String idUsuario, String clave) {
+
+    public UsuarioLoginDTO(Integer idUsuario ,String clave) {
         this.idUsuario = idUsuario;
         this.clave = clave;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 

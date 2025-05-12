@@ -22,7 +22,7 @@ public interface UsuarioApiService {
     Call<List<Usuario>> getAllUsuarios();
 
     @GET("/api/usuarios/{id}")
-    Call<Usuario> getUsuarioById(@Path("id") String id);
+    Call<Usuario> getUsuarioById(@Path("id") Integer id);
 
     @POST("/api/usuarios")
     Call<Usuario> createUsuario(@Body Usuario usuario);
@@ -31,10 +31,10 @@ public interface UsuarioApiService {
     Call<Usuario> loginUsuario(@Body UsuarioLoginDTO usuarioLogin);
 
     @PUT("/api/usuarios/{id}")
-    Call<Usuario> updateUsuario(@Path("id") String id, @Body Usuario usuario);
+    Call<Usuario> updateUsuario(@Path("id") Integer id, @Body Usuario usuario);
 
     @DELETE("/api/usuarios/{id}")
-    Call<Void> deleteUsuario(@Path("id") String id);
+    Call<Void> deleteUsuario(@Path("id") Integer id);
 
     /*
     @GET("/api/usuarios/buscar")
