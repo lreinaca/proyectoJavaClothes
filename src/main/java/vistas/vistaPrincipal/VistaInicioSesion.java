@@ -305,14 +305,14 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         } else {
             try {
-                String cedula = txtCedula.getText();
+                Integer cedula = Integer.valueOf(txtCedula.getText());
                 String clave = String.valueOf(txtClave.getPassword());
-
+                               
                 UsuarioLoginDTO usuarioLogin = new UsuarioLoginDTO(cedula, clave);
-
                 Usuario usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
+                
 
-                switch (usuarioLogueado.getIdRol()) {
+                switch (usuarioLogueado.getRol_rol_id()) {
                     case 3: {
                         VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
                         vista.setVisible(true);

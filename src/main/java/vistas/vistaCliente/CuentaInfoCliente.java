@@ -25,7 +25,7 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
         txtEmail.setText(usuarioLogueado.getCorreo());
         txtNombre.setText(usuarioLogueado.getNombre());
         txtTelefono.setText(usuarioLogueado.getTelefono());
-        lblCedula.setText(usuarioLogueado.getUsua_id());
+        lblCedula.setText(String.valueOf(usuarioLogueado.getUsua_id()));
         lblNombre.setText(usuarioLogueado.getNombre());
     }
 
@@ -238,7 +238,7 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
             String email = txtEmail.getText();
             String nombre = txtNombre.getText();
             String telefono = txtTelefono.getText();
-            String cedula = lblCedula.getText();
+            Integer cedula = Integer.valueOf(lblCedula.getText());
 
             Usuario usuario = new Usuario(nombre, telefono, email);
             usuarioCliente.updateUser(cedula,usuario);

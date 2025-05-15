@@ -37,7 +37,7 @@ public interface PedidoApiService {
 
     @GET("/api/pedidos/buscar")
     Call<List<Pedido>> buscarPedido(
-        @Query("nombre") String idCliente,
+        @Query("nombre") Integer idCliente,
         @Query("email") EstadosPedido estado,
         @Query("edad") LocalDate fecha
     );

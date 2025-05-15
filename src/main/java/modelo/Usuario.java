@@ -1,39 +1,56 @@
 package modelo;
 
 public class Usuario {
-    
-    private String usua_id;
+    // ATRIBUTOS 
+    private Integer usua_id;
+    private Integer rol_rol_id;
     
     private String nombre;
     private String correo;
     private String telefono;
-    private Integer rol_rol_id;
     private String clave;
     
-    public Usuario(String idUsuario, String nombre, String numeroDeTelefono, String email, Integer idRol, String clave) {
-        this.usua_id = idUsuario;
+    // CONSTRUCTOR
+    /**
+     * 
+     * @param usua_id
+     * @param rol_rol_id
+     * @param nombre
+     * @param correo
+     * @param telefono
+     * @param clave 
+     */
+    public Usuario(Integer usua_id, Integer rol_rol_id, String nombre, String correo, String telefono, String clave) {
+        this.usua_id = usua_id;
+        this.rol_rol_id = rol_rol_id;
         this.nombre = nombre;
-        this.telefono = numeroDeTelefono;
-        this.correo = email;
-        this.rol_rol_id = idRol;
+        this.correo = correo;
+        this.telefono = telefono;
         this.clave = clave;
     }
     
-     public Usuario(String nombre, String numeroDeTelefono, String email) {
+    // SEGUNDO CONSTRUCTOR SOLO PARA EDITAR EL NOMBRE, EL TELEFONO Y EL CORREO 
+    public Usuario(String nombre, String correo, String telefono) {
         this.nombre = nombre;
-        this.telefono = numeroDeTelefono;
-        this.correo = email;
+        this.correo = correo;
+        this.telefono = telefono;
     }
 
-
-    
-
-    public String getUsua_id() {
+    // GETTERS AND SETTERS
+    public Integer getUsua_id() {
         return usua_id;
     }
 
-    public void setUsua_id(String usua_id) {
+    public void setUsua_id(Integer usua_id) {
         this.usua_id = usua_id;
+    }
+
+    public Integer getRol_rol_id() {
+        return rol_rol_id;
+    }
+
+    public void setRol_rol_id(Integer rol_rol_id) {
+        this.rol_rol_id = rol_rol_id;
     }
 
     public String getNombre() {
@@ -44,14 +61,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getCorreo() {
         return correo;
     }
@@ -60,14 +69,13 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Integer getIdRol() {
-        return rol_rol_id;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setIdRol(Integer idRol) {
-        this.rol_rol_id = idRol;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
-
 
     public String getClave() {
         return clave;
@@ -76,12 +84,16 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
+    
+    // TO STRING 
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + usua_id + ", nombre=" + nombre + ", email=" + correo + ", numeroDeTelefono=" + telefono + ", idRol=" + rol_rol_id + ", clave=" + clave + '}';
+        return "Usuario{" + "usua_id=" + usua_id + ", rol_rol_id=" + rol_rol_id + ", nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + ", clave=" + clave + '}';
     }
     
+
+
     
     
 }
