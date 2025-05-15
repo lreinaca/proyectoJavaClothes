@@ -28,7 +28,7 @@ public interface UsuarioApiService {
     Call<Usuario> createUsuario(@Body Usuario usuario);
     
     @POST("/api/usuarios/login")
-    Call<Usuario> loginUsuario(@Body UsuarioLoginDTO usuarioLogin);
+    Call<UsuarioLoginDTO> loginUsuario(@Body UsuarioLoginDTO usuarioLogin);
 
     @PUT("/api/usuarios/{id}")
     Call<Usuario> updateUsuario(@Path("id") Integer id, @Body Usuario usuario);

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import service.FavoritoApiService;
 public class FavoritoCliente {
      // ATRIBUTOS
-    private static final String BASE_URL = "http://localhost:8080";
+    private static final String BASE_URL = "http://localhost:8089";
     private static FavoritoApiService apiService;
 
     // CONSTRUCTOR 

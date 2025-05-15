@@ -382,7 +382,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
 
     // CARGA EL DETALLE DEL SEGUNDO PRODUCTO
     private void txtProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto2ActionPerformed
-        Integer idProducto = 104;
+        Integer idProducto = 2;
 
         DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
         vista.setVisible(true);
@@ -391,7 +391,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
 
     // CARGA EL DETALLE DEL PRIMER PRODUCTO 
     private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
-        Integer idProducto = 101;
+        Integer idProducto = 1;
 
         DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
         vista.setVisible(true);
@@ -401,7 +401,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
 
     // CARGA EL DETALLE DEL TERCER PRODUCTO 
     private void txtProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto3ActionPerformed
-        Integer idProducto = 105;
+        Integer idProducto = 3;
 
         DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
         vista.setVisible(true);

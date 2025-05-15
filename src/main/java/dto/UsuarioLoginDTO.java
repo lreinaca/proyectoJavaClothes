@@ -1,20 +1,19 @@
-
 package dto;
 
-/**
- *
- * 
- */
 public class UsuarioLoginDTO {
+    // ATRIBUTOS 
     private Integer idUsuario;
     private String clave;
+    private Integer rolUsuario;
+    private String token;
 
-
-    public UsuarioLoginDTO(Integer idUsuario ,String clave) {
+    // CONSTRUCTOR PARA LOGUEO
+     public UsuarioLoginDTO(Integer idUsuario ,String clave) {
         this.idUsuario = idUsuario;
         this.clave = clave;
     }
-
+    
+    // GETTERS AND SETTERS 
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -30,5 +29,22 @@ public class UsuarioLoginDTO {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+    public Integer getRolUsuario() {
+        return rolUsuario;
+    }
+
+    public void setRolUsuario(Integer rolUsuario) {
+        this.rolUsuario = rolUsuario;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
 
 }

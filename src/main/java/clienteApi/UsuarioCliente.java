@@ -42,10 +42,10 @@ public class UsuarioCliente {
     }
 
     // METODO PARA LOGUEO DE USUARIOS, LANZA UNA EXCEPCIÓN 
-    public Usuario LoginUser(UsuarioLoginDTO usuarioLogin) throws Exception {
+    public UsuarioLoginDTO LoginUser(UsuarioLoginDTO usuarioLogin) throws Exception {
 
         // el metodo loginUsuario recibe un dto llamado usuarioLogin, que solo tienen usuario , clave y rol . 
-        Response<Usuario> response = apiService.loginUsuario(usuarioLogin).execute();
+        Response<UsuarioLoginDTO> response = apiService.loginUsuario(usuarioLogin).execute();
         if (response.isSuccessful()) {
             System.out.println("Usuario loguedao" + response.body());
             return response.body();
@@ -69,7 +69,7 @@ public class UsuarioCliente {
     }
 
     // METODO PARA BUSCAR UN USUARIO POR ID 
-    public static Usuario buscarUsuarioPorId(Integer id) throws Exception {
+    public Usuario buscarUsuarioPorId(Integer id) throws Exception {
         Response<Usuario> response = apiService.getUsuarioById(id).execute();
         if (response.isSuccessful()) {
             System.out.println(response.body());
