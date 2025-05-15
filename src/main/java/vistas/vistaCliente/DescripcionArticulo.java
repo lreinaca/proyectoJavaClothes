@@ -5,11 +5,9 @@ import clienteApi.FavoritoCliente;
 import clienteApi.ProductoCliente;
 import javax.swing.JOptionPane;
 import modelo.CarritoCompras;
-import modelo.ENUMs.RolUsuario;
 import modelo.Favorito;
 import modelo.Producto;
 import modelo.Usuario;
-import service.FavoritoApiService;
 
 public class DescripcionArticulo extends javax.swing.JFrame {
 
@@ -160,6 +158,8 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
 
+        txtIdProducto.setText("1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -239,10 +239,9 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaterial)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

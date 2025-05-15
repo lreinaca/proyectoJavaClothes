@@ -4,6 +4,7 @@ public class Usuario {
     // ATRIBUTOS 
     private Integer usua_id;
     private Integer rol_rol_id;
+    private String token;
     
     private String nombre;
     private String correo;
@@ -11,15 +12,6 @@ public class Usuario {
     private String clave;
     
     // CONSTRUCTOR
-    /**
-     * 
-     * @param usua_id
-     * @param rol_rol_id
-     * @param nombre
-     * @param correo
-     * @param telefono
-     * @param clave 
-     */
     public Usuario(Integer usua_id, Integer rol_rol_id, String nombre, String correo, String telefono, String clave) {
         this.usua_id = usua_id;
         this.rol_rol_id = rol_rol_id;
@@ -84,16 +76,20 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
     
     // TO STRING 
-
     @Override
     public String toString() {
         return "Usuario{" + "usua_id=" + usua_id + ", rol_rol_id=" + rol_rol_id + ", nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + ", clave=" + clave + '}';
-    }
-    
-
-
-    
+    }  
     
 }

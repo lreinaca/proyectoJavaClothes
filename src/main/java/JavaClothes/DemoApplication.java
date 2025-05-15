@@ -3,10 +3,6 @@ package JavaClothes;
 
 import vistas.vistaPrincipal.VistaPrincipal;
 
-/**
- *
- * 
- */
 public class DemoApplication {
     
     // Esta clase inicializa la aplicación 

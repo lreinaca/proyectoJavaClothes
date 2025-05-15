@@ -14,7 +14,7 @@ import service.NotificacionApiService;
  */
 public class NotificacionCliente {
 
-    private static final String BASE_URL = "http://localhost:8080";
+    private static final String BASE_URL = "http://localhost:8089";
     private static NotificacionApiService notiApiService;
 
     public NotificacionCliente() {

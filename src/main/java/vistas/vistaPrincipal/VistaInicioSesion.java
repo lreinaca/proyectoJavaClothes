@@ -309,24 +309,25 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                 String clave = String.valueOf(txtClave.getPassword());
                                
                 UsuarioLoginDTO usuarioLogin = new UsuarioLoginDTO(cedula, clave);
-                Usuario usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
-                
+                UsuarioLoginDTO usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
+                Usuario userData = usuarioCliente.buscarUsuarioPorId(cedula);
+                userData.setToken(usuarioLogin.getToken());
 
-                switch (usuarioLogueado.getRol_rol_id()) {
+                switch (userData.getRol_rol_id()) {
                     case 3: {
-                        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
+                        VistaPrincipalCliente vista = new VistaPrincipalCliente(userData);
                         vista.setVisible(true);
                         this.dispose();
                         break;
                     }
                     case 1: {
-                        VistaAdministracionProductos vista = new VistaAdministracionProductos(usuarioLogueado);
+                        VistaAdministracionProductos vista = new VistaAdministracionProductos(userData);
                         vista.setVisible(true);
                         this.dispose();
                         break;
                     }
                     case 2: {
-                        VistaPrincipalVendedor vista = new VistaPrincipalVendedor(usuarioLogueado);
+                        VistaPrincipalVendedor vista = new VistaPrincipalVendedor(userData);
                         vista.setVisible(true);
                         this.dispose();
                         break;
