@@ -78,7 +78,7 @@ public class ProductoCliente {
 
         } else {
             System.out.println("Error al crear producto: " + response.code());
-            throw new Exception("Error al actualizar el producto");
+            throw new Exception("Error al crear el producto");
         }
 
     }

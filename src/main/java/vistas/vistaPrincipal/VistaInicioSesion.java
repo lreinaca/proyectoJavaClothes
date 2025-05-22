@@ -310,8 +310,8 @@ public class VistaInicioSesion extends javax.swing.JFrame {
                                
                 UsuarioLoginDTO usuarioLogin = new UsuarioLoginDTO(cedula, clave);
                 UsuarioLoginDTO usuarioLogueado = usuarioCliente.LoginUser(usuarioLogin);
-                Usuario userData = usuarioCliente.buscarUsuarioPorId(cedula);
-                userData.setToken(usuarioLogin.getToken());
+                Usuario userData = usuarioCliente.buscarUsuarioPorId(cedula,usuarioLogueado.getToken());
+                userData.setToken( usuarioLogueado.getToken());
 
                 switch (userData.getRol_rol_id()) {
                     case 3: {

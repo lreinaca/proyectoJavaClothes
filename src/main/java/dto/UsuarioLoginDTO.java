@@ -46,5 +46,12 @@ public class UsuarioLoginDTO {
         this.token = token;
     }
     
+    // METODO TO STRING 
+
+    @Override
+    public String toString() {
+        return "UsuarioLoginDTO{" + "idUsuario=" + idUsuario + ", clave=" + clave + ", rolUsuario=" + rolUsuario + ", token=" + token + '}';
+    }
+    
 
 }

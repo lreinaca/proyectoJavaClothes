@@ -338,7 +338,7 @@ public class Inventario extends javax.swing.JPanel {
 
             for (Producto producto : productos) {
                 model.addRow(new Object[]{
-                    producto.getProductoId(),
+                    producto.getProd_id(),
                     producto.getNombre(),
                     producto.getColor(),
                     producto.getTalla(),
@@ -393,9 +393,9 @@ public class Inventario extends javax.swing.JPanel {
                 Integer stock = Integer.valueOf(txtStock.getText());
                 String talla = txtTalla.getText();
 
-                Producto productoAeditar = new Producto(idProducto, stock,
+                Producto productoAeditar = new Producto(stock,
                         precio, nombre, color, talla, material, descripcion,
-                        "Hombre", "Camiseta");
+                        "Hombre", "Camiseta", "url");
 
                 productoCliente.updateProducto(idProducto, productoAeditar);
 
