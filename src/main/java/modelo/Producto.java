@@ -2,8 +2,8 @@ package modelo;
 
 public class Producto {
 
-
-    private Integer productoId;
+    // ATRIBUTOS 
+    private Integer prod_id;
     private Integer stock;
     private Double precio;
     private String nombre;
@@ -13,9 +13,11 @@ public class Producto {
     private String descripcion;
     private String categoria;
     private String tipo;
+    private String url_imagen;
 
-    public Producto(Integer productoId, Integer stock, Double precio, String nombre, String color, String talla, String material, String descripcion, String categoria, String tipo) {
-        this.productoId = productoId;
+    // CONSTRUCTOR 
+    public Producto(Integer stock, Double precio, String nombre, String color, String talla, String material,
+            String descripcion, String categoria, String tipo, String url_imagen) {
         this.stock = stock;
         this.precio = precio;
         this.nombre = nombre;
@@ -25,14 +27,16 @@ public class Producto {
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.tipo = tipo;
+        this.url_imagen = url_imagen;
     }
 
-    public Integer getProductoId() {
-        return productoId;
+    // GETTERS AND SETTERS 
+    public Integer getProd_id() {
+        return prod_id;
     }
 
-    public void setProductoId(Integer productoId) {
-        this.productoId = productoId;
+    public void setProd_id(Integer prod_id) {
+        this.prod_id = prod_id;
     }
 
     public Integer getStock() {
@@ -107,11 +111,18 @@ public class Producto {
         this.tipo = tipo;
     }
 
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
+    }
+
+    // TO STRING 
     @Override
     public String toString() {
-        return "Producto{" + "productoId=" + productoId + ", stock=" + stock + ", precio=" + precio + ", nombre=" + nombre + ", color=" + color + ", talla=" + talla + ", material=" + material + ", descripcion=" + descripcion + ", categoria=" + categoria + ", tipo=" + tipo + '}';
+        return "Producto{" + "productoId=" + prod_id + ", stock=" + stock + ", precio=" + precio + ", nombre=" + nombre + ", color=" + color + ", talla=" + talla + ", material=" + material + ", descripcion=" + descripcion + ", categoria=" + categoria + ", tipo=" + tipo + '}';
     }
-    
-    
 
 }

@@ -263,7 +263,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         Producto productoAMostrar;
         try {
             productoAMostrar = productoCliente.findProductoById(idProducto);
-            txtIdProducto.setText(String.valueOf(productoAMostrar.getProductoId()));
+            txtIdProducto.setText(String.valueOf(productoAMostrar.getProd_id()));
             txtPrecio.setText(String.valueOf(productoAMostrar.getPrecio()));
             txtNombreProducto.setText(productoAMostrar.getNombre());
             txtDescripcion.setText(productoAMostrar.getDescripcion());

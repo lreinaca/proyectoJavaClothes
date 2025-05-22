@@ -69,8 +69,9 @@ public class UsuarioCliente {
     }
 
     // METODO PARA BUSCAR UN USUARIO POR ID 
-    public Usuario buscarUsuarioPorId(Integer id) throws Exception {
-        Response<Usuario> response = apiService.getUsuarioById(id).execute();
+    public Usuario buscarUsuarioPorId(Integer id, String token) throws Exception {
+        String authToken = "Bearer "+token;
+        Response<Usuario> response = apiService.getUsuarioById(id,authToken).execute();
         if (response.isSuccessful()) {
             System.out.println(response.body());
             return response.body();
