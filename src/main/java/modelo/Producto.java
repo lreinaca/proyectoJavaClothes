@@ -29,6 +29,12 @@ public class Producto {
         this.tipo = tipo;
         this.url_imagen = url_imagen;
     }
+    
+    // CONSTRUCTOR SOLO CON ID 
+    public Producto(Integer prod_id) {
+        this.prod_id = prod_id;
+    }
+    
 
     // GETTERS AND SETTERS 
     public Integer getProd_id() {

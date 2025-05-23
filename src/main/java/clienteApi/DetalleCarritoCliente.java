@@ -2,7 +2,6 @@ package clienteApi;
 
 import java.util.List;
 import modelo.DetalleCarrito;
-import modelo.Usuario;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,19 +20,6 @@ public class DetalleCarritoCliente {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         apiService = retrofit.create(DetalleCarritoApiService.class);
-    }
-
-    // METODO PARA OBTENER TODOS LOS DETALLES CARRITO 
-    public List<DetalleCarrito> listarTodosLosDetalleCarrito() throws Exception {
-        Response<List<DetalleCarrito>> response = apiService.getAllDetalleCarrito().execute();
-        if (response.isSuccessful()) {
-            List<DetalleCarrito> detalleCarrito = response.body();
-            detalleCarrito.forEach(usuario -> System.out.println(usuario));
-            return detalleCarrito;
-        } else {
-            System.out.println("Error: " + response.code());
-            throw new Exception("Error en el cargue de Información de Detalle Carrito");
-        }
     }
 
     // METODO PARA ENCONTRAR UN  DETALLE CARRITO POR SU ID
@@ -64,8 +50,9 @@ public class DetalleCarritoCliente {
     }
 
     //METODO PARA CREAR UN NUEVO Detalle Carrito
-    public DetalleCarrito createDetalleCarrito(DetalleCarrito detalleCarrito) throws Exception {
-        Response<DetalleCarrito> response = apiService.createDetalleCarrito(detalleCarrito).execute();
+    public DetalleCarrito createDetalleCarrito(DetalleCarrito detalleCarrito, String token) throws Exception {
+        String authThoken = "Bearer "+token;
+        Response<DetalleCarrito> response = apiService.createDetalleCarrito(detalleCarrito,authThoken).execute();
         if (response.isSuccessful()) {
             DetalleCarrito detalleCarritoCreado = response.body();
             System.out.println("Detalle Carrito creado: " + response.body());
@@ -77,24 +64,37 @@ public class DetalleCarritoCliente {
         }
 
     }
-
+    
+    
     // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
-    public List<DetalleCarrito> findCarritoComprasById(Usuario usuario) throws Exception {
-        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getUsua_id()).execute();
+    public List<DetalleCarrito> listarTodosLosDetalleCarrito(Integer idUsuario) throws Exception {
+        Response<List<DetalleCarrito>> response = apiService.getAllDetalleCarritoByUsuarioId(idUsuario).execute();
         if (response.isSuccessful()) {
-            List<DetalleCarrito> detallesCarrito = response.body();
-            System.out.println("Detalle Carrito Compras Encontrado: " + response.body());
-            return detallesCarrito;
+            List<DetalleCarrito> detalleCarrito = response.body();
+            return detalleCarrito;
         } else {
             System.out.println("Error: " + response.code());
-            throw new Exception("El DetalleCarritoCompras no fue Encontrado");
+            throw new Exception("Error en el cargue de Información de Detalle Carrito");
         }
-
     }
 
-    // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL USUARIO 
-    public void deleteDetalleCarritoPorProducto(Usuario usuario, int idProducto) throws Exception {
-        Response<Void> response = apiService.deleteDetalleCarritoPorProducto(idProducto, usuario.getUsua_id()).execute();
+    // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
+    
+//        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getUsua_id()).execute();
+//        if (response.isSuccessful()) {
+//            List<DetalleCarrito> detallesCarrito = response.body();
+//            System.out.println("Detalle Carrito Compras Encontrado: " + response.body());
+//            return detallesCarrito;
+//        } else {
+//            System.out.println("Error: " + response.code());
+//            throw new Exception("El DetalleCarritoCompras no fue Encontrado");
+//        }
+
+//    }
+
+    // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL DETALLE DEL CARRITO 
+    public void deleteDetalleCarritoPorProducto(int detalleCarritoID) throws Exception {
+        Response<Void> response = apiService.deleteDetalleCarrito(detalleCarritoID).execute();
         if (response.isSuccessful()) {
             System.out.println("Detalle Carrito Compras Eliminado " + response.body());
         } else {
@@ -102,5 +102,8 @@ public class DetalleCarritoCliente {
             throw new Exception("El Detalle Carrito Compras no fue eliminado");
         }
     }
+    
+    
+    // DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
 
 }
