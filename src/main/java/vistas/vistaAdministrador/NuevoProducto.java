@@ -371,7 +371,7 @@ public class NuevoProducto extends javax.swing.JPanel {
         model.setColumnIdentifiers(new Object[]{"ID_Producto",
             "Nombre_Producto", "Color",
             "Talla", "Material", "Precio",
-            "Descripcion", "Stock"});
+            "Descripcion", "Stock", "Url_Imagen"});
         try {
             List<Producto> productos = productoCliente.listarTodosLosProductos();
 
@@ -384,7 +384,8 @@ public class NuevoProducto extends javax.swing.JPanel {
                     producto.getMaterial(),
                     producto.getPrecio(),
                     producto.getDescripcion(),
-                    producto.getStock()
+                    producto.getStock(),
+                    producto.getUrl_imagen()
                 });
             }
             tbProductos.setModel(model);
@@ -398,6 +399,7 @@ public class NuevoProducto extends javax.swing.JPanel {
             tbProductos.getColumnModel().getColumn(5).setPreferredWidth(75);  // Precio
             tbProductos.getColumnModel().getColumn(6).setPreferredWidth(200); // Descripción
             tbProductos.getColumnModel().getColumn(7).setPreferredWidth(60);  // Stock
+            tbProductos.getColumnModel().getColumn(8).setPreferredWidth(100); // Url_Imagen
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -438,7 +440,7 @@ public class NuevoProducto extends javax.swing.JPanel {
             String url_imagen = txtUrlImagen.getText();
 
             Producto productoNuevo = new Producto(stock, precio,
-                    nombreProducto, color, talla, material, descripcion, categoria, tipoProducto ,url_imagen);
+                nombreProducto, color, talla, material, descripcion, categoria, tipoProducto ,url_imagen);
 
             productoCliente.createProducto(productoNuevo);
             listarProductos();

@@ -1,8 +1,16 @@
 
 package vistas.vistaCliente;
 
-public class ExplorarCamisaFem extends javax.swing.JPanel {
+import modelo.Usuario;
 
+public class ExplorarCamisaFem extends javax.swing.JPanel {
+    Usuario userLogueado;
+    
+    public ExplorarCamisaFem(Usuario userLogueado) {
+        initComponents();
+        this.userLogueado = userLogueado;
+    }
+    
     public ExplorarCamisaFem() {
         initComponents();
     }
@@ -225,6 +233,11 @@ public class ExplorarCamisaFem extends javax.swing.JPanel {
         jButton5.setForeground(new java.awt.Color(51, 51, 51));
         jButton5.setText("$86.000");
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -363,14 +376,26 @@ public class ExplorarCamisaFem extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        Integer idProducto = 2;
+        mostrarDescripción(idProducto);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Integer idProducto = 1;
+        mostrarDescripción(idProducto);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Integer idProducto = 3;
+        mostrarDescripción(idProducto);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
+        public void mostrarDescripción(int idProducto){
+        DescripcionArticulo vista = new DescripcionArticulo(userLogueado, idProducto);
+        vista.setVisible(true);
+    }
+     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenido;
     private javax.swing.JButton jButton1;

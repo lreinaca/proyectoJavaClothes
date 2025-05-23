@@ -1,14 +1,23 @@
 
 package vistas.vistaCliente;
 
+import modelo.Usuario;
+
 /**
  *
  * @author Rossi
  */
 public class ExplorarPantFem extends javax.swing.JPanel {
+    Usuario usuarioLogueado;
 
-    public ExplorarPantFem() {
+    public ExplorarPantFem(Usuario usuarioLogueado) {
         initComponents();
+        this.usuarioLogueado= usuarioLogueado;
+
+    }
+    
+    public ExplorarPantFem(){
+            initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -90,6 +99,11 @@ public class ExplorarPantFem extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("$170.900");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pantalonMjer2.jpg"))); // NOI18N
 
@@ -152,6 +166,11 @@ public class ExplorarPantFem extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
         jButton2.setText("$150.900");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pantalonMjer1.jpg"))); // NOI18N
 
@@ -212,6 +231,11 @@ public class ExplorarPantFem extends javax.swing.JPanel {
         jButton3.setForeground(new java.awt.Color(51, 51, 51));
         jButton3.setText("$145.900");
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pantalonMujer3.jpg"))); // NOI18N
 
@@ -349,6 +373,26 @@ public class ExplorarPantFem extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);                                          
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);                                          
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);                                          
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void mostrarDescripción(int idProducto){
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
