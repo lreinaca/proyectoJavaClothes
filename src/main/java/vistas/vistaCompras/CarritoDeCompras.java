@@ -24,8 +24,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
     private final DetalleCarritoCliente detalleCarritoApi;
     private String nombreProductoSeleccionado;
     private int idProductoSeleccionado;
-    private int cantidadPorProducto;
-
 
     public CarritoDeCompras(Usuario usuarioLogueado) {
         initComponents();
@@ -404,7 +402,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
                 if (fila >= 0) {
                     nombreProductoSeleccionado = tbDetalleCarrito.getValueAt(fila, 1).toString();
                     idProductoSeleccionado = (int) tbDetalleCarrito.getValueAt(fila, 0);
-                    cantidadPorProducto = (int) tbDetalleCarrito.getValueAt(fila, 4);
                     JOptionPane.showMessageDialog(null, "Seleccionaste: " + nombreProductoSeleccionado +
                             "\n ID Detalle Carrito " + idProductoSeleccionado );
                 }
@@ -436,8 +433,13 @@ public class CarritoDeCompras extends javax.swing.JPanel {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
             seleccionarProducto();
-            DetalleCarrito productoAModificar = detalleCarritoApi.findDetalleCarritoById(idProductoSeleccionado, cantidadPorProducto);
-            detalleCarritoApi.updateDetalleCarrito(idProductoSeleccionado, cantidadPorProducto, productoAModificar);
+            DetalleCarrito detalle = new DetalleCarrito();
+            int nuevaCantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la nueva Cantidad de Producto Deseada"));
+            detalle.setCantidad(nuevaCantidad);
+            detalleCarritoApi.updateDetalleCarrito(idProductoSeleccionado,detalle );
+            JOptionPane.showMessageDialog(null, "La cantidad de " + nombreProductoSeleccionado + 
+                    "\n fue ACTUALIZADA");
+            listarProductos();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEditarActionPerformed

@@ -27,10 +27,9 @@ public interface DetalleCarritoApiService {
             @Body DetalleCarrito detalleCarrito, 
             @Header("Authorization") String token);
 
-    @PUT("/api/detalleCarrito/{id}/{cantidad}")
+    @PUT("/api/detalleCarrito/{id}")
     Call<DetalleCarrito> updateDetalleCarrito(
             @Path("id") int idCarritoCompras, 
-            @Path("cantidad") int cantidad, 
             @Body DetalleCarrito detalleCarrito);
 
     @DELETE("/api/detalleCarrito/{id}")
