@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -21,7 +22,7 @@ public interface CarritoComprasApiService {
     Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") Integer idUsuario);
 
     @POST("/api/carritoCompras")
-    Call<CarritoCompras> createCarritoCompras(@Body DetalleCompraClienteDTO carritoCompras);
+    Call<CarritoCompras> createCarritoCompras(@Body CarritoCompras carritoCompras, @Header("Authorization") String token);
 
     @PUT("/api/carritoCompras/{idCarrito}")
     Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras, @Body DetalleCompraClienteDTO carritoCompras);

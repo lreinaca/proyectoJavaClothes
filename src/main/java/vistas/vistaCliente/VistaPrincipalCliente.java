@@ -23,8 +23,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
-        LlenarNombreUsuario(usuarioLogueado);
-        
+        LlenarNombreUsuario(usuarioLogueado);      
     }
 
     @SuppressWarnings("unchecked")
@@ -230,8 +229,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // METODO PARA DILIGENCIAR INFORMACIÓN DEL USUARIO LOGUEADO 
     private void LlenarNombreUsuario(Usuario usuarioLogueado){
-        txtNombreCliente.setText(usuarioLogueado.getNombre());
-        
+        txtNombreCliente.setText(usuarioLogueado.getNombre());   
     }
     
     private void signUpMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpMenuItActionPerformed
@@ -241,6 +239,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_signUpMenuItActionPerformed
 
+    // IR A LA VISTA DONDE ESTA LA INFORMACIÓN DEL CLIENTE 
     private void perfilMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilMenuActionPerformed
         CuentaInfoCliente vr = new CuentaInfoCliente(usuarioLogueado);
         vr.setSize(950, 550);
@@ -284,7 +283,8 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_calzaFMenuItActionPerformed
-
+    
+    // CERRAR SESIÓN 
     private void cerrarSesionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionMenuActionPerformed
         VistaPrincipal vista = new VistaPrincipal();
         vista.setVisible(true);
@@ -312,13 +312,17 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.revalidate();
         contenido.repaint();
     }//GEN-LAST:event_calzaMMenuItActionPerformed
-
+    
+    // IR AL CARRITO DE COMPRAS 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
+        CarritoDeCompras vr = new CarritoDeCompras(usuarioLogueado);
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
 
-        CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
-
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();
     }
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

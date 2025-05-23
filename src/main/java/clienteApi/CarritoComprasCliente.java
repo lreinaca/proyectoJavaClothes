@@ -67,12 +67,12 @@ public class CarritoComprasCliente {
     }
 
     //METODO PARA CREAR UN NUEVO CARRITO COMPRAS
-    public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras, Integer idProducto) throws Exception {
-        DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
-        Response<CarritoCompras> response = apiService.createCarritoCompras(compraCliente).execute();
+    public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras , String token) throws Exception {
+        String authToken = "Bearer "+token;
+        Response<CarritoCompras> response = apiService.createCarritoCompras(carritoCompras,authToken).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoComprasCreado = response.body();
-            System.out.println("Carrito Compras creado: " + response.body());
+            System.out.println("Carrito Compras creado o Actualizado: " + response.body());
             return carritoComprasCreado;
 
         } else {

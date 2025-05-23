@@ -1,6 +1,7 @@
 package vistas.vistaCliente;
 
 import clienteApi.CarritoComprasCliente;
+import clienteApi.DetalleCarritoCliente;
 import clienteApi.FavoritoCliente;
 import clienteApi.ProductoCliente;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.CarritoCompras;
+import modelo.DetalleCarrito;
 import modelo.Favorito;
 import modelo.Producto;
 import modelo.Usuario;
@@ -20,6 +22,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     // ATRIBUTO 
     Usuario usuarioLogueado;
     CarritoComprasCliente carritoComprasCliente;
+    DetalleCarritoCliente detalleCarritoCliente;
     ProductoCliente productoCliente;
     FavoritoCliente favoritoCliente;
     Integer idProducto;
@@ -30,6 +33,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
         this.carritoComprasCliente = new CarritoComprasCliente();
+        this.detalleCarritoCliente = new DetalleCarritoCliente();
         this.idProducto = idProducto;
         this.productoCliente = new ProductoCliente();
         this.favoritoCliente = new FavoritoCliente();
@@ -65,7 +69,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         txtMaterial = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -164,10 +168,10 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setText("Volver");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
@@ -218,7 +222,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3)))
+                        .addComponent(btnRegresar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -229,7 +233,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnRegresar)
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -314,59 +318,54 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         }
 
     }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritoActionPerformed
-        try{
-        JOptionPane.showMessageDialog(null, "Funcionalidad en Construccción");
-        if(!(usuarioLogueado==null)){
-            idProducto = Integer.parseInt(txtIdProducto.getText());
-            int id = 12345;
-            Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
-            favoritoCliente.createFavorito(fav);
-            JOptionPane.showMessageDialog(null, "Añadido a favoritos");
-        }else{
-            JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
-        }
-        }
-        catch(Exception e){
+        try {
+            JOptionPane.showMessageDialog(null, "Funcionalidad en Construccción");
+            if (!(usuarioLogueado == null)) {
+                idProducto = Integer.parseInt(txtIdProducto.getText());
+                int id = 12345;
+                Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
+                favoritoCliente.createFavorito(fav);
+                JOptionPane.showMessageDialog(null, "Añadido a favoritos");
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btnFavoritoActionPerformed
 
     // METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        if(!(usuarioLogueado==null)){
-        this.usuarioLogueado.getUsua_id();
-        int idCarritoCompras = 1;
-        Integer idProducto = Integer.valueOf(txtIdProducto.getText());
+        if (!(usuarioLogueado == null)) {
+            this.usuarioLogueado.getUsua_id();
+            Integer idProducto = Integer.valueOf(txtIdProducto.getText());
+            Producto producto = new Producto(idProducto);
+            int cantidad  = 20;
+            
+            
 
-        try {
-            // 1ero buscar si existe un carrito de compras asociado a el usuario logueado
-            CarritoCompras carritoExistente = carritoComprasCliente.findCarritoComprasById(idCarritoCompras, usuarioLogueado);
-            carritoExistente.setUsuario(usuarioLogueado);
-            carritoComprasCliente.updateCarritoCompras(carritoExistente, idProducto);
-            JOptionPane.showMessageDialog(null, """
-                                                El producto fue agregado a su carrito.
-                                                Regrese al catalogo para agregar otros productos """);
-        } catch (Exception e) {
-            System.out.println("El carrito no existe, creando uno nuevo");
-            CarritoCompras nuevoCarrito = new CarritoCompras(idCarritoCompras, usuarioLogueado);
-            JOptionPane.showMessageDialog(null, """
-                                                El producto fue agregado a su carrito.
-                                                Regrese al catalogo para agregar otros productos """);
             try {
-                carritoComprasCliente.createCarritoCompras(nuevoCarrito, idProducto);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                // Cada usuario Va a tener un único carrito de compras asociado a su id 
+                CarritoCompras nuevoCarrito = new CarritoCompras(usuarioLogueado);
+                String authToken = usuarioLogueado.getToken();
+                CarritoCompras carritoCliente = carritoComprasCliente.createCarritoCompras(nuevoCarrito, authToken);
+                DetalleCarrito detalleCarrito = new DetalleCarrito(cantidad, carritoCliente, producto);
+                DetalleCarrito productoAgregado = detalleCarritoCliente.createDetalleCarrito(detalleCarrito, authToken);
+
+            } catch (Exception e) {
+                System.out.println("El carrito no existe, creando uno nuevo");
+
             }
-        }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
+        } else {
+            JOptionPane.showMessageDialog(null, """
+                                                \u00a1Debes registrarte o iniciar sesion si deseas agregar una prenda
+                                                 al Carrito o a favoritos!""");
 
         }
 
@@ -398,8 +397,8 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;
     private javax.swing.JButton btnFavorito;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel imagenProducto;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

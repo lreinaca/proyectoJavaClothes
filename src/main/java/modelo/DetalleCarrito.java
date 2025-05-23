@@ -7,25 +7,24 @@ package modelo;
  */
 
 public class DetalleCarrito {
-    private int detalleCarritoId;
+    private int detalle_carrito_id;
     private int cantidad; 
     
     private CarritoCompras carritoCompras;
     private Producto producto;
 
-    public DetalleCarrito(int detalleCarritoId, int cantidad, CarritoCompras carritoCompras, Producto producto) {
-        this.detalleCarritoId = detalleCarritoId;
+    public DetalleCarrito(int cantidad, CarritoCompras carritoCompras, Producto producto) {
         this.cantidad = cantidad;
         this.carritoCompras = carritoCompras;
         this.producto = producto;
     }
 
-    public int getDetalleCarritoId() {
-        return detalleCarritoId;
+    public int getDetalle_carrito_id() {
+        return detalle_carrito_id;
     }
 
-    public void setDetalleCarritoId(int detalleCarritoId) {
-        this.detalleCarritoId = detalleCarritoId;
+    public void setDetalle_carrito_id(int detalle_carrito_id) {
+        this.detalle_carrito_id = detalle_carrito_id;
     }
 
     public int getCantidad() {
@@ -54,7 +53,7 @@ public class DetalleCarrito {
 
     @Override
     public String toString() {
-        return "DetalleCarrito{" + "detalleCarritoId=" + detalleCarritoId + ", cantidad=" + cantidad + ", carritoCompras=" + carritoCompras + ", producto=" + producto + '}';
+        return "DetalleCarrito{" + "detalleCarritoId=" + detalle_carrito_id + ", cantidad=" + cantidad + ", carritoCompras=" + carritoCompras + ", producto=" + producto + '}';
     }
     
     

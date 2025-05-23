@@ -1,4 +1,3 @@
-
 package service;
 
 import java.util.List;
@@ -8,37 +7,38 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
+
 public interface DetalleCarritoApiService {
-       
+
     @GET("/api/detalleCarrito")
     Call<List<DetalleCarrito>> getAllDetalleCarrito();
 
     @GET("/api/detalleCarrito/{id}/{cantidad}")
-    Call<DetalleCarrito> getDetalleCarritoById(@Path("id") int idDetalleCarrito, @Path ("cantidad") int cantidad);
+    Call<DetalleCarrito> getDetalleCarritoById(
+            @Path("id") int idDetalleCarrito, 
+            @Path("cantidad") int cantidad);
 
-    @POST("/api/detalleCarrito/")
-    Call<DetalleCarrito> createDetalleCarrito(@Body DetalleCarrito detalleCarrito);
+    @POST("/api/detalleCarrito")
+    Call<DetalleCarrito> createDetalleCarrito(
+            @Body DetalleCarrito detalleCarrito, 
+            @Header("Authorization") String token);
 
     @PUT("/api/detalleCarrito/{id}/{cantidad}")
-    Call<DetalleCarrito> updateDetalleCarrito(@Path("id") int idCarritoCompras,@Path ("cantidad") int cantidad, @Body DetalleCarrito detalleCarrito);
+    Call<DetalleCarrito> updateDetalleCarrito(
+            @Path("id") int idCarritoCompras, 
+            @Path("cantidad") int cantidad, 
+            @Body DetalleCarrito detalleCarrito);
 
     @DELETE("/api/detalleCarrito/{id}")
-    Call<Void> deleteDetalleCarrito(@Path("id") int idDetalleCarrito);
+    Call<Void> deleteDetalleCarrito(
+            @Path("id") int idDetalleCarrito);
 
-    @GET("/api/detalleCarrito/buscar")
-    Call<List<DetalleCarrito>> buscarDetalleCarrito(
-        @Query("id") int idDetalleCarrito,
-        @Query("cantidad") int cantidad
-    );
-    
     @GET("/api/detalleCarrito/usuario/{idUsuario}")
-    Call<List<DetalleCarrito>> getCarritoComprasById(@Path ("idUsuario") Integer idUsuario);
-    
-    @DELETE("/api/detalleCarrito/producto/{productoId}/usuario/{idUsuario}")
-    Call<Void> deleteDetalleCarritoPorProducto(@Path("productoId") int productoId, @Path ("idUsuario") Integer idUsuario);
+    Call<List<DetalleCarrito>> getAllDetalleCarritoByUsuarioId(
+            @Path("idUsuario") Integer idUsuario);
 
 }

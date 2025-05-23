@@ -14,8 +14,7 @@ public class CarritoCompras {
     private List<DetalleCarrito> detallesCarritos;
 
     // CONSTRUCTOR 
-    public CarritoCompras(int carritoId, Usuario usuario) {
-        this.carritoId = carritoId;
+    public CarritoCompras(Usuario usuario) {
         this.usuario = usuario;
     }
 
