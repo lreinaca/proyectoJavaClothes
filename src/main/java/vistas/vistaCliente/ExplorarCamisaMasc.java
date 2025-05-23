@@ -22,6 +22,12 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void mostrarDescripción(int idProducto){
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
+    }
+            
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -382,26 +388,19 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
 
     // CARGA EL DETALLE DEL SEGUNDO PRODUCTO
     private void txtProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto2ActionPerformed
-        Integer idProducto = 2;
-
-        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
-        vista.setVisible(true);
-
+        Integer idProducto = 5;
+        mostrarDescripción(idProducto);
     }//GEN-LAST:event_txtProducto2ActionPerformed
 
     // CARGA EL DETALLE DEL PRIMER PRODUCTO 
     private void txtProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto1ActionPerformed
-        Integer idProducto = 1;
-
-        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
-        vista.setVisible(true);
-
-
+        Integer idProducto = 4;
+        mostrarDescripción(idProducto);
     }//GEN-LAST:event_txtProducto1ActionPerformed
 
     // CARGA EL DETALLE DEL TERCER PRODUCTO 
     private void txtProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto3ActionPerformed
-        Integer idProducto = 3;
+        Integer idProducto = 6;
 
         DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
         vista.setVisible(true);

@@ -3,6 +3,12 @@ package vistas.vistaCliente;
 import clienteApi.CarritoComprasCliente;
 import clienteApi.FavoritoCliente;
 import clienteApi.ProductoCliente;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.CarritoCompras;
 import modelo.Favorito;
@@ -29,6 +35,17 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         this.favoritoCliente = new FavoritoCliente();
         diligenciarInfoProducto(idProducto);
 
+    }
+    
+    public void cargarImagenDesdeUrl(String imageUrl){
+        try{
+            URL url = new URL(imageUrl);
+            BufferedImage imagen = ImageIO.read(url);
+            ImageIcon icon = new ImageIcon(imagen); //convertir a ImageIcon
+            imagenProducto.setIcon(icon);
+        }catch (IOException e){
+            System.err.println("Error cargando imagen: "+ e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +113,12 @@ public class DescripcionArticulo extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Color:");
 
-        txtColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BLANCO", "NEGRO", "BEIGE", "CRUDO", "AZUL" }));
+        txtColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BLANCO", "NEGRO", "BEIGE", "CRUDO", "AZUL", "GRIS", "ROJO", "AMARILLO", "VERDE", "ROSADO", "MORADO", "DORADO", "AGUA MARINA", " " }));
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtColorActionPerformed(evt);
+            }
+        });
 
         btnFavorito.setBackground(new java.awt.Color(51, 51, 51));
         btnFavorito.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,8 +260,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMaterial)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(txtMaterial))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -262,17 +283,32 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     private void diligenciarInfoProducto(Integer idProducto) {
         Producto productoAMostrar;
         try {
-            productoAMostrar = productoCliente.findProductoById(idProducto);
+            productoAMostrar = productoCliente.findProductoById(idProducto); //obtener producto
+            txtColor.removeAllItems();
+            txtTalla.removeAllItems();
+            
+            if (productoAMostrar != null) {
             txtIdProducto.setText(String.valueOf(productoAMostrar.getProd_id()));
             txtPrecio.setText(String.valueOf(productoAMostrar.getPrecio()));
             txtNombreProducto.setText(productoAMostrar.getNombre());
             txtDescripcion.setText(productoAMostrar.getDescripcion());
             txtMaterial.setText(productoAMostrar.getMaterial());
-            String talla = productoAMostrar.getTalla();
-            txtTalla.setSelectedItem(talla);
-            String color = productoAMostrar.getColor();
-            txtColor.setSelectedItem(color);
+                if (productoAMostrar.getColor() != null) {
+                    txtColor.addItem(productoAMostrar.getColor().toUpperCase());
+                    txtColor.setSelectedIndex(0);
+                }
 
+                // Establecer talla (solo la que tiene la prenda)
+                if (productoAMostrar.getTalla() != null) {
+                    txtTalla.addItem(productoAMostrar.getTalla().toUpperCase());
+                    txtTalla.setSelectedIndex(0);
+                }
+
+            String url_imagen = productoAMostrar.getUrl_imagen();
+            cargarImagenDesdeUrl(url_imagen);
+            seleccionarItemEnComboBox(txtColor, productoAMostrar.getColor());
+            seleccionarItemEnComboBox(txtTalla, productoAMostrar.getTalla());
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -336,7 +372,29 @@ public class DescripcionArticulo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCarritoActionPerformed
 
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtColorActionPerformed
 
+    private void seleccionarItemEnComboBox(JComboBox<String> comboBox, String valor) {
+        if (valor == null) {
+            return;
+        }
+        String valorNormalizado = valor.toUpperCase().trim(); // Normaliza a mayúsculas
+
+        for (int i = 0; i < comboBox.getItemCount(); i++) {
+            String itemComboBox = comboBox.getItemAt(i).toUpperCase().trim();
+            if (itemComboBox.equals(valorNormalizado)) {
+                comboBox.setSelectedIndex(i);
+                return;
+            }
+        }
+        // Si no encuentra el valor
+        comboBox.setSelectedIndex(0);
+        System.out.println("Advertencia: Valor '" + valor + "' no encontrado en ComboBox");
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarrito;
     private javax.swing.JButton btnFavorito;

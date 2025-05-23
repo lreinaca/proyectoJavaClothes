@@ -1,14 +1,22 @@
 
 package vistas.vistaCliente;
 
+import modelo.Usuario;
+
 /**
  *
  * @author Rossi
  */
 public class ExplorarCalzaMasc extends javax.swing.JPanel {
-
-    public ExplorarCalzaMasc() {
+    Usuario usuarioLogueado;
+    
+    public ExplorarCalzaMasc(Usuario usuarioLogueado) {
         initComponents();
+        this.usuarioLogueado = usuarioLogueado;
+    }
+    
+        public ExplorarCalzaMasc(){
+            initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -174,6 +182,11 @@ public class ExplorarCalzaMasc extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
         jButton2.setText("$150.000");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -235,6 +248,11 @@ public class ExplorarCalzaMasc extends javax.swing.JPanel {
         jButton3.setForeground(new java.awt.Color(51, 51, 51));
         jButton3.setText("$185.999");
         jButton3.setBorder(null);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
@@ -380,10 +398,22 @@ public class ExplorarCalzaMasc extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);    }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Integer idProducto = 0;
+        mostrarDescripción(idProducto);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void mostrarDescripción(int idProducto){
+        DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
+        vista.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
