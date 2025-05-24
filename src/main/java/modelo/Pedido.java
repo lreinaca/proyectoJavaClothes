@@ -2,69 +2,34 @@
 package modelo;
 
 import modelo.ENUMs.EstadosPedido;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Pedido {
     
-    private int pedidoId;
+    private int pediId;
     private Factura factura; 
-    private Usuario cliente;
+    private Usuario usuario;
     private EstadosPedido estado;
-    private LocalDate fecha;
+    private String fechaPedido;
     private String codigoCompra;
     private ArrayList<DetallePedido> detallesVenta;
 
-    public Pedido(int pedidoId, Factura factura, Usuario cliente, EstadosPedido estado, LocalDate fecha, String codigoCompra, ArrayList<DetallePedido> detallesVenta) {
-        this.pedidoId = pedidoId;
+    public Pedido(int pedidoId, Factura factura, Usuario cliente, EstadosPedido estado, String fecha, String codigoCompra, ArrayList<DetallePedido> detallesVenta) {
+        this.pediId = pedidoId;
         this.factura = factura;
-        this.cliente = cliente;
+        this.usuario = cliente;
         this.estado = estado;
-        this.fecha = fecha;
+        this.fechaPedido = fecha;
         this.codigoCompra = codigoCompra;
         this.detallesVenta = detallesVenta;
     }
 
-    
-
-    public int getPedidoId() {
-        return pedidoId;
+    public int getPediId() {
+        return pediId;
     }
 
-    public void setPedidoId(int pedidoId) {
-        this.pedidoId = pedidoId;
-    }
-
-    public Usuario getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
-
-    public EstadosPedido getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadosPedido estado) {
-        this.estado = estado;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public ArrayList<DetallePedido> getDetallesVenta() {
-        return detallesVenta;
-    }
-
-    public void setDetallesVenta(ArrayList<DetallePedido> detallesVenta) {
-        this.detallesVenta = detallesVenta;
+    public void setPediId(int pediId) {
+        this.pediId = pediId;
     }
 
     public Factura getFactura() {
@@ -75,6 +40,30 @@ public class Pedido {
         this.factura = factura;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public EstadosPedido getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadosPedido estado) {
+        this.estado = estado;
+    }
+
+    public String getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(String fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
     public String getCodigoCompra() {
         return codigoCompra;
     }
@@ -83,10 +72,12 @@ public class Pedido {
         this.codigoCompra = codigoCompra;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "pedidoId=" + pedidoId + ", factura=" + factura + ", cliente=" + cliente + ", estado=" + estado + ", fecha=" + fecha + ", codigoCompra=" + codigoCompra + ", detallesVenta=" + detallesVenta + '}';
+    public ArrayList<DetallePedido> getDetallesVenta() {
+        return detallesVenta;
     }
-    
+
+    public void setDetallesVenta(ArrayList<DetallePedido> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
     
 }

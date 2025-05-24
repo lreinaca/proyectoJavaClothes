@@ -26,7 +26,8 @@ public interface UsuarioApiService {
     Call<Usuario> getUsuarioById(@Path("id") Integer id , @Header("Authorization") String token);
 
     @POST("/api/usuarios")
-    Call<Usuario> createUsuario(@Body Usuario usuario);
+    Call<Usuario> createUsuario(
+            @Body Usuario usuario);
     
     @POST("/api/usuarios/login")
     Call<UsuarioLoginDTO> loginUsuario(@Body UsuarioLoginDTO usuarioLogin);

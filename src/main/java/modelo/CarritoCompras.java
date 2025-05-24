@@ -14,8 +14,7 @@ public class CarritoCompras {
     private List<DetalleCarrito> detallesCarritos;
 
     // CONSTRUCTOR 
-    public CarritoCompras(Usuario usuario) {
-        this.usuario = usuario;
+    public CarritoCompras() {
     }
 
     // GETTERS AND SETTERS 

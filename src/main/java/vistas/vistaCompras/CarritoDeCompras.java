@@ -1,7 +1,8 @@
-
 package vistas.vistaCompras;
 
+import clienteApi.CarritoComprasCliente;
 import clienteApi.DetalleCarritoCliente;
+import clienteApi.PedidoCliente;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.DetalleCarrito;
+import modelo.Pedido;
 import modelo.Producto;
 import modelo.Usuario;
 
@@ -17,22 +19,25 @@ import modelo.Usuario;
  *
  * @author Rossi
  */
-public class CarritoDeCompras extends javax.swing.JPanel {
-    
-     //ATRUBUTOS 
+public final class CarritoDeCompras extends javax.swing.JPanel {
+
+    //ATRUBUTOS 
     private final Usuario usuarioLogueado;
+    private final CarritoComprasCliente carritoComprasCliente;
     private final DetalleCarritoCliente detalleCarritoApi;
+    private final PedidoCliente pedidoCliente;
     private String nombreProductoSeleccionado;
     private int idProductoSeleccionado;
-    private int cantidadPorProducto;
-
 
     public CarritoDeCompras(Usuario usuarioLogueado) {
         initComponents();
         this.usuarioLogueado = usuarioLogueado;
+        this.carritoComprasCliente = new CarritoComprasCliente();
         this.detalleCarritoApi = new DetalleCarritoCliente();
+        this.pedidoCliente = new PedidoCliente();
         listarProductos();
         seleccionarProducto();
+        crearOConsultarCarrito();
     }
 
     @SuppressWarnings("unchecked")
@@ -57,7 +62,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
 
@@ -140,7 +144,7 @@ public class CarritoDeCompras extends javax.swing.JPanel {
 
         btnFinalizar.setBackground(new java.awt.Color(0, 153, 255));
         btnFinalizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnFinalizar.setText("Finalizar Compra");
+        btnFinalizar.setText("Generar Pedido");
         btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarActionPerformed(evt);
@@ -218,7 +222,7 @@ public class CarritoDeCompras extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel3.setText("Factura:");
+        jLabel3.setText("Pedido:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -257,9 +261,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 15, Short.MAX_VALUE)
         );
-
-        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel4.setText("(selecciona el producto que deseas eliminar)");
 
         btnEliminar.setBackground(new java.awt.Color(51, 51, 51));
         btnEliminar.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -300,11 +301,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(350, 350, 350))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(436, 436, 436)
-                    .addComponent(jLabel4)
-                    .addContainerGap(437, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,11 +316,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
                     .addComponent(btnEliminar)
                     .addComponent(btnEditar))
                 .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(272, 272, 272)
-                    .addComponent(jLabel4)
-                    .addContainerGap(272, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -360,6 +351,33 @@ public class CarritoDeCompras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    // METODO PARA CONSULTAR O CREAR EL CARRITO DE COMPRAS 
+    public void crearOConsultarCarrito() {
+        try {
+            // Cada usuario Va a tener un único carrito de compras asociado a su id 
+            String authToken = usuarioLogueado.getToken();
+            carritoComprasCliente.createCarritoCompras(authToken);
+
+        } catch (Exception e) {
+            manejarError(e);
+
+        }
+    }
+
+    // METODO PARA MANEJO DE ERRORES EN CREAR CARRITO 
+    private void manejarError(Exception e) {
+        System.err.println("Error al procesar carrito: " + e.getMessage());
+        e.printStackTrace();
+
+        if (e.getMessage().contains("401") || e.getMessage().contains("Unauthorized")) {
+            JOptionPane.showMessageDialog(null, "Sesión expirada. Por favor, inicia sesión nuevamente.");
+        } else if (e.getMessage().contains("404")) {
+            JOptionPane.showMessageDialog(null, "Producto no encontrado.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al agregar producto. Intente nuevamente.");
+        }
+    }
+
     // METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
     private void listarProductos() {
         DefaultTableModel model = new DefaultTableModel();
@@ -392,8 +410,13 @@ public class CarritoDeCompras extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-    } 
-    
+    }
+
+    // METODO PARA LLENAR LA TABLA DE PREFACTURA
+    private void generarPrefactura() {
+
+    }
+
     // METODO PARA CAPTURAR EL PRODUCTO SELECCIONADO 
     private void seleccionarProducto() {
         tbDetalleCarrito.addMouseListener(new MouseAdapter() {
@@ -404,18 +427,23 @@ public class CarritoDeCompras extends javax.swing.JPanel {
                 if (fila >= 0) {
                     nombreProductoSeleccionado = tbDetalleCarrito.getValueAt(fila, 1).toString();
                     idProductoSeleccionado = (int) tbDetalleCarrito.getValueAt(fila, 0);
-                    cantidadPorProducto = (int) tbDetalleCarrito.getValueAt(fila, 4);
-                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + nombreProductoSeleccionado +
-                            "\n ID Detalle Carrito " + idProductoSeleccionado );
+                    JOptionPane.showMessageDialog(null, "Seleccionaste: " + nombreProductoSeleccionado
+                            + "\n ID Detalle Carrito " + idProductoSeleccionado);
                 }
             }
         });
     }
-    
+
     // FINALIZAR LA COMPRA 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        ConfirmacionDePedidos vista = new ConfirmacionDePedidos(usuarioLogueado);
-        vista.setVisible(true);
+        try {
+            Pedido pedidoCreado = pedidoCliente.createPedido(usuarioLogueado.getToken());
+            ConfirmacionDePedidos vista = new ConfirmacionDePedidos(usuarioLogueado,pedidoCreado);
+            vista.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(CarritoDeCompras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
@@ -424,8 +452,8 @@ public class CarritoDeCompras extends javax.swing.JPanel {
         try {
             seleccionarProducto();
             detalleCarritoApi.deleteDetalleCarritoPorProducto(idProductoSeleccionado);
-            JOptionPane.showMessageDialog(null, "El Producto a Eliminar de tu Carrito es: " + 
-                            "\n " + nombreProductoSeleccionado );
+            JOptionPane.showMessageDialog(null, "El Producto a Eliminar de tu Carrito es: "
+                    + "\n " + nombreProductoSeleccionado);
             listarProductos();
         } catch (Exception ex) {
             Logger.getLogger(CarritoDeCompras.class.getName()).log(Level.SEVERE, null, ex);
@@ -436,8 +464,13 @@ public class CarritoDeCompras extends javax.swing.JPanel {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
             seleccionarProducto();
-            DetalleCarrito productoAModificar = detalleCarritoApi.findDetalleCarritoById(idProductoSeleccionado, cantidadPorProducto);
-            detalleCarritoApi.updateDetalleCarrito(idProductoSeleccionado, cantidadPorProducto, productoAModificar);
+            DetalleCarrito detalle = new DetalleCarrito();
+            int nuevaCantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la nueva Cantidad de Producto Deseada"));
+            detalle.setCantidad(nuevaCantidad);
+            detalleCarritoApi.updateDetalleCarrito(idProductoSeleccionado, detalle);
+            JOptionPane.showMessageDialog(null, "La cantidad de " + nombreProductoSeleccionado
+                    + "\n fue ACTUALIZADA");
+            listarProductos();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -450,7 +483,6 @@ public class CarritoDeCompras extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

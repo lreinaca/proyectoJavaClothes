@@ -13,6 +13,11 @@ public class DetalleCarrito {
     private CarritoCompras carritoCompras;
     private Producto producto;
 
+    // constructor por defecto
+    public DetalleCarrito() {
+    }
+
+    // Constructor completo
     public DetalleCarrito(int cantidad, CarritoCompras carritoCompras, Producto producto) {
         this.cantidad = cantidad;
         this.carritoCompras = carritoCompras;

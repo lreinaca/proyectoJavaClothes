@@ -67,9 +67,9 @@ public class CarritoComprasCliente {
     }
 
     //METODO PARA CREAR UN NUEVO CARRITO COMPRAS
-    public CarritoCompras createCarritoCompras(CarritoCompras carritoCompras , String token) throws Exception {
+    public CarritoCompras createCarritoCompras(String token) throws Exception {
         String authToken = "Bearer "+token;
-        Response<CarritoCompras> response = apiService.createCarritoCompras(carritoCompras,authToken).execute();
+        Response<CarritoCompras> response = apiService.createCarritoCompras(authToken).execute();
         if (response.isSuccessful()) {
             CarritoCompras carritoComprasCreado = response.body();
             System.out.println("Carrito Compras creado o Actualizado: " + response.body());

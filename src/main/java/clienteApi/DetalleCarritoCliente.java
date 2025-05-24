@@ -37,8 +37,8 @@ public class DetalleCarritoCliente {
     }
 
     // METODO PARA EDITAR UN DETALLE CARRITO POR SU ID
-    public void updateDetalleCarrito(int idDetalleCarrito, int cantidad, DetalleCarrito detalleCarrito) throws Exception {
-        Response<DetalleCarrito> response = apiService.updateDetalleCarrito(idDetalleCarrito, cantidad, detalleCarrito).execute();
+    public void updateDetalleCarrito(int idDetalleCarrito, DetalleCarrito detalleCarrito) throws Exception {
+        Response<DetalleCarrito> response = apiService.updateDetalleCarrito(idDetalleCarrito, detalleCarrito).execute();
         if (response.isSuccessful()) {
             System.out.println("Detalle Carrito actualizado: " + response.body());
 
@@ -78,20 +78,7 @@ public class DetalleCarritoCliente {
         }
     }
 
-    // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
-    
-//        Response<List<DetalleCarrito>> response = apiService.getCarritoComprasById(usuario.getUsua_id()).execute();
-//        if (response.isSuccessful()) {
-//            List<DetalleCarrito> detallesCarrito = response.body();
-//            System.out.println("Detalle Carrito Compras Encontrado: " + response.body());
-//            return detallesCarrito;
-//        } else {
-//            System.out.println("Error: " + response.code());
-//            throw new Exception("El DetalleCarritoCompras no fue Encontrado");
-//        }
-
-//    }
-
+   
     // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL DETALLE DEL CARRITO 
     public void deleteDetalleCarritoPorProducto(int detalleCarritoID) throws Exception {
         Response<Void> response = apiService.deleteDetalleCarrito(detalleCarritoID).execute();

@@ -1,7 +1,6 @@
 package dto;
 
 import modelo.*;
-import java.util.List;
 
 /**
  *
