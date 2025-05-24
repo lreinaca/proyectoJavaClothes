@@ -22,7 +22,8 @@ public interface CarritoComprasApiService {
     Call<CarritoCompras> getCarritoComprasById(@Path("idCarrito") Integer idCarritoCompras, @Path ("idUsuario") Integer idUsuario);
 
     @POST("/api/carritoCompras")
-    Call<CarritoCompras> createCarritoCompras(@Body CarritoCompras carritoCompras, @Header("Authorization") String token);
+    Call<CarritoCompras> createCarritoCompras(
+            @Header("Authorization") String token);
 
     @PUT("/api/carritoCompras/{idCarrito}")
     Call<CarritoCompras> updateCarritoCompras(@Path("idCarrito") Integer idCarritoCompras, @Body DetalleCompraClienteDTO carritoCompras);

@@ -28,23 +28,24 @@ public class PedidoCliente {
 
     //buscarPedido
     public void buscarPedido(Pedido pedido) throws Exception {
-        Integer idUsuario = pedido.getCliente().getUsua_id();
-        Response<List<Pedido>> response = pedidoApiService.buscarPedido(idUsuario, pedido.getEstado(), pedido.getFecha()).execute();
-        if (response.isSuccessful()) {
-            List<Pedido> pedidos = response.body();
-            pedidos.forEach(p -> System.out.println("Pedido(s) encontrado: " + p));
-        } else {
-            System.out.println("Error al buscar pedido: " + response.code());
-            throw new Exception("Error al buscar el pedido");
-        }
+//        Integer idUsuario = pedido.getCliente().getUsua_id();
+//        Response<List<Pedido>> response = pedidoApiService.buscarPedido(idUsuario, pedido.getEstado(), pedido.getFecha()).execute();
+//        if (response.isSuccessful()) {
+//            List<Pedido> pedidos = response.body();
+//            pedidos.forEach(p -> System.out.println("Pedido(s) encontrado: " + p));
+//        } else {
+//            System.out.println("Error al buscar pedido: " + response.code());
+//            throw new Exception("Error al buscar el pedido");
+//        }
     }
 
     // metodo actualizar pedido
-    public void updatePedido(String idPedido, Pedido pedido) throws Exception {
+    public Pedido updatePedido(String idPedido, Pedido pedido) throws Exception {
         Response<Pedido> response = pedidoApiService.updatePedido(idPedido, pedido).execute();
         if (response.isSuccessful()) {
             Pedido pedidoActualizado = response.body();
             System.out.println("Pedido actualizado: " + response.body());
+            return pedidoActualizado;
         } else {
             System.out.println("Error al actualizar pedido: " + response.code());
             throw new Exception("Error al actualizar el pedido");
@@ -52,11 +53,13 @@ public class PedidoCliente {
     }
 
     //metodo para crear pedido
-    public void createPedido(Pedido pedido) throws Exception {
-        Response<Pedido> response = pedidoApiService.createPedido(pedido).execute();
+    public Pedido createPedido(String token) throws Exception {
+        String authToken = "Bearer "+token;
+        Response<Pedido> response = pedidoApiService.createPedido(authToken).execute();
         if (response.isSuccessful()) {
             Pedido pedidoCreado = response.body();
             System.out.println("Pedido creado: " + response.body());
+            return pedidoCreado;
         } else {
             System.out.println("Error al crear pedido: " + response.code());
             throw new Exception("Error al crear el pedido");

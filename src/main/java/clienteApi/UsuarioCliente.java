@@ -35,9 +35,11 @@ public class UsuarioCliente {
                 System.out.println("Usuario creado: " + response.body());
             } else {
                 System.out.println("Error al crear usuario: " + response.code());
+                throw new RuntimeException("Error del servidor: " + response.code());
             }
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Error de conexión: " + e.getMessage());
         }
     }
 
