@@ -47,7 +47,18 @@ public class FavoritoCliente {
             System.out.println("Error: " + response.code());
             throw new Exception("El Favorito no fue Encontrado");
         }
-
+    }
+    
+    public List<Favorito> findFavoritoByCliente(int idUsuario) throws Exception { 
+        Response<List<Favorito>> response = apiService.getfavoritosByCliente(idUsuario).execute(); //ejecutamos llamada al API
+        if (response.isSuccessful()) {
+            List<Favorito> favoritos = response.body();
+            System.out.println("Favoritos encontrados: "+ favoritos.size());
+            return favoritos;
+        }else{
+            System.out.println("Error al buscar favoritos. Código: " + response.code());
+            throw new Exception("No fue posible encontrar los favoritos del cliente. Código: "+ response.code()); 
+        }
     }
 
     // METODO PARA EDITAR UN FAVORITO POR SU ID

@@ -55,7 +55,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel13" min="-2" pref="112" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtMaterial" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <Component id="txtMaterial" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="imagenProducto" min="-2" pref="214" max="-2" attributes="0"/>
