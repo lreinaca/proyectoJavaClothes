@@ -19,7 +19,10 @@ public interface FavoritoApiService {
 
     @GET("/api/favorito/{idFavorito}/{idUsuario}, {idProducto}")
     Call<Favorito> getFavoritoById(@Path("idFavorito") int idFavorito, @Path ("idUsuario") Usuario usuario, @Path ("idProducto") Producto producto);
-
+    
+    @GET("api/favoritos/cliente/{idCliente}")
+    Call<List<Favorito>> getfavoritosByCliente(@Path("idCliente") Integer idCliente);
+    
     @POST("/api/favorito/")
     Call<Favorito> createFavorito(@Body Favorito favorito);
 
