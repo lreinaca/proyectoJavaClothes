@@ -1,5 +1,6 @@
 package clienteApi;
 
+import java.io.IOException;
 import java.util.List;
 import modelo.DetalleCarrito;
 import retrofit2.Response;
@@ -51,20 +52,27 @@ public class DetalleCarritoCliente {
 
     //METODO PARA CREAR UN NUEVO Detalle Carrito
     public DetalleCarrito createDetalleCarrito(DetalleCarrito detalleCarrito, String token) throws Exception {
-        String authThoken = "Bearer "+token;
-        Response<DetalleCarrito> response = apiService.createDetalleCarrito(detalleCarrito,authThoken).execute();
+        String authThoken = "Bearer " + token;
+        Response<DetalleCarrito> response = apiService.createDetalleCarrito(detalleCarrito, authThoken).execute();
         if (response.isSuccessful()) {
             DetalleCarrito detalleCarritoCreado = response.body();
-            System.out.println("Detalle Carrito creado: " + response.body());
+            System.out.println("Detalle Carrito creado: " + detalleCarritoCreado);
             return detalleCarritoCreado;
-
         } else {
+            // Capturar el mensaje específico del backend
+            String errorMessage = "Error desconocido";
+            try {
+                if (response.errorBody() != null) {
+                    errorMessage = response.errorBody().string();
+                }
+            } catch (IOException e) {
+                errorMessage = "Error al procesar la respuesta del servidor";
+            }
             System.out.println("Error al crear Detalle Carrito: " + response.code());
-            throw new Exception("Error al actualizar el Detalle Carrito");
+            throw new Exception(errorMessage);
         }
 
     }
-    
     
     // METODO PARA ENCONTRAR LOS DETALLES DEL CARRITOCOMPRAS POR EL ID DEL USUARIO 
     public List<DetalleCarrito> listarTodosLosDetalleCarrito(Integer idUsuario) throws Exception {
@@ -78,7 +86,6 @@ public class DetalleCarritoCliente {
         }
     }
 
-   
     // METODO PARA ELIMINAR UN  CARRITO COMPRAS POR EL ID DEL DETALLE DEL CARRITO 
     public void deleteDetalleCarritoPorProducto(int detalleCarritoID) throws Exception {
         Response<Void> response = apiService.deleteDetalleCarrito(detalleCarritoID).execute();
@@ -89,8 +96,6 @@ public class DetalleCarritoCliente {
             throw new Exception("El Detalle Carrito Compras no fue eliminado");
         }
     }
-    
-    
-    // DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
 
+    // DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
 }

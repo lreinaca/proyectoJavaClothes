@@ -1,20 +1,21 @@
 
 package modelo;
 
+import java.time.LocalDate;
 import modelo.ENUMs.EstadosPedido;
 import java.util.ArrayList;
 
 public class Pedido {
     
-    private int pediId;
+    private Integer pediId;
     private Factura factura; 
     private Usuario usuario;
     private EstadosPedido estado;
-    private String fechaPedido;
+    private LocalDate fechaPedido;
     private String codigoCompra;
     private ArrayList<DetallePedido> detallesVenta;
 
-    public Pedido(int pedidoId, Factura factura, Usuario cliente, EstadosPedido estado, String fecha, String codigoCompra, ArrayList<DetallePedido> detallesVenta) {
+    public Pedido(int pedidoId, Factura factura, Usuario cliente, EstadosPedido estado, LocalDate fecha, String codigoCompra, ArrayList<DetallePedido> detallesVenta) {
         this.pediId = pedidoId;
         this.factura = factura;
         this.usuario = cliente;
@@ -56,11 +57,11 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public String getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(String fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 

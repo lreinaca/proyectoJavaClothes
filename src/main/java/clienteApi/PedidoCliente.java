@@ -1,5 +1,8 @@
 package clienteApi;
 
+import com.google.gson.*;
+import java.lang.ProcessBuilder.Redirect.Type;
+import java.time.LocalDate;
 import java.util.List;
 
 import modelo.Pedido;
@@ -20,7 +23,7 @@ public class PedidoCliente {
     public PedidoCliente() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(createGson()))
                 .build();
 
         pedidoApiService = retrofit.create(PedidoApiService.class);
@@ -54,7 +57,7 @@ public class PedidoCliente {
 
     //metodo para crear pedido
     public Pedido createPedido(String token) throws Exception {
-        String authToken = "Bearer "+token;
+        String authToken = "Bearer " + token;
         Response<Pedido> response = pedidoApiService.createPedido(authToken).execute();
         if (response.isSuccessful()) {
             Pedido pedidoCreado = response.body();
@@ -102,6 +105,16 @@ public class PedidoCliente {
             throw new Exception("Pedido no encontrado");
 
         }
+    }
+
+    // Metodo para que gson pueda deserializar fechas 
+    private Gson createGson() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (src, typeOfSrc, context)
+                -> new JsonPrimitive(src.toString()));
+        builder.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (json, typeOfT, context)
+                -> LocalDate.parse(json.getAsString()));
+        return builder.create();
     }
 
 }

@@ -1,6 +1,15 @@
 package vistas.vistaCompras;
 
+import clienteApi.DetallePedidoCliente;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DetalleCarrito;
+import modelo.DetallePedido;
 import modelo.Pedido;
+import modelo.Producto;
 import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
@@ -13,15 +22,19 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     // Atributos 
     private final Usuario usuarioLogueado;
     private final Pedido pedido;
-
+    private final DetallePedidoCliente detallePedidoCliente;
+    double totalGeneral = 0.0;
     
     // Constructor 
-    public ConfirmacionDePedidos(Usuario usuarioLogueado,Pedido pedido) {
+    public ConfirmacionDePedidos(Usuario usuarioLogueado, Pedido pedido, double totalGeneral) {
         initComponents();
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
         this.pedido = pedido;
+        this.detallePedidoCliente = detallePedidoCliente;
         txtCodigoCompra.setText(pedido.getCodigoCompra());
+        txtValorPagar.setText(String.valueOf(totalGeneral));
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -30,14 +43,16 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnIrAlCarrito = new javax.swing.JButton();
+        btnRegresarPagPrincipal = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbFacturaConfirmar = new javax.swing.JTable();
         btnConfirmar = new javax.swing.JButton();
         txtCodigoCompra = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        txtValorPagar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbPedido = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -47,21 +62,21 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Volver al carrito");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIrAlCarrito.setBackground(new java.awt.Color(102, 102, 102));
+        btnIrAlCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        btnIrAlCarrito.setText("Volver al carrito");
+        btnIrAlCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIrAlCarritoActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Seguir Comprando");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresarPagPrincipal.setBackground(new java.awt.Color(102, 102, 102));
+        btnRegresarPagPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresarPagPrincipal.setText("Seguir Comprando");
+        btnRegresarPagPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegresarPagPrincipalActionPerformed(evt);
             }
         });
 
@@ -71,39 +86,24 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIrAlCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnRegresarPagPrincipal)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnIrAlCarrito)
                 .addGap(43, 43, 43)
-                .addComponent(jButton2)
+                .addComponent(btnRegresarPagPrincipal)
                 .addGap(141, 141, 141))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        tbFacturaConfirmar.setBackground(new java.awt.Color(204, 204, 255));
-        tbFacturaConfirmar.setForeground(new java.awt.Color(51, 51, 51));
-        tbFacturaConfirmar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Urban Polo Femenino", "49.000", null},
-                {"Blusa Puffy Lemon", "86.000", null},
-                {"Vintage Ligth", "145.900", null},
-                {"      --------", "        --------", "280.900"}
-            },
-            new String [] {
-                "Producto:", "Valor:", "Total:"
-            }
-        ));
-        jScrollPane2.setViewportView(tbFacturaConfirmar);
 
         btnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -130,12 +130,37 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(0, 51, 102));
-        jTextField3.setText("CÓDIGO DE COMPRA:");
+        jTextField3.setText("VALOR TOTAL A PAGAR");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
+
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(0, 51, 102));
+        jTextField4.setText("CÓDIGO DE COMPRA:");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        txtValorPagar.setText("VALOR A PAGAR");
+
+        tbPedido.setBackground(new java.awt.Color(204, 204, 255));
+        tbPedido.setForeground(new java.awt.Color(102, 102, 102));
+        tbPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Producto", "Valor Unitario", "Total"
+            }
+        ));
+        jScrollPane2.setViewportView(tbPedido);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -143,34 +168,34 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                    .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtCodigoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCodigoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(334, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCodigoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(344, Short.MAX_VALUE)))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -219,7 +244,7 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,24 +260,61 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    // METODO PARA LLENAR LA TABLA DE PEDIDO 
+    private void listarPedido() {
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.setColumnIdentifiers(new Object[]{
+//            "Producto", "Valor_unitario", "Total",});
+//        // Formatter para pesos colombianos
+//        NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
+//        formatoPesos.setMaximumFractionDigits(0);
+//        
+//        try {
+//            List<DetallePedido> detallesPedido = detallePedidoCliente.listarTodosLosDetalleCarrito(usuarioLogueado.getUsua_id());
+//
+//            for (DetalleCarrito detalle : detallesCarrito) {
+//                Producto producto = detalle.getProducto();
+//                double total = detalle.getCantidad() * detalle.getProducto().getPrecio();
+//
+//                model.addRow(new Object[]{
+//                    producto.getNombre(),
+//                    formatoPesos.format(producto.getPrecio()),
+//                    formatoPesos.format(total),});
+//            }
+//            tbPedido.setModel(model);
+//
+//            // Ajustar el ancho de las columnas
+//            tbPedido.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre_Producto
+//            tbPedido.getColumnModel().getColumn(1).setPreferredWidth(75); // Precio
+//            tbPedido.getColumnModel().getColumn(2).setPreferredWidth(75);  // Total
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    }
+    
+    // Regresar al carrito de compras 
+    private void btnIrAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrAlCarritoActionPerformed
         CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnIrAlCarritoActionPerformed
 
+    // Ir a vista Pedido Realizado 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         PedidoRealizado vista = new PedidoRealizado(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // Ir a página principal 
+    private void btnRegresarPagPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarPagPrincipalActionPerformed
         VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnRegresarPagPrincipalActionPerformed
 
     private void txtCodigoCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoCompraActionPerformed
         // TODO add your handling code here:
@@ -262,11 +324,15 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnIrAlCarrito;
+    private javax.swing.JButton btnRegresarPagPrincipal;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -274,7 +340,9 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTable tbFacturaConfirmar;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tbPedido;
     private javax.swing.JTextField txtCodigoCompra;
+    private javax.swing.JLabel txtValorPagar;
     // End of variables declaration//GEN-END:variables
 }
