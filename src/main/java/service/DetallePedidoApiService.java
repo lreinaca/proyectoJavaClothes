@@ -16,13 +16,13 @@ import retrofit2.http.Path;
 
 public interface DetallePedidoApiService {
 
-    @GET("/javaClothes/pedidos/{id}")
+    @GET("/api/detallePedido/{id}")
     Call<DetallePedido> getDetallesByPedidoId(@Path("idPedido") String idPedido);
 
-    @POST("/javaClothes/pedidos")
+    @POST("/api/detallePedido/pedidos")
     Call<DetallePedido> createDetallePedido(@Body DetallePedido detallePedido);
     
-    @PUT("/javaClothes/pedidos/{id}")
+    @PUT("/api/detallePedido/{id}")
     Call<DetallePedido> updateDetallePedido(@Path("id") String idDetalle, @Body Pedido pedido);
 }
 

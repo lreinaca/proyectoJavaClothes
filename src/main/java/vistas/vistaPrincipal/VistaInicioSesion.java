@@ -227,6 +227,7 @@ public class VistaInicioSesion extends javax.swing.JFrame {
 
         btnVolver.setBackground(new java.awt.Color(222, 222, 222));
         btnVolver.setForeground(new java.awt.Color(222, 222, 222));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/volver.png"))); // NOI18N
         btnVolver.setBorder(null);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
