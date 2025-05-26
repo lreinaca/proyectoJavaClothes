@@ -10,8 +10,7 @@ public class Favorito {
     private Usuario usuario; 
     private Producto producto; 
 
-    public Favorito(int favoritoId, Usuario usuario, Producto producto) {
-        this.favoritoId = favoritoId;
+    public Favorito(Usuario usuario, Producto producto) {
         this.usuario = usuario;
         this.producto = producto;
     }

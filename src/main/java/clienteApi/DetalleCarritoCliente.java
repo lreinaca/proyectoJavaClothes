@@ -97,5 +97,4 @@ public class DetalleCarritoCliente {
         }
     }
 
-    // DetalleCompraClienteDTO compraCliente = new DetalleCompraClienteDTO(carritoCompras, idProducto);
 }
