@@ -7,6 +7,7 @@ import clienteApi.ProductoCliente;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -205,7 +206,7 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(imagenProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -335,19 +336,55 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     // BOTON PARA AGREGAR UN PRODUCTO A LA LISTA DE FAVORITOS 
     private void btnFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoritoActionPerformed
         try {
-            if (!(usuarioLogueado == null)) {
-                idProducto = Integer.parseInt(txtIdProducto.getText());
-                int id = 12345;
-                Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
-                favoritoCliente.createFavorito(fav);
-                JOptionPane.showMessageDialog(null, "Añadido a favoritos");
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
+            if (usuarioLogueado == null || usuarioLogueado.getUsua_id() == null) {
+                JOptionPane.showMessageDialog(this,
+                        "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!",
+                        "Usuario no identificado", JOptionPane.WARNING_MESSAGE);
+                return;
             }
-        } catch (Exception e) {
+            
+            System.out.println("Id de user logueado: "+ usuarioLogueado.getUsua_id()); //debug: verificar user
+            idProducto = Integer.parseInt(txtIdProducto.getText()); //obtener id de producto actual
+            Producto producto = productoCliente.findProductoById(idProducto);
+            if (producto == null) {
+                JOptionPane.showMessageDialog(null, "El producto no está disponible actualmente");
+                return;
+            }
+            List<Favorito> favoritos = favoritoCliente.findFavoritoByCliente(usuarioLogueado.getUsua_id());
+            boolean yaExiste = favoritos.stream().anyMatch(f -> f.getProducto().getProd_id() == idProducto);
+            if (yaExiste) {
+                JOptionPane.showMessageDialog(this, "Este producto ya está en tus favoritos", "¡Aviso!",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            Favorito nuevoFavorito = new Favorito();
+            nuevoFavorito.setUsuario(usuarioLogueado);
+            nuevoFavorito.setProducto(producto);
+            Favorito favCreado = favoritoCliente.createFavorito(nuevoFavorito);
+            
+            if(favCreado != null){ //si el fav se creó
+                JOptionPane.showMessageDialog(this, "Producto añadido a favoritos con éxito"
+                        + "\n puedes ver el producto en 'Tus favoritos'","Favorito agregado",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                throw new Exception("No se pudo agregar el producto a favoritos.");
+            }   
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al agregar a favoritos: "+ e.getMessage());
             e.printStackTrace();
         }
-
+//        try {
+//            if (!(usuarioLogueado == null)) { //verificar si hay un user logueado
+//                idProducto = Integer.parseInt(txtIdProducto.getText()); 
+//                int id = 12345;
+//                Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
+//                favoritoCliente.createFavorito(fav); //crear el fav en el back
+//                JOptionPane.showMessageDialog(null, "Añadido a favoritos");
+//            } else { //si no hay user
+//                JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }//GEN-LAST:event_btnFavoritoActionPerformed
 
     // METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 

@@ -15,6 +15,10 @@ public class Favorito {
         this.usuario = usuario;
         this.producto = producto;
     }
+    
+    public Favorito(){
+        
+    }
 
     public int getFavoritoId() {
         return favoritoId;
