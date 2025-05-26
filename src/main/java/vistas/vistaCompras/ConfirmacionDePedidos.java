@@ -1,15 +1,8 @@
 package vistas.vistaCompras;
 
-import clienteApi.DetallePedidoCliente;
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import modelo.DetalleCarrito;
-import modelo.DetallePedido;
 import modelo.Pedido;
-import modelo.Producto;
 import modelo.Usuario;
 import vistas.vistaCliente.VistaPrincipalCliente;
 
@@ -22,7 +15,6 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     // Atributos 
     private final Usuario usuarioLogueado;
     private final Pedido pedido;
-    private final DetallePedidoCliente detallePedidoCliente;
     double totalGeneral = 0.0;
     
     // Constructor 
@@ -31,10 +23,8 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         this.usuarioLogueado = usuarioLogueado;
         this.pedido = pedido;
-        this.detallePedidoCliente = detallePedidoCliente;
-        txtCodigoCompra.setText(pedido.getCodigoCompra());
-        txtValorPagar.setText(String.valueOf(totalGeneral));
-        
+        this.totalGeneral = totalGeneral;
+        llenarCampos();      
     }
 
     @SuppressWarnings("unchecked")
@@ -51,8 +41,6 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         txtValorPagar = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbPedido = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -96,11 +84,11 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIrAlCarrito)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegresarPagPrincipal)
-                .addGap(141, 141, 141))
+                .addGap(172, 172, 172))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -150,18 +138,6 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         txtValorPagar.setText("VALOR A PAGAR");
 
-        tbPedido.setBackground(new java.awt.Color(204, 204, 255));
-        tbPedido.setForeground(new java.awt.Color(102, 102, 102));
-        tbPedido.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Producto", "Valor Unitario", "Total"
-            }
-        ));
-        jScrollPane2.setViewportView(tbPedido);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -171,8 +147,7 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtCodigoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,10 +167,8 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValorPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(216, 216, 216))
         );
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -243,8 +216,8 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,38 +234,18 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    // METODO PARA LLENAR LA TABLA DE PEDIDO 
-    private void listarPedido() {
-//        DefaultTableModel model = new DefaultTableModel();
-//        model.setColumnIdentifiers(new Object[]{
-//            "Producto", "Valor_unitario", "Total",});
-//        // Formatter para pesos colombianos
-//        NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
-//        formatoPesos.setMaximumFractionDigits(0);
-//        
-//        try {
-//            List<DetallePedido> detallesPedido = detallePedidoCliente.listarTodosLosDetalleCarrito(usuarioLogueado.getUsua_id());
-//
-//            for (DetalleCarrito detalle : detallesCarrito) {
-//                Producto producto = detalle.getProducto();
-//                double total = detalle.getCantidad() * detalle.getProducto().getPrecio();
-//
-//                model.addRow(new Object[]{
-//                    producto.getNombre(),
-//                    formatoPesos.format(producto.getPrecio()),
-//                    formatoPesos.format(total),});
-//            }
-//            tbPedido.setModel(model);
-//
-//            // Ajustar el ancho de las columnas
-//            tbPedido.getColumnModel().getColumn(0).setPreferredWidth(150); // Nombre_Producto
-//            tbPedido.getColumnModel().getColumn(1).setPreferredWidth(75); // Precio
-//            tbPedido.getColumnModel().getColumn(2).setPreferredWidth(75);  // Total
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
-
+    // METODO PARA LLENAR LOS CAMPOS DEL PEDIDO 
+    private void llenarCampos(){
+        txtCodigoCompra.setText(pedido.getCodigoCompra());
+        
+        // Formatter para pesos colombianos
+        NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
+        formatoPesos.setMaximumFractionDigits(0);
+        String valorPagar = formatoPesos.format(totalGeneral);
+        
+        // Mostrar el Valor a Pagar como texto
+        txtValorPagar.setText(valorPagar);
+        
     }
     
     // Regresar al carrito de compras 
@@ -338,10 +291,8 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTable tbPedido;
     private javax.swing.JTextField txtCodigoCompra;
     private javax.swing.JLabel txtValorPagar;
     // End of variables declaration//GEN-END:variables

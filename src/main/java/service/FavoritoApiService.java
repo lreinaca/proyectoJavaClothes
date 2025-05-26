@@ -11,7 +11,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 public interface FavoritoApiService {
      
     @GET("/api/favorito")
@@ -32,10 +31,4 @@ public interface FavoritoApiService {
     @DELETE("/api/favorito/{idFavorito}")
     Call<Void> deleteFavorito(@Path("idFavorito") int idFavorito);
 
-    @GET("/api/favorito/buscar")
-    Call<List<Favorito>> buscarFavorito(
-        @Query("idFavorito") int idFavorito,
-        @Query("idUsuario") Usuario usuario,
-        @Query("idProducto") Producto producto
-    ); 
 }

@@ -62,7 +62,6 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPedido = new javax.swing.JTable();
         btnFinalizar = new javax.swing.JButton();
-        btnValorAPagar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -158,31 +157,16 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
             }
         });
 
-        btnValorAPagar.setBackground(new java.awt.Color(0, 153, 255));
-        btnValorAPagar.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        btnValorAPagar.setForeground(new java.awt.Color(51, 51, 51));
-        btnValorAPagar.setText("Ver Valor a Pagar");
-        btnValorAPagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValorAPagarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnValorAPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,10 +174,8 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnValorAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(51, 0, 255));
@@ -245,7 +227,7 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel3.setText("Pedido:");
+        jLabel3.setText("Información previa del Pedido:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -258,7 +240,7 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -491,6 +473,7 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
     // FINALIZAR LA COMPRA - CONVERTIR EL CARRITO DE COMPRAS EN PEDIDO
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         try {
+            cacularValorPagar();
             Pedido pedidoCreado = pedidoCliente.createPedido(usuarioLogueado.getToken());
             ConfirmacionDePedidos vista = new ConfirmacionDePedidos(usuarioLogueado, pedidoCreado, totalGeneral);
             vista.setVisible(true);
@@ -550,6 +533,7 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
                     + "\nfue actualizada a: " + nuevaCantidad,
                     "Cantidad Actualizada",
                     JOptionPane.INFORMATION_MESSAGE);
+            listarTotalAPagar();
 
             // Limpiar selección después de eliminar
             idProductoSeleccionado = 0;
@@ -559,10 +543,9 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    // BOTON PARA CALCULAR EL VALOR TOTAL DE LA COMPRA
-    private void btnValorAPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValorAPagarActionPerformed
-        
+    
+    // METODO PARA CALCULAR EL VALOR TOTAL A PAGAR 
+    private Double cacularValorPagar(){
         // Formatter para pesos colombianos
         NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
         formatoPesos.setMaximumFractionDigits(0);
@@ -584,13 +567,14 @@ public final class CarritoDeCompras extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al calcular el total: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnValorAPagarActionPerformed
-
+        return totalGeneral;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnFinalizar;
-    private javax.swing.JButton btnValorAPagar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

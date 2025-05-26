@@ -80,9 +80,7 @@ public class FavoritoCliente {
         if (response.isSuccessful()) {
             Favorito favoritoCreado = response.body();
             System.out.println("Favorito creado: " + response.body());
-            return favoritoCreado;
-            
-
+            return favoritoCreado;     
         } else {
             System.out.println("Error al crear Favorito: " + response.code());
             throw new Exception("Error al actualizar el Favorito"); 
