@@ -1,7 +1,6 @@
 package clienteApi;
 
 import com.google.gson.*;
-import java.lang.ProcessBuilder.Redirect.Type;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import service.PedidoApiService;
  */
 public class PedidoCliente {
 
-    private static final String BASE_URL = "http://localhost:8089";
+    private static final String BASE_URL = "https://proyectoeam.onrender.com";
     private static PedidoApiService pedidoApiService;
 
     public PedidoCliente() {

@@ -11,7 +11,7 @@ import service.DetalleCarritoApiService;
 public class DetalleCarritoCliente {
 
     // ATRIBUTOS
-    private static final String BASE_URL = "http://localhost:8089";
+    private static final String BASE_URL = "https://proyectoeam.onrender.com";
     private static DetalleCarritoApiService apiService;
 
     // CONSTRUCTOR 
