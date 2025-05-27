@@ -33,8 +33,6 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnIrAlCarrito = new javax.swing.JButton();
-        btnRegresarPagPrincipal = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnConfirmar = new javax.swing.JButton();
         txtCodigoCompra = new javax.swing.JTextField();
@@ -50,52 +48,22 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        btnIrAlCarrito.setBackground(new java.awt.Color(102, 102, 102));
-        btnIrAlCarrito.setForeground(new java.awt.Color(255, 255, 255));
-        btnIrAlCarrito.setText("Volver al carrito");
-        btnIrAlCarrito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIrAlCarritoActionPerformed(evt);
-            }
-        });
-
-        btnRegresarPagPrincipal.setBackground(new java.awt.Color(102, 102, 102));
-        btnRegresarPagPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegresarPagPrincipal.setText("Seguir Comprando");
-        btnRegresarPagPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarPagPrincipalActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnIrAlCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegresarPagPrincipal)
-                .addContainerGap())
+            .addGap(0, 147, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIrAlCarrito)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegresarPagPrincipal)
-                .addGap(172, 172, 172))
+            .addGap(0, 201, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         btnConfirmar.setBackground(new java.awt.Color(0, 0, 0));
         btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmar.setForeground(new java.awt.Color(204, 204, 204));
         btnConfirmar.setText("CONFIRMAR COMPRA");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +184,7 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -248,26 +216,12 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
         
     }
     
-    // Regresar al carrito de compras 
-    private void btnIrAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrAlCarritoActionPerformed
-        CarritoDeCompras vista = new CarritoDeCompras(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnIrAlCarritoActionPerformed
-
     // Ir a vista Pedido Realizado 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         PedidoRealizado vista = new PedidoRealizado(usuarioLogueado);
         vista.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    // Ir a página principal 
-    private void btnRegresarPagPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarPagPrincipalActionPerformed
-        VistaPrincipalCliente vista = new VistaPrincipalCliente(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnRegresarPagPrincipalActionPerformed
 
     private void txtCodigoCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoCompraActionPerformed
         // TODO add your handling code here:
@@ -284,8 +238,6 @@ public class ConfirmacionDePedidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JButton btnIrAlCarrito;
-    private javax.swing.JButton btnRegresarPagPrincipal;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

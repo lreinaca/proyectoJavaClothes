@@ -1,5 +1,7 @@
 package clienteApi;
 
+import dto.DetallePedidoClienteDTO;
+import java.util.List;
 import modelo.DetallePedido;
 import modelo.Pedido;
 import retrofit2.Response;
@@ -62,4 +64,17 @@ public class DetallePedidoCliente {
             throw new Exception("Error al actualizar el detalle de pedido");
         }
     }
+    
+     // METODO PARA ENCONTRAR LOS DETALLES DEL PEDIDO POR EL ID DEL USUARIO 
+    public List<DetallePedidoClienteDTO> getDetallesPedidoByUsuarioID(Integer idUsuario) throws Exception {
+        Response<List<DetallePedidoClienteDTO>> response = detalleApiService.getAllDetallePedidoByUsuarioID(idUsuario).execute();
+        if (response.isSuccessful()) {
+            List<DetallePedidoClienteDTO> detallePedido = response.body();
+            return detallePedido;
+        } else {
+            System.out.println("Error: " + response.code());
+            throw new Exception("Error en el cargue de Información de Detalle Pedido");
+        }
+    }
+
 }

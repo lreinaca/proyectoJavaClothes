@@ -329,10 +329,16 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.repaint();
     }
 
+    // VER EL HISTORIAL DE PEDIDOS 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        HistorialPedidosClientes vista = new HistorialPedidosClientes(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
+        HistorialPedidosClientes vr = new HistorialPedidosClientes(usuarioLogueado);
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();   
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void pantHActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantHActionPerformed1

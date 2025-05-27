@@ -1,5 +1,14 @@
 package vistas.vistaCompras;
 
+import clienteApi.DetallePedidoCliente;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.DetalleCarrito;
+import modelo.DetallePedido;
+import modelo.Producto;
 import modelo.Usuario;
 
 /**
@@ -7,14 +16,55 @@ import modelo.Usuario;
  * @author Rossi
  */
 public final class Favoritos extends javax.swing.JPanel {
-
+    
+    // ATRIBUTOS 
     private Usuario usuarioLogueado;
+    private final DetallePedidoCliente detallePedidoApi;
 
     // CONSTRUCTOR 
     public Favoritos(Usuario usuarioLogueado) {
         initComponents();
         this.usuarioLogueado = usuarioLogueado;
+        this.detallePedidoApi = new DetallePedidoCliente();
     }
+    
+    // METODO PARA LLENAR LA TABLA DE LOS PRODUCTOS 
+//    private void listarProductos() {
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.setColumnIdentifiers(new Object[]{"Id", "Nombre_Producto", "Color",
+//            "Talla", "Cantidad", "Precio",});
+//        // Formatter para pesos colombianos
+//        NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
+//        formatoPesos.setMaximumFractionDigits(0);
+//
+//        try {
+//            List<DetallePedido> detallesCarrito = detallePedidoApi.getDetallesPedidoByUsuarioID(usuarioLogueado.getUsua_id());
+//
+//            for (DetalleCarrito detalle : detallesCarrito) {
+//                Producto producto = detalle.getProducto();
+//
+//                model.addRow(new Object[]{
+//                    detalle.getDetalle_carrito_id(),
+//                    producto.getNombre(),
+//                    producto.getColor(),
+//                    producto.getTalla(),
+//                    detalle.getCantidad(),
+//                    formatoPesos.format(producto.getPrecio()),});
+//            }
+//            tbDetalleCarrito.setModel(model);
+//
+//            // Ajustar el ancho de las columnas
+//            tbDetalleCarrito.getColumnModel().getColumn(0).setPreferredWidth(50); // ID Detalle Carrito
+//            tbDetalleCarrito.getColumnModel().getColumn(1).setPreferredWidth(150); // Nombre_Producto
+//            tbDetalleCarrito.getColumnModel().getColumn(2).setPreferredWidth(80);  // Color
+//            tbDetalleCarrito.getColumnModel().getColumn(3).setPreferredWidth(50);  // Talla
+//            tbDetalleCarrito.getColumnModel().getColumn(4).setPreferredWidth(50); // Cantidad
+//            tbDetalleCarrito.getColumnModel().getColumn(5).setPreferredWidth(85);  // Precio
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e.getMessage());
+//        }
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

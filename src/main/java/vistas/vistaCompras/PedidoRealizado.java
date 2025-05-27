@@ -33,7 +33,7 @@ public class PedidoRealizado extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         btnMenuPrincipal.setBackground(new java.awt.Color(153, 153, 153));
-        btnMenuPrincipal.setForeground(new java.awt.Color(0, 0, 0));
+        btnMenuPrincipal.setForeground(new java.awt.Color(204, 204, 204));
         btnMenuPrincipal.setText("Ir a Menu Principal");
         btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,7 +42,7 @@ public class PedidoRealizado extends javax.swing.JFrame {
         });
 
         btnHistorialPedidos.setBackground(new java.awt.Color(153, 153, 153));
-        btnHistorialPedidos.setForeground(new java.awt.Color(0, 0, 0));
+        btnHistorialPedidos.setForeground(new java.awt.Color(153, 153, 153));
         btnHistorialPedidos.setText("Ir a Historial de Pedidos");
         btnHistorialPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

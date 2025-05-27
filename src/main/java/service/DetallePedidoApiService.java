@@ -1,5 +1,8 @@
 package service;
 
+import clienteApi.DetallePedidoCliente;
+import dto.DetallePedidoClienteDTO;
+import java.util.List;
 import modelo.DetallePedido;
 import modelo.Pedido;
 import retrofit2.Call;
@@ -23,7 +26,13 @@ public interface DetallePedidoApiService {
     Call<DetallePedido> createDetallePedido(@Body DetallePedido detallePedido);
     
     @PUT("/api/detallePedido/{id}")
-    Call<DetallePedido> updateDetallePedido(@Path("id") String idDetalle, @Body Pedido pedido);
+    Call<DetallePedido> updateDetallePedido(
+            @Path("id") String idDetalle, 
+            @Body Pedido pedido);
+    
+    @GET("/api/detallePedido/usuario/{usuarioId}")
+    Call<List<DetallePedidoClienteDTO>> getAllDetallePedidoByUsuarioID(
+            @Path("usuarioId") Integer idUsuario );
 }
 
     
