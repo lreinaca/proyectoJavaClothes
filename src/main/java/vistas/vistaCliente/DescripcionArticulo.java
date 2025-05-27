@@ -7,6 +7,7 @@ import clienteApi.ProductoCliente;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -342,15 +343,24 @@ public class DescripcionArticulo extends javax.swing.JFrame {
                         "Usuario no identificado", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
-            System.out.println("Id de user logueado: "+ usuarioLogueado.getUsua_id()); //debug: verificar user
+
+            System.out.println("Id de user logueado: " + usuarioLogueado.getUsua_id()); //debug: verificar user
             idProducto = Integer.parseInt(txtIdProducto.getText()); //obtener id de producto actual
+            // Validar que id del producto sea mayor a cero 
+            if (idProducto <= 0) {
+                JOptionPane.showMessageDialog(this, "ID de producto inválido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Producto producto = productoCliente.findProductoById(idProducto);
             if (producto == null) {
                 JOptionPane.showMessageDialog(null, "El producto no está disponible actualmente");
                 return;
             }
             List<Favorito> favoritos = favoritoCliente.findFavoritoByCliente(usuarioLogueado.getUsua_id());
+            if (favoritos == null) {
+                favoritos = new ArrayList<>(); // Asegurar que nunca sea null
+            }
             boolean yaExiste = favoritos.stream().anyMatch(f -> f.getProducto().getProd_id() == idProducto);
             if (yaExiste) {
                 JOptionPane.showMessageDialog(this, "Este producto ya está en tus favoritos", "¡Aviso!",
@@ -361,45 +371,33 @@ public class DescripcionArticulo extends javax.swing.JFrame {
             nuevoFavorito.setUsuario(usuarioLogueado);
             nuevoFavorito.setProducto(producto);
             Favorito favCreado = favoritoCliente.createFavorito(nuevoFavorito);
-            
-            if(favCreado != null){ //si el fav se creó
+
+            if (favCreado != null) { //si el fav se creó
                 JOptionPane.showMessageDialog(this, "Producto añadido a favoritos con éxito"
-                        + "\n puedes ver el producto en 'Tus favoritos'","Favorito agregado",JOptionPane.INFORMATION_MESSAGE);
-            }else{
+                        + "\n puedes ver el producto en 'Tus favoritos'", "Favorito agregado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
                 throw new Exception("No se pudo agregar el producto a favoritos.");
-            }   
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error al agregar a favoritos: "+ e.getMessage());
+            }
+        } catch (Exception e) {
+            String mensaje = "Error al agregar a favoritos: " + e.getMessage();
+            System.err.println(mensaje); // Para logs de desarrollo
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
-//        try {
-//            if (!(usuarioLogueado == null)) { //verificar si hay un user logueado
-//                idProducto = Integer.parseInt(txtIdProducto.getText()); 
-//                int id = 12345;
-//                Favorito fav = new Favorito(id, usuarioLogueado, productoCliente.findProductoById(idProducto));
-//                favoritoCliente.createFavorito(fav); //crear el fav en el back
-//                JOptionPane.showMessageDialog(null, "Añadido a favoritos");
-//            } else { //si no hay user
-//                JOptionPane.showMessageDialog(null, "¡Debes registrarte o iniciar sesion si deseas añadir una prenda a favoritos!");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
     }//GEN-LAST:event_btnFavoritoActionPerformed
 
-    // METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 
+// METODO PARA AGREGAR UN PRODUCTO AL CARRITO DE COMPRAS 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         // Validar usuario logueado
         if (usuarioLogueado == null) {
             mostrarMensajeLogin();
             return;
         }
-
         // Validar datos del formulario
         if (!validarDatos()) {
             return;
         }
-
         try {
             // Cada usuario Va a tener un único carrito de compras asociado a su id 
             String authToken = usuarioLogueado.getToken();
@@ -416,13 +414,26 @@ public class DescripcionArticulo extends javax.swing.JFrame {
     private void manejarError(Exception e) {
         System.err.println("Error al procesar carrito: " + e.getMessage());
         e.printStackTrace();
+        String mensaje = e.getMessage();
 
         if (e.getMessage().contains("401") || e.getMessage().contains("Unauthorized")) {
             JOptionPane.showMessageDialog(null, "Sesión expirada. Por favor, inicia sesión nuevamente.");
         } else if (e.getMessage().contains("404")) {
             JOptionPane.showMessageDialog(null, "Producto no encontrado.");
         } else {
-            JOptionPane.showMessageDialog(null, "Error al agregar producto. Intente nuevamente.");
+            // Extraer mensaje del JSON si existe
+            String mensajeAMostrar = "Error al agregar producto. Intente nuevamente.";
+
+            if (mensaje.contains("\"mensaje\":\"")) {
+                try {
+                    int inicio = mensaje.indexOf("\"mensaje\":\"") + 11;
+                    int fin = mensaje.indexOf("\"", inicio);
+                    mensajeAMostrar = mensaje.substring(inicio, fin);
+                } catch (Exception ex) {
+                    // Si falla la extracción, usar mensaje genérico
+                }
+            }
+            JOptionPane.showMessageDialog(null, mensajeAMostrar);
         }
     }
 

@@ -40,8 +40,8 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jMenuNuevo = new javax.swing.JMenu();
         perfilMenu = new javax.swing.JMenuItem();
         CarritoMenu = new javax.swing.JMenuItem();
-        pedidosMenu = new javax.swing.JMenuItem();
         FavoritosMenu = new javax.swing.JMenuItem();
+        pedidosMenu = new javax.swing.JMenuItem();
         cerrarSesionMenu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -112,7 +112,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         jMenuNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/iconPerfil.png"))); // NOI18N
         jMenuNuevo.setText("Menu");
 
-        perfilMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        perfilMenu.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         perfilMenu.setText("Mi info");
         perfilMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,14 +129,6 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         });
         jMenuNuevo.add(CarritoMenu);
 
-        pedidosMenu.setText("Mis pedidos");
-        pedidosMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenuNuevo.add(pedidosMenu);
-
         FavoritosMenu.setText("Mis favoritos");
         FavoritosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +136,14 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
             }
         });
         jMenuNuevo.add(FavoritosMenu);
+
+        pedidosMenu.setText("Mis pedidos");
+        pedidosMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuNuevo.add(pedidosMenu);
 
         cerrarSesionMenu.setText("Cerrar sesión");
         cerrarSesionMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +228,9 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 // </editor-fold>                        
+// </editor-fold>                        
+// </editor-fold>     
+    
     // METODO PARA DILIGENCIAR INFORMACIÓN DEL USUARIO LOGUEADO 
     private void LlenarNombreUsuario(Usuario usuarioLogueado){
         txtNombreCliente.setText(usuarioLogueado.getNombre());   
@@ -285,7 +288,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.repaint();
     }//GEN-LAST:event_calzaFMenuItActionPerformed
     
-    // CERRAR SESIÓN 
+    // METODO PARA CERRAR SESIÓN 
     private void cerrarSesionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionMenuActionPerformed
         VistaPrincipal vista = new VistaPrincipal();
         vista.setVisible(true);
@@ -326,10 +329,16 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
         contenido.repaint();
     }
 
+    // VER EL HISTORIAL DE PEDIDOS 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        HistorialPedidosClientes vista = new HistorialPedidosClientes(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
+        HistorialPedidosClientes vr = new HistorialPedidosClientes(usuarioLogueado);
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();   
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void pantHActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantHActionPerformed1
@@ -344,9 +353,14 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_pantHActionPerformed1
 
     private void FavoritosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FavoritosMenuActionPerformed
-        Favoritos vista = new Favoritos(usuarioLogueado);
-        vista.setVisible(true);
-        this.dispose();
+        Favoritos vr = new Favoritos(usuarioLogueado);
+        vr.setSize(950, 550);
+        vr.setLocation(0, 0);
+
+        contenido.removeAll();
+        contenido.add(vr, BorderLayout.CENTER);
+        contenido.revalidate();
+        contenido.repaint();              
     }//GEN-LAST:event_FavoritosMenuActionPerformed
 
 

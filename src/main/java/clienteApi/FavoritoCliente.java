@@ -77,14 +77,28 @@ public class FavoritoCliente {
     //METODO PARA CREAR UN NUEVO FAVORITO
     public Favorito createFavorito(Favorito favorito) throws Exception {
         Response<Favorito> response = apiService.createFavorito(favorito).execute();
-        if (response.isSuccessful()) {
-            Favorito favoritoCreado = response.body();
-            System.out.println("Favorito creado: " + response.body());
-            return favoritoCreado;     
-        } else {
-            System.out.println("Error al crear Favorito: " + response.code());
-            throw new Exception("Error al actualizar el Favorito"); 
-        }
+        
+         System.out.println("=== RESPUESTA DEL SERVIDOR ===");
+    System.out.println("Código: " + response.code());
+    System.out.println("Es exitoso: " + response.isSuccessful());
+     if (!response.isSuccessful() && response.errorBody() != null) {
+        System.out.println("Error: " + response.errorBody().string());
+    }
+    
+    if (response.isSuccessful()) {
+        return response.body();     
+    } else {
+        throw new Exception("Error al crear favorito. Código: " + response.code()); 
+    }
+    
+//        if (response.isSuccessful()) {
+//            Favorito favoritoCreado = response.body();
+//            System.out.println("Favorito creado: " + response.body());
+//            return favoritoCreado;     
+//        } else {
+//            System.out.println("Error al crear Favorito: " + response.code());
+//            throw new Exception("Error al actualizar el Favorito"); 
+//        }
 
     }
     

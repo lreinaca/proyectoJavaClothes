@@ -2,12 +2,14 @@
 package modelo;
 
 public class DetallePedido {
+    // ATRIBUTOS 
     private int detalleId;
     private int cantidad;
     
     private Pedido pedido;
     private Producto producto; 
-
+    
+    // CONSTRUCTOR GENERAL 
     public DetallePedido(int ventaId, int cantidad, Pedido pedido, Producto producto) {
         this.detalleId = ventaId;
         this.cantidad = cantidad;
@@ -15,6 +17,12 @@ public class DetallePedido {
         this.pedido = pedido;
         this.producto = producto;
     }
+    
+    // CONSTRUCTOR VACIO NECESARIO PARA SERIALIZACION 
+
+    public DetallePedido() {
+    }
+    
 
     public int getDetalleId() {
         return detalleId;

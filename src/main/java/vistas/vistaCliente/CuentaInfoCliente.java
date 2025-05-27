@@ -123,7 +123,7 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
 
         btnEditarDatos.setBackground(new java.awt.Color(0, 0, 0));
         btnEditarDatos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarDatos.setForeground(new java.awt.Color(204, 204, 204));
         btnEditarDatos.setText("EDITAR TU INFORMACIÓN");
         btnEditarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,10 +146,9 @@ public class CuentaInfoCliente extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEditarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                        .addComponent(txtTelefono)
-                        .addComponent(txtEmail)))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(txtTelefono)
+                    .addComponent(txtEmail))
                 .addContainerGap(294, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
