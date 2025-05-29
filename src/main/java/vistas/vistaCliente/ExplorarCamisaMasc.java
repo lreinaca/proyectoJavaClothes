@@ -388,7 +388,7 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
 
     // CARGA EL DETALLE DEL SEGUNDO PRODUCTO
     private void txtProducto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto2ActionPerformed
-        Integer idProducto = 8;
+        Integer idProducto = 5;
         mostrarDescripción(idProducto);
     }//GEN-LAST:event_txtProducto2ActionPerformed
 
@@ -401,7 +401,6 @@ public class ExplorarCamisaMasc extends javax.swing.JPanel {
     // CARGA EL DETALLE DEL TERCER PRODUCTO 
     private void txtProducto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProducto3ActionPerformed
         Integer idProducto = 7;
-
         DescripcionArticulo vista = new DescripcionArticulo(usuarioLogueado, idProducto);
         vista.setVisible(true);
     }//GEN-LAST:event_txtProducto3ActionPerformed

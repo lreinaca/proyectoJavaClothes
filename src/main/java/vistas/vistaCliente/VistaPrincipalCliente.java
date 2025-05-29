@@ -256,7 +256,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_perfilMenuActionPerformed
 
     private void camisasFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camisasFMenuItActionPerformed
-        ExplorarCamisaFem vr = new ExplorarCamisaFem();
+        ExplorarCamisaFem vr = new ExplorarCamisaFem(this.usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
@@ -267,7 +267,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_camisasFMenuItActionPerformed
 
     private void pantFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantFMenuItActionPerformed
-        ExplorarPantFem vr = new ExplorarPantFem();
+        ExplorarPantFem vr = new ExplorarPantFem(this.usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
@@ -278,7 +278,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_pantFMenuItActionPerformed
 
     private void calzaFMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaFMenuItActionPerformed
-        ExplorarCalzaFem vr = new ExplorarCalzaFem();
+        ExplorarCalzaFem vr = new ExplorarCalzaFem(this.usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
@@ -307,7 +307,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_camisasMMenuItActionPerformed
 
     private void calzaMMenuItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calzaMMenuItActionPerformed
-        ExplorarCalzaMasc vr = new ExplorarCalzaMasc();
+        ExplorarCalzaMasc vr = new ExplorarCalzaMasc(this.usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
@@ -342,7 +342,7 @@ public class VistaPrincipalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void pantHActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pantHActionPerformed1
-        ExplorarPantMasc vr = new ExplorarPantMasc();
+        ExplorarPantMasc vr = new ExplorarPantMasc(this.usuarioLogueado);
         vr.setSize(950, 550);
         vr.setLocation(0, 0);
 
