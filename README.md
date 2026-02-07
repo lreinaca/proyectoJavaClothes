@@ -11,7 +11,7 @@
 
 👤 **🧑‍💻 Integrantes**
 
-* Github: [@Rossibel Daniela Ibarra - Lorena Reina Capote - Juan Diego Velasco Perdomo](https://github.com/Rossibel Daniela Ibarra - Lorena Reina Capote - Juan Diego Velasco Perdomo)
+* Github: [@Rossibel Daniela Ibarra - Lorena Reina Capote - Juan Diego Velasco Perdomo](Rossibel Daniela Ibarra - Lorena Reina Capote - Juan Diego Velasco Perdomo)
 
 ## Show your support
 
